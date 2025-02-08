@@ -12,5 +12,7 @@ namespace Ecommerce_Website.Data
         }
 
         public DbSet<CategoryModel> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+﻿.card-header h4 {
+    color: white !important;
+}
+
+
+.table th, .table td {
+    color: white !important;
+}
+
+
+.table-bordered th, .table-bordered td {
+    border-color: #5fb94c !important;
+}
+
+.ths {
+    border-radius: inherit !important;
+}

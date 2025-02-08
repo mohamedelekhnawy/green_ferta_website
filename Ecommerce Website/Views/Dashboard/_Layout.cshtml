@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
     <link href="~/Dashboard/assets/css/material-dashboard.css" rel="stylesheet" />
+    <link href="~/Dashboard/assets/css/stylesheet.css" rel="stylesheet" />
 </head>
 <body class="dark-edition">
     <div class="wrapper ">
@@ -39,14 +40,9 @@
                             <p>Categories</p>
                         </a>
                     </li>
+
                     <li class="nav-item active  ">
-                        <a asp-controller="Dashboard" asp-action="Form" class="nav-link">
-                            <i class="material-icons">add</i>
-                            <p>Add Categories</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active  ">
-                        <a asp-controller="Dashboard" asp-action="Form" class="nav-link">
+                        <a asp-controller="Dashboard" asp-action="Add" class="nav-link">
                             <i class="material-icons">inventory</i>
                             <p>Products</p>
                         </a>
