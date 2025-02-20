@@ -1,23 +1,20 @@
-﻿
-
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ecommerce_Website.Core.Models
+namespace Ecommerce_Website.Core.ViewModels
 {
-    public class Product : Base
+    public class ProductsViewModel
     {
-        public int Id { get; set; }
 
         [Required]
         [StringLength(200)]
-        public string Name { get; set; }=null!;
+        public string Name { get; set; } = null!;
 
-        [Required]
         [StringLength(1000)]
         public string? Description { get; set; }
 
         [StringLength(200)]
-        public string? Importance { get; set; } 
+        public string? Importance { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue)]
@@ -29,15 +26,20 @@ namespace Ecommerce_Website.Core.Models
         public decimal? DiscountedPrice { get; set; }
 
         public string? ImageUrl { get; set; }
-        
+
         public List<string>? ImageUrls { get; set; } = new List<string>();
+
+
+        public virtual CategoryModel? Category { get; set; }
+        public string Quantity { get; set; } = null!;
+
+        public bool IsAvilable { get; set; } = true;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+        public List<SelectListItem> Categories { get; set; } =null!;
 
         [Required]
         [ForeignKey("Category")]
-        public int CategoryId { get; set; }
-        public virtual CategoryModel? Category { get; set; }
-
-        public string Quantity { get; set; } = null!;
-        public bool IsAvilable { get; set; } = true;
+        public int SelectedCategoryId { get; set; }
     }
 }

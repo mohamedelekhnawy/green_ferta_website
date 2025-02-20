@@ -1,14 +1,10 @@
-﻿
-
-@model IEnumerable<CategoryModel>
+﻿@model IEnumerable<Product>
 
 @{
-    ViewData["Titel"] = "Categories";
+    ViewData["Titel"] = "Products";
 }
-
-
 <div class="justify-content-between align-items-center mx-auto">
-    <a asp-controller="Dashboard" asp-action="Add" class="btn btn-light"><i class="material-icons">add</i>Add Category <i class="mdi mdi-add ms-1"></i></a>
+    <a asp-controller="Dashboard" asp-action="AddProduct" class="btn btn-light"><i class="material-icons">add</i>Add Product <i class="mdi mdi-add ms-1"></i></a>
 </div>
 
 @if (!Model.Any())
@@ -19,7 +15,7 @@
             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
         </svg>
         <div>
-            No categories yet
+            No Products yet
         </div>
     </div>
 }
@@ -36,36 +32,59 @@ else
                 <div class="table-responsive" style="height: calc(100% - 20px); overflow-y: auto;">
                     <!-- تقييد الجدول -->
                     <table class="table table-hover mb-0 w-100">
-                        <thead class="table-hover " >
+                        <thead class="table-hover ">
                             <tr>
                                 <th>Name</th>
-                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Importance</th>
+                                <th>Price</th>
+                                <th>Discounted Price</th>
+                                <th>Category</th>
                                 <th>Creating Date</th>
                                 <th>Updating Date</th>
+                                <th>Quantity</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Detales</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var category in Model)
+                            @foreach (var product in Model)
                             {
                                 <tr>
                                     <td>
-                                        <h5 class="font-14 my-1 fw-normal">@category.Name</h5>
+                                        <h5 class="font-14 my-1 fw-normal">@product.Name</h5>
                                     </td>
                                     <td>
-                                        <h5 class="font-14 my-1 fw-normal">@category.Description</h5>
+                                        <h5 class="font-14 my-1 fw-normal">@product.ImageUrl</h5>
                                     </td>
                                     <td>
-                                        <h5 class="font-14 my-1 fw-normal">@category.CreatedOn</h5>
+                                        <h5 class="font-14 my-1 fw-normal">@product.Importance</h5>
                                     </td>
                                     <td>
-                                        <h5 class="font-14 my-1 fw-normal">@category.UpdatedOn</h5>
+                                        <h5 class="font-14 my-1 fw-normal">@product.Price</h5>
                                     </td>
                                     <td>
-                                        <a asp-controller="Dashboard" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning"><i class="material-icons">edit</i> Edit</a>
+                                        <h5 class="font-14 my-1 fw-normal">@product.DiscountedPrice</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 fw-normal">@product.Category</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 fw-normal">@product.CreatedAt</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 fw-normal">@product.UpdatedAt</h5>
+                                    </td> 
+                                    <td>
+                                        <h5 class="font-14 my-1 fw-normal">@product.Quantity</h5>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Dashboard" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning"><i class="material-icons">edit</i> Edit</a>
                                     </td>
                                     <td>
                                         <form asp-controller="Dashboard" asp-action="Delete" method="post" onsubmit="return confirm('هل أنت متأكد من حذف هذه الفئة؟');">
-                                            <input type="hidden" name="id" value="@category.Id" />
+                                            <input type="hidden" name="id" value="@product.Id" />
                                             <button type="submit" class="btn btn-danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
@@ -74,6 +93,9 @@ else
                                                 Delete
                                             </button>
                                         </form>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Dashboard" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning"><i class="material-icons"></i> view</a>
                                     </td>
 
                                 </tr>

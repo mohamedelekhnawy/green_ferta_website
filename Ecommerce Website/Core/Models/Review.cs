@@ -9,19 +9,19 @@ namespace Ecommerce_Website.Core.Models
         [Required]
         [ForeignKey("Product")]
         public int ProductId { get; set; }
-        public virtual Product Product { get; set; } // الربط بالمنتج
+        public virtual Product Product { get; set; } = null!; 
 
         [Required]
         [StringLength(100)]
-        public string CustomerName { get; set; } // اسم العميل
+        public string CustomerName { get; set; } = null!; 
 
         [Required]
         [Range(1, 5)]
-        public int Rating { get; set; } // التقييم من 1 إلى 5 نجوم
+        public int Rating { get; set; } 
 
         [StringLength(1000)]
-        public string? Comment { get; set; } // تعليق العميل (اختياري)
+        public string? Comment { get; set; } 
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow; // وقت كتابة التقييم
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow; 
     }
 }

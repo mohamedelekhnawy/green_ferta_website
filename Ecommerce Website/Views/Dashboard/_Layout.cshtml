@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
+    <link href="~/lib/datatables/css/datatables.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/Dashboard/assets/css/material-dashboard.css" rel="stylesheet" />
     <link href="~/Dashboard/assets/css/stylesheet.css" rel="stylesheet" />
 </head>
@@ -42,7 +43,7 @@
                     </li>
 
                     <li class="nav-item active  ">
-                        <a asp-controller="Dashboard" asp-action="Add" class="nav-link">
+                        <a asp-controller="Dashboard" asp-action="Product" class="nav-link">
                             <i class="material-icons">inventory</i>
                             <p>Products</p>
                         </a>
@@ -89,15 +90,6 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Green Ferta
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="copyright float-right">
                         &copy;
                         <script>
@@ -126,8 +118,12 @@
     <!--  Notifications Plugin    -->
     <script src="~/Dashboard/assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="~/Dashboard/assets/js/material-dashboard.js"></script>
+    <script src="~/Dashboard/assets/js/material-dashboard.js"></script>>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="~/Dashboard/assets/demo/demo.js"></script>
+    <script src="~/datatables/js/jquery.datatables.min.js"></script>
+    <script src="~/datatables/js/datatables.bootstrap4.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
