@@ -1,17 +1,181 @@
-﻿.card-header h4 {
-    color: white !important;
+﻿body {
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    color: white;
+    margin: 0;
+    padding: 0;
 }
 
+.content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.mb-3 {
+    border: 5px solid #28a745;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.input-group-text {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+.card {
+    border: none;
+    text-align: center;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+#imagePreview {
+    max-width: 100%;
+    height: auto;
+    display: none;
+}
+
+select.form-control {
+    background-color: #1a2035;
+    color: #28a745;
+    border: 2px solid #28a745;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+    font-weight: bold;
+}
+
+.btn-close-white {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.form-container, .table-container {
+    font-size: 20px;
+}
 
 .table th, .table td {
-    color: white !important;
+    font-size: 18px;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+.custom-table th, .custom-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.custom-table th {
+    background-color: #28a745;
+    color: white;
 }
 
 
-.table-bordered th, .table-bordered td {
-    border-color: #5fb94c !important;
+.table-container {
+    max-height: 500px;
+    overflow-y: auto;
 }
 
-.ths {
-    border-radius: inherit !important;
+.product-image {
+    max-width: 100%; /* يمنع الصورة من تجاوز عرض الحاوية */
+    height: auto; /* يحافظ على نسبة الأبعاد الأصلية */
+    display: block; /* يمنع أي تأثيرات غير مرغوبة */
+    margin: 0 auto; /* يوسّط الصورة داخل الـ card */
+    max-height: 300px; /* يمنع الصورة من أن تكون طويلة جدًا */
+}
+select {
+    background-color: #13182B !important; /* لون الخلفية نفس لون الصفحة */
+    color: #ffffff; /* تغيير لون النص إلى الأبيض */
+    border: 1px solid #4CAF50; /* تحديد لون الإطار */
+    padding: 8px;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* تغيير لون القائمة المنسدلة نفسها */
+select option {
+    background-color: #13182B; /* لون الخلفية عند الفتح */
+    color: #ffffff; /* لون النص */
+    height:20px;
+}
+.badge {
+    color: white;
+}
+.card-title {
+    font-family: 'Cairo', sans-serif;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #28a745;
+    color: white;
+}
+.dark-edition .card .card-body .card-category, .dark-edition .card .card-body .card-title {
+    color: #ffffff;
+}
+.card-img-top {
+    height: auto !important;
+}
+.card {
+    
+    color: white;
+}
+.dark-edition .card .card-body {
+    color: white;
+}
+
+
+
+/* Hover effect */
+.custom-switch:hover {
+    opacity: 0.8;
+}
+
+/* Focus effect */
+.custom-switch:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.form-check  {
+    cursor: pointer;
+    /* padding-left: 25px; */
+    position: relative;
+    border: solid 5px #28a745;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+.form-check .form-check-label {
+    cursor: pointer;
+    margin:0px 10px 0px 0px ; 
+    position: relative;
 }

@@ -29,15 +29,18 @@ namespace Ecommerce_Website.Core.Models
         public decimal? DiscountedPrice { get; set; }
 
         public string? ImageUrl { get; set; }
-        
-        public List<string>? ImageUrls { get; set; } = new List<string>();
 
+        //Category
         [Required]
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
+
         public virtual CategoryModel? Category { get; set; }
+        [NotMapped] 
+        public string CategoryName => Category?.Name ?? string.Empty;
+        //-------------------//
 
         public string Quantity { get; set; } = null!;
-        public bool IsAvilable { get; set; } = true;
+        public bool IsAvailable { get; set; } = true;
     }
 }

@@ -1,83 +1,84 @@
 ﻿@{
     Layout = "~/Views/Dashboard/_Layout.cshtml";
-}
-
-@{
-    ViewData["Titel"] = "Add Product";
+    ViewData["Title"] = "Add Product";
 }
 
 @model Ecommerce_Website.Core.ViewModels.ProductsViewModel
 
 <div class="content">
-    <div class="container-fluid d-flex justify-content-between" style="height: 100vh;">
+    <div class="container-fluid d-flex justify-content-start align-items-start">
 
         <!-- فورم إضافة المنتج -->
         <form method="post" asp-controller="Dashboard" asp-action="AddProduct" enctype="multipart/form-data">
-            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
-                <label name="Name" class="form-label">Product Name</label>
-                <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name" style="border-radius: 5px;">
+
+            <div class="mb-3">
+                <label class="form-label">Product Name</label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name">
                 <span asp-validation-for="Name"></span>
             </div>
+            <div class="mb-3">
+                <div class="container">
+                    <div class="card">
+                        <h5 class="card-title">Preview Image</h5>
+                        <img id="imagePreview" alt="Selected Image" class="product-image">
+                    </div>
 
-            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="productImage">Product Image</label>
-                    <input type="file" id="productImage" class="form-control" accept="image/*" onchange="previewImage(event)">
+                    <div class="input-group">
+                        <input type="file" asp-for="Image" class="form-control" onchange="previewImage(event)">
+                        <label class="input-group-text">Image</label>
+                        <span asp-validation-for="Image"></span>
+                    </div>
                 </div>
             </div>
 
-            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
+            <div class="mb-3">
                 <label class="form-label">Importance (الاهمية)</label>
-                <textarea class="form-control" asp-for="Importance" placeholder="Enter The Importane" rows="3"></textarea>
+                <textarea class="form-control" asp-for="Importance" placeholder="Enter The Importance" rows="3"></textarea>
                 <span asp-validation-for="Importance"></span>
             </div>
 
-            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
+            <div class="mb-3">
                 <label class="form-label">Description / وصف</label>
                 <textarea class="form-control" asp-for="Description" placeholder="Enter The Description" rows="3"></textarea>
                 <span asp-validation-for="Description"></span>
             </div>
 
-            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
-                <div class="input-group mb-3">
+            <div class="mb-3">
+                <div class="input-group">
                     <label class="form-label mt-2">Price :</label>
                     <span class="input-group-text">EGP.</span>
-                    <input value="" type="number" asp-for="Price" class="form-control">
+                    <input type="number" asp-for="Price" class="form-control">
                     <span asp-validation-for="Price"></span>
                 </div>
             </div>
 
-            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
-                <div class="input-group mb-3">
+            <div class="mb-3">
+                <div class="input-group">
                     <label class="form-label mt-2">Discount :</label>
                     <span class="input-group-text">EGP.</span>
-                    <input type="number" asp-for="DiscountedPrice" class="form-control">
+                    <input type="number" value="0" asp-for="DiscountedPrice" class="form-control">
+                    <span asp-validation-for="DiscountedPrice"></span>
                 </div>
             </div>
 
-            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
+            <div class="mb-3">
                 <label class="form-label">Category</label>
-                <select style="background-color: #1a2035; color: white;" asp-for="SelectedCategoryId" asp-items="Model.Categories"
-                        class="form-control"
-                        style="background-color: transparent; color: white; border: 2px solid #28a745; padding: 10px; border-radius: 5px;">
-                    <option style="background-color: #1a2035; color: white;">-- Select Category --</option>
+                <select asp-for="SelectedCategoryId" asp-items="Model.Categories" class="form-control">
+                    <option>-- Select Category --</option>
                 </select>
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <textarea class="form-control" asp-for="Quantity" placeholder="Enter The Quantity" rows="3"></textarea>
+                <span asp-validation-for="Quantity"></span>
+            </div>
+
             <div class="col-auto">
-                <button type="submit" class="btn btn-warning mb-3"> Add </button>
+                <button type="submit" class="btn btn-warning"> Add </button>
+                <a class="btn btn-close-white" asp-action="Product">Cancel</a>
             </div>
         </form>
-
-        <!-- كارد عرض الصورة المختارة -->
-        <div class="card" style="width:400px;height:350px ; border: 5px solid #28a745; border-radius: 10px; background-color: #1a2035; color: white;">
-            <div class="card-body text-center">
-                <h5 class="card-title">Preview Image</h5>
-                <img id="imagePreview" src="#" alt="Selected Image" style="max-width: 100%; height: 250px; border-radius: 10px; display: none;">
-            </div>
-        </div>
-
-
     </div>
 </div>
 

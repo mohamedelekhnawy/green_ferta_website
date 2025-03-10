@@ -1,0 +1,141 @@
+﻿@{
+    Layout = "~/Views/Dashboard/_Layout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+@model Ecommerce_Website.Core.ViewModels.ProductsViewModel
+
+<div class="content">
+    <div class="container-fluid d-flex justify-content-between" style="height: 100vh;">
+
+        <form method="post" asp-controller="Dashboard" asp-action="EditProduct" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Product Name</label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name">
+                <span asp-validation-for="Name"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <div class="container">
+                    <div class="card">
+                        <h5 class="card-title">Preview Image</h5>
+                        <img id="imagePreview" src="~/Images/Products/@Model.ImageUrl" alt="Selected Image" class="product-image" style="display: block;" />
+                    </div>
+
+                    <div class="input-group">
+                        <input type="file" asp-for="Image" class="form-control" onchange="previewImage(event)">
+                        <label class="input-group-text">Image</label>
+                        <span asp-validation-for="Image"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Importance (الاهمية)</label>
+                <textarea class="form-control" asp-for="Importance" placeholder="Enter The Importance" rows="3"></textarea>
+                <span asp-validation-for="Importance"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description / وصف</label>
+                <textarea class="form-control" asp-for="Description" placeholder="Enter The Description" rows="3"></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <label class="form-label mt-2">Price :</label>
+                    <span class="input-group-text">EGP.</span>
+                    <input type="number" asp-for="Price" class="form-control">
+                    <span asp-validation-for="Price"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <!-- Label -->
+                    <label class="form-label mt-2" for="DiscountedPrice">Discount:</label>
+
+                    <!-- Input Group -->
+                    <span class="input-group-text" id="discount-currency">EGP</span>
+                    <input type="number"
+                           id="DiscountedPrice"
+                           asp-for="DiscountedPrice"
+                           class="form-control"
+                           placeholder="0"
+                           aria-label="Discounted Price"
+                           aria-describedby="discount-currency"
+                           min="0"
+                           step="0.01">
+
+                    <!-- Validation Message -->
+                    <span asp-validation-for="DiscountedPrice" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select asp-for="SelectedCategoryId" asp-items="Model.Categories" class="form-control" >
+                    <option>-- Select Category --</option>
+                </select>
+            </div>
+            <div class="form-check form-switch d-flex align-items-center">
+                <input class="form-check-input custom-switch"
+                       type="checkbox"
+                       role="switch"
+                       id="IsAvailableSwitch"
+                       asp-for="IsAvailable"
+                       onchange="updateAvailabilityStatus(this)">
+                <label class="form-check-label ms-2" for="IsAvailableSwitch">
+                    Available
+                </label>
+                <span id="availabilityStatus" class="ms-2"></span> <!-- Real-time feedback -->
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <textarea class="form-control" asp-for="Quantity" placeholder="Enter The Quantity" rows="3"></textarea>
+                <span asp-validation-for="Quantity"></span>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-warning">Edit</button>
+                <a class="btn btn-secondary" asp-action="Product">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = "block";
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+    function updateAvailabilityStatus(checkbox) {
+    const statusElement = document.getElementById('availabilityStatus');
+
+        // Update the status message
+        if (checkbox.checked) {
+            statusElement.textContent = 'Product is available';
+            statusElement.style.color = 'green';
+        } else {
+            statusElement.textContent = 'Product is unavailable';
+            statusElement.style.color = 'red';
+        }
+
+        // Optional: Log the updated value to the console (for debugging)
+        console.log('IsAvailable:', checkbox.checked);
+    }
+</script>
+
+
