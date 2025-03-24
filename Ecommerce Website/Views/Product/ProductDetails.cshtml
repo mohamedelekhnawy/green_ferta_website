@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Products";
+}
+@model ProductsViewModel
+
+<div class="product-container">
+    <a asp-controller="Product" asp-action="Index" class="btn btn-close"></a>
+    <!-- صورة المنتج -->
+    <div class="product-image-card">
+        <img src="~/Images/Products/@Model.ImageUrl" alt="@Model.Name" class="product-image" />
+    </div>
+
+    <!-- معلومات المنتج -->
+    <div class="product-info-card">
+        <h2 class="ProTitel">@Model.Name</h2>
+
+        @if (Model.IsAvailable)
+        {
+            <span class="badge bg-success av">In Stock</span>
+        }
+        else
+        {
+            <span class="badge bg-danger un">Unavailable</span>
+        }
+
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Importance:</strong> @Model.Importance</p>
+
+        <!-- السعر والديسكاونت -->
+        @if (Model.DiscountedPrice > 0 && Model.DiscountedPrice < Model.Price)
+        {
+            <p>
+                <strong>Price:</strong>
+                <span style="text-decoration: line-through; color: gray;">$@Model.Price</span>
+            </p>
+            <p>
+                <strong>Discounted Price:</strong>
+                <span style="color: #d9534f; font-weight: bold;">$@Model.DiscountedPrice</span>
+            </p>
+        }
+        else
+        {
+            <p><strong>Price:</strong> $@Model.Price</p>
+        }
+
+        <p><strong>Using Way:</strong> @Model.HowToUse</p>
+        <p><strong>Created At:</strong> @Model.CreatedAt.ToString("yyyy-MM-dd")</p>
+        <p><strong>Updated At:</strong> @Model.UpdatedAt?.ToString("yyyy-MM-dd")</p>
+
+        @if (Model.IsAvailable)
+        {
+            <a class="btn btn-facebook">Add to 🛒</a>
+        }
+        
+    </div>
+</div>

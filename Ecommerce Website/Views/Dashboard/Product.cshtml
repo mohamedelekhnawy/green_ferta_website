@@ -37,11 +37,12 @@ else
                                 <th>Image</th>
                                 <th>Importance</th>
                                 <th>Price</th>
+                                <th>HowToUse</th>
                                 <th>Creating Date</th>
                                 <th>Updating Date</th>
-                                <th>Quantity</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <th>View</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,21 +59,25 @@ else
                                     <td>@product.Price</td>
                                     <td>@product.CreatedAt</td>
                                     <td>@product.UpdatedAt</td>
-                                    <td>@product.Quantity</td>
+                                    
                                     <td>
-                                        <a class="btn btn-warning" asp-controller="dashboard" asp-action="EditProduct" asp-route-id="@product.Id">Edit</a>
+                                        <a class="btn btn-warning btn-sm" asp-controller="dashboard" asp-action="EditProduct" asp-route-id="@product.Id">
+                                            <i class="material-icons">edit</i> 
+                                        </a>
                                     </td>
                                     <td>
                                         <form id="deleteForm-@product.Id" asp-action="DeleteProduct" asp-controller="Dashboard" method="post">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@product.Id" />
                                         </form>
-                                        <button onclick="confirmDelete(@product.Id)" class="btn btn-danger">
-                                            Delete
+                                        <button onclick="confirmDelete(@product.Id)" class="btn btn-danger btn-sm">
+                                            <i class="material-icons">delete</i>  
                                         </button>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" asp-controller="dashboard" asp-action="ViewProduct" asp-route-id="@product.Id">View</a>
+                                        <a class="btn btn-primary btn-sm" asp-controller="dashboard" asp-action="ViewProduct" asp-route-id="@product.Id">
+                                            <i class="material-icons">info</i>   
+                                        </a>
                                     </td>
                                 </tr>
                             }
@@ -83,22 +88,26 @@ else
         </div>
     </div>
 
-    <script>
-        function confirmDelete(productId) {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "This action cannot be undone!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#6c757d",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById("deleteForm-" + productId).submit();
-                }
-            });
-        }
-    </script>
+
 
 }
+<script>
+    function confirmDelete(productId) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#6c757d",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("deleteForm-" + productId).submit();
+            }
+        });
+    }
+</script>
+
+
+

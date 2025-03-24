@@ -9,7 +9,7 @@ namespace Ecommerce_Website.Core.ViewModels
         [Required]
         [StringLength(200)]
         public string Name { get; set; } = null!;
-
+        [Required]
         [StringLength(1000)]
         public string? Description { get; set; }
         
@@ -25,20 +25,23 @@ namespace Ecommerce_Website.Core.ViewModels
         [Range(0.00, double.MaxValue)]
         [Column(TypeName = "decimal(18,2)")]
         public decimal? DiscountedPrice { get; set; }
-
+        
         public IFormFile? Image { get; set; }
         public string? ImageUrl { get; set; }
 
         //Category
         [Required]
         public int SelectedCategoryId { get; set; }
-        public string? CategoryName { get; set; } 
+        public string? CategoryName { get; set; }
+        [Required]
         public List<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
         //-------------------//
 
-        [Required]
-        public string Quantity { get; set; } = null!;
-
+        /*[Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1")]
+        public int Quantity { get; set; }*/
+        [StringLength(1000)]
+        public string? HowToUse { get; set; }
         public bool IsAvailable { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }

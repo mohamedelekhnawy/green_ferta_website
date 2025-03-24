@@ -47,3 +47,17 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+//-----------------------//
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Append("X-Frame-Options", "DENY");
+    await next();
+});
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+    await next();
+});
+
+app.UseHsts();

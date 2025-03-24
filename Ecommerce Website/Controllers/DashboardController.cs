@@ -121,12 +121,12 @@ namespace Ecommerce_Website.Controllers
                 Price = p.Price,
                 DiscountedPrice = p.DiscountedPrice,
                 ImageUrl = p.ImageUrl,
-                CategoryName = p.Category?.Name,
                 SelectedCategoryId = p.CategoryId,
-                Quantity = p.Quantity.ToString(),
+                CategoryName = p.Category?.Name,
                 IsAvailable = p.IsAvailable,
                 CreatedAt = p.CreatedAt,
-                UpdatedAt = p.UpdatedAt
+                UpdatedAt = p.UpdatedAt,
+                HowToUse = p.HowToUse,
             }).ToList();
 
             return View(productViewModels);
@@ -166,7 +166,7 @@ namespace Ecommerce_Website.Controllers
                 Price = model.Price,
                 DiscountedPrice = model.DiscountedPrice,
                 CategoryId = model.SelectedCategoryId,
-                Quantity = model.Quantity,
+                HowToUse = model.HowToUse, 
                 IsAvailable = model.IsAvailable,
                 CreatedAt = DateTime.UtcNow
             };
@@ -221,9 +221,9 @@ namespace Ecommerce_Website.Controllers
                 Price = product.Price,
                 DiscountedPrice = product.DiscountedPrice,
                 SelectedCategoryId = product.CategoryId,
-                Quantity = product.Quantity,
+                HowToUse = product.HowToUse, 
                 IsAvailable = product.IsAvailable,
-                ImageUrl = imageUrl, // تصحيح عرض الصورة
+                ImageUrl = product.ImageUrl ?? "/Images/Products/default.png",
                 Categories = _categoryRepo.GetAll()
                     .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name })
                     .ToList()
@@ -258,14 +258,14 @@ namespace Ecommerce_Website.Controllers
             product.Price = model.Price;
             product.DiscountedPrice = model.DiscountedPrice;
             product.CategoryId = model.SelectedCategoryId;
-            product.Quantity = model.Quantity;
+            product.HowToUse = model.HowToUse; 
             product.IsAvailable = model.IsAvailable;
             product.UpdatedAt = DateTime.UtcNow;
 
             // ✅ معالجة تحديث الصورة
             if (Image != null && Image.Length > 0)
             {
-                // تحديد مسار حفظ الصورة داخل `wwwroot/images/products/`
+
                 string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Products");
                 string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
@@ -346,7 +346,7 @@ namespace Ecommerce_Website.Controllers
                 DiscountedPrice = product.DiscountedPrice,
                 ImageUrl = product.ImageUrl,
                 CategoryName = product.Category?.Name,
-                Quantity = product.Quantity.ToString(),
+                HowToUse = product.HowToUse,
                 IsAvailable = product.IsAvailable,
                 CreatedAt = product.CreatedAt,
                 UpdatedAt = product.UpdatedAt

@@ -29,7 +29,7 @@
                     <div class="input-group">
                         <input type="file" asp-for="Image" class="form-control" onchange="previewImage(event)">
                         <label class="input-group-text">Image</label>
-                        <span asp-validation-for="Image"></span>
+                        
                     </div>
                 </div>
             </div>
@@ -98,9 +98,9 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Quantity</label>
-                <textarea class="form-control" asp-for="Quantity" placeholder="Enter The Quantity" rows="3"></textarea>
-                <span asp-validation-for="Quantity"></span>
+                <label class="form-label">How to use *</label>
+                <textarea class="form-control" asp-for="HowToUse" placeholder="Enter Using Way" rows="3"></textarea>
+                <span asp-validation-for="HowToUse"></span>
             </div>
 
             <div class="col-auto">

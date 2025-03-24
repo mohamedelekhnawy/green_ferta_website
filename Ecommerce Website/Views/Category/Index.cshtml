@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Category Page";
+}
+@model IEnumerable<CategoryModel>
+
+<section class="py-5 overflow-hidden slidercat">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+                    <h2 class="section-title">Categories</h2>
+                    <div class="d-flex align-items-center">
+                        <div class="swiper-buttons">
+                            <button class="swiper-prev category-carousel-prev btn btn-yellow" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-ccefd10afb35d10543" aria-disabled="false">❮</button>
+                            <button class="swiper-next category-carousel-next btn btn-yellow" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-ccefd10afb35d10543" aria-disabled="false">❯</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="category-carousel swiper">
+                    <div class="swiper-wrapper">
+                        @foreach (var category in Model)
+                        {
+                            <a asp-action="CategoryDetails" asp-controller="Category" asp-route-id="@category.Id" class="nav-link category-item swiper-slide" role="group">
+                                <h3 class="category-title">@category.Name</h3>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

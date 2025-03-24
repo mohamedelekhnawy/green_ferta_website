@@ -12,7 +12,7 @@
         <form method="post" asp-controller="Dashboard" asp-action="AddProduct" enctype="multipart/form-data">
 
             <div class="mb-3">
-                <label class="form-label">Product Name</label>
+                <label class="form-label">Product Name *</label>
                 <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name">
                 <span asp-validation-for="Name"></span>
             </div>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Description / وصف</label>
+                <label class="form-label">Description (وصف) *</label>
                 <textarea class="form-control" asp-for="Description" placeholder="Enter The Description" rows="3"></textarea>
                 <span asp-validation-for="Description"></span>
             </div>
@@ -59,19 +59,21 @@
                     <input type="number" value="0" asp-for="DiscountedPrice" class="form-control">
                     <span asp-validation-for="DiscountedPrice"></span>
                 </div>
-            </div>
+            </div>           
+
 
             <div class="mb-3">
-                <label class="form-label">Category</label>
+                <label class="form-label">Category *</label>
                 <select asp-for="SelectedCategoryId" asp-items="Model.Categories" class="form-control">
                     <option>-- Select Category --</option>
                 </select>
+                <span asp-validation-for="SelectedCategoryId"></span>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Quantity</label>
-                <textarea class="form-control" asp-for="Quantity" placeholder="Enter The Quantity" rows="3"></textarea>
-                <span asp-validation-for="Quantity"></span>
+                <label class="form-label">How to use *</label>
+                <textarea class="form-control" asp-for="HowToUse" placeholder="Enter Using Way" rows="3"></textarea>
+                <span asp-validation-for="HowToUse"></span>
             </div>
 
             <div class="col-auto">
