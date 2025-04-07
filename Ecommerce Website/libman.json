@@ -28,6 +28,18 @@
       "files": [
         "jquery.validate.min.js"
       ]
+    },
+    {
+      "library": "tailwindcss@2.2.19",
+      "destination": "wwwroot/lib/tailwindcss/",
+      "files": [
+        "base.min.css",
+        "components.min.css",
+        "tailwind-dark.min.css",
+        "tailwind-experimental.min.css",
+        "tailwind.min.css",
+        "utilities.min.css"
+      ]
     }
   ]
 }

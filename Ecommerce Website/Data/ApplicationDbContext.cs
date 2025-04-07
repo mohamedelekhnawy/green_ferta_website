@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Ecommerce_Website.Core.ViewModels;
 
 namespace Ecommerce_Website.Data
 {
@@ -14,5 +15,6 @@ namespace Ecommerce_Website.Data
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Review> Reviews { get; set; }
+       
     }
 }

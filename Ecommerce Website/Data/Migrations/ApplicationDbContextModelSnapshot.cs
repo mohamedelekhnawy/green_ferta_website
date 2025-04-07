@@ -36,6 +36,9 @@ namespace Ecommerce_Website.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -343,7 +346,7 @@ namespace Ecommerce_Website.Data.Migrations
             modelBuilder.Entity("Ecommerce_Website.Core.Models.Product", b =>
                 {
                     b.HasOne("Ecommerce_Website.Core.Models.CategoryModel", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -411,6 +414,11 @@ namespace Ecommerce_Website.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Ecommerce_Website.Core.Models.CategoryModel", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

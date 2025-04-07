@@ -1,4 +1,5 @@
-﻿using Ecommerce_Website.Repositories;
+﻿using Ecommerce_Website.Core.Models;
+using Ecommerce_Website.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Ecommerce_Website.Controllers
@@ -45,12 +46,36 @@ namespace Ecommerce_Website.Controllers
                 return View(model);
             }
 
-            var category = new CategoryModel
+            var category= new CategoryModel
             {
                 Name = model.Name,
-                Description = model.Description,
+                Description = model.Description, 
                 CreatedOn = DateTime.Now
             };
+
+            if (model.CatImage != null)
+            {
+                var extension = Path.GetExtension(model.CatImage.FileName).ToLower();
+                if (!_allowedExtensions.Contains(extension))
+                {
+                    ModelState.AddModelError(nameof(model.CatImage), "Not allowed extension");
+                    return View(model);
+                }
+                if (model.CatImage.Length > _MaxSize)
+                {
+                    ModelState.AddModelError(nameof(model.CatImage), "Maximum size is 5MB");
+                    return View(model);
+                }
+                var imageName = $"{Guid.NewGuid()}{extension}";
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/Categories", imageName);
+
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    model.CatImage.CopyTo(stream);
+                }
+
+                category.ImageUrl = imageName;
+            }
 
             _categoryRepo.Add(category);
             return RedirectToAction("Categories");
@@ -69,7 +94,9 @@ namespace Ecommerce_Website.Controllers
             {
                 Id = category.Id,
                 Name = category.Name,
-                Description = category.Description
+                Description = category.Description,
+                ImageUrl= category.ImageUrl,
+                
             };
 
             return View("EditForm", viewModel);
@@ -130,7 +157,7 @@ namespace Ecommerce_Website.Controllers
             }).ToList();
 
             return View(productViewModels);
-        }
+            }
 
 
         [HttpGet]
