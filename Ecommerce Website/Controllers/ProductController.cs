@@ -7,9 +7,11 @@ namespace Ecommerce_Website.Controllers
     public class ProductController : Controller
     {
         private readonly IRepository<Product> _productRepo;
-        public ProductController(IRepository<Product> productRepo)
+        private readonly IProductRepository _productRepository;
+        public ProductController(IRepository<Product> productRepo,IProductRepository ProductRepository)
         {
             _productRepo = productRepo;
+            _productRepository = ProductRepository;
         }
         public IActionResult Index()
         {
@@ -40,6 +42,19 @@ namespace Ecommerce_Website.Controllers
             };
             return View("ProductDetails", viewModel);
         }
+        [HttpGet]
+        public IActionResult ProductsByCategory(int categoryId)
+        {
+            // Fetch products for the given category ID
+            var products = _productRepository.GetProductsByCategoryId(categoryId);
 
+            if (!products.Any())
+            {
+                return View("NoProductsFound");
+            }
+
+            // Pass the products to the view
+            return View(products);
+        }
     }
 }

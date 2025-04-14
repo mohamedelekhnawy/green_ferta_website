@@ -1,7 +1,8 @@
-﻿using Ecommerce_Website.Data;
+﻿
+using Ecommerce_Website.Data;
 using Ecommerce_Website.Repositories;
 
-public class ProductRepository : IRepository<Product>
+public class ProductRepository : IProductRepository
 {
     private readonly ApplicationDbContext _context;
 
@@ -40,5 +41,17 @@ public class ProductRepository : IRepository<Product>
             _context.Products.Remove(product);
             _context.SaveChanges();
         }
+    }
+
+    public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
+    {
+        return _context.Products
+            .Where(p => p.CategoryId == categoryId)
+            .ToList();
+    }
+
+    public IEnumerable<CategoryModel> GetAllCategories()
+    {
+        return _context.Categories.ToList();
     }
 }

@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "عن الشركة";
+    Layout = "_Layout";
+}
+
+<div class="about-container">
+
+    <!-- عنوان رئيسي -->
+    <div class="text-center section-box mb-5">
+        <h1 class="fw-bold mb-1">من نحن</h1>
+        <p class="text-muted fs-5">تعرف على شركة Green Ferta وأهدافها</p>
+    </div>
+
+    <div class="company-section">
+        <!-- صورة الشركة -->
+        <div class="company-logo-box mb-4">
+            <img src="~/Images/logo png.png" alt="Green Ferta" class="company-logo shadow" />
+        </div>
+
+        <!-- وصف الشركة -->
+        <div class="company-description text-center">
+            <h2 class="fw-semibold mb-3 Aboutus">عن Green Ferta</h2>
+            <p class="text-muted fs-5">
+                شركة <strong>Green Ferta</strong> هي شركة رائدة في مجال إنتاج وتوزيع الأسمدة الزراعية،
+                تهدف إلى دعم المزارعين بمنتجات عالية الجودة تسهم في زيادة الإنتاج وتحسين جودة المحاصيل.
+                نلتزم بالممارسات الزراعية المستدامة ونسعى دائمًا لتقديم حلول صديقة للبيئة.
+            </p>
+        </div>
+    </div>  
+
+    <!-- الرؤية والرسالة -->
+    <div class="row text-center justify-content-center gap-3 mb-5">
+        <div class="col-md-5 section-box">
+            <h4 class="fw-bold mb-3">رسالتنا</h4>
+            <p class="text-muted">
+                توفير أسمدة فعالة وآمنة للمزارعين من أجل تعزيز الزراعة المستدامة وتحقيق الأمن الغذائي.
+            </p>
+        </div>
+        <div class="col-md-5 section-box">
+            <h4 class="fw-bold mb-3">رؤيتنا</h4>
+            <p class="text-muted">
+                أن نصبح الخيار الأول للمزارعين في الشرق الأوسط من خلال الابتكار والجودة والالتزام البيئي.
+            </p>
+        </div>
+    </div>
+
+    <!-- معلومات التواصل -->
+    <div class="section-box text-end mb-5">
+        <h4 class="fw-bold mb-3">معلومات التواصل</h4>
+        <ul class="list-unstyled fs-5 text-muted">
+            <li><i class="bi bi-envelope ms-2 text-success"></i> البريد الإلكتروني: info@greenferta.com</li>
+            <li><i class="bi bi-telephone ms-2 text-success"></i> الهاتف: +20 101 234 5678</li>
+            <li><i class="bi bi-geo-alt ms-2 text-success"></i> العنوان: المنطقة الصناعية، برج العرب، الإسكندرية</li>
+        </ul>
+    </div>
+
+    <!-- فورم التواصل -->
+    <div class="section-box mx-auto" style="max-width: 700px;">
+        <h4 class="fw-bold mb-4 text-center">راسلنا الآن</h4>
+        <form>
+            <div class="mb-3">
+                <label for="name" class="form-label">الاسم</label>
+                <input type="text" class="form-control" id="name" placeholder="اكتب اسمك" />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="email" placeholder="example@email.com" />
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">الرسالة</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="اكتب رسالتك هنا..."></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">إرسال</button>
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -3,13 +3,16 @@
     ViewData["Title"] = "Category Page";
 }
 @model IEnumerable<CategoryModel>
+<h1 class="text-center ">الاصناف</h1>
+<p class="text-center">استعرض جميع الاصناف المتاحة لدينا.</p>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+
     @foreach (var category in Model)
     {
-        <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-            <img class="object-cover w-full h-48 rounded-t-lg" src="/docs/images/blog/image-4.jpg" alt="@category.Name" />
+        <a asp-controller="Product" asp-action="ProductsByCategory" asp-route-categoryId="@category.Id" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <img class="object-cover w-full h-48 rounded-t-lg" src="~/Images/Categories/@category.ImageUrl" alt="@category.Name" />
             <div class="flex flex-col justify-between p-4 leading-normal text-center">
-                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">@category.Name</h5>
+                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 ">@category.Name</h5>
                 <p class="mb-3 text-gray-700 dark:text-gray-400">@category.Description</p>
             </div>
         </a>

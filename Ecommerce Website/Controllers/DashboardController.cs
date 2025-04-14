@@ -2,6 +2,7 @@
 using Ecommerce_Website.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Packaging.Signing;
 namespace Ecommerce_Website.Controllers
 {
     public class DashboardController : Controller
@@ -9,15 +10,19 @@ namespace Ecommerce_Website.Controllers
 
         private readonly IRepository<CategoryModel> _categoryRepo;
         private readonly IRepository<Product> _productRepo;
+        private readonly IRepository<Borshor> _borshorRepo;
         private readonly IWebHostEnvironment _webHostEnvironment; 
         private readonly List<string> _allowedExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
+        private readonly List<string> _PdfallowedExtensions = new List<string> { ".pdf" };
         private readonly int _MaxSize= 5242880 ;
+        
 
-        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment)
+        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment, IRepository<Borshor> borshorRepo)
         {
             _categoryRepo = categoryRepo;
             _productRepo = productRepo;
-            _webHostEnvironment = webHostEnvironment; 
+            _webHostEnvironment = webHostEnvironment;
+            _borshorRepo = borshorRepo;
         }
 
         public IActionResult Index()
@@ -53,17 +58,17 @@ namespace Ecommerce_Website.Controllers
                 CreatedOn = DateTime.Now
             };
 
-            if (model.CatImage != null)
+            if (model.Image != null)
             {
-                var extension = Path.GetExtension(model.CatImage.FileName).ToLower();
+                var extension = Path.GetExtension(model.Image.FileName).ToLower();
                 if (!_allowedExtensions.Contains(extension))
                 {
-                    ModelState.AddModelError(nameof(model.CatImage), "Not allowed extension");
+                    ModelState.AddModelError(nameof(model.Image), "Not allowed extension");
                     return View(model);
                 }
-                if (model.CatImage.Length > _MaxSize)
+                if (model.Image.Length > _MaxSize)
                 {
-                    ModelState.AddModelError(nameof(model.CatImage), "Maximum size is 5MB");
+                    ModelState.AddModelError(nameof(model.Image), "Maximum size is 5MB");
                     return View(model);
                 }
                 var imageName = $"{Guid.NewGuid()}{extension}";
@@ -71,7 +76,7 @@ namespace Ecommerce_Website.Controllers
 
                 using (var stream = new FileStream(imagePath, FileMode.Create))
                 {
-                    model.CatImage.CopyTo(stream);
+                    model.Image.CopyTo(stream);
                 }
 
                 category.ImageUrl = imageName;
@@ -84,12 +89,13 @@ namespace Ecommerce_Website.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+
             var category = _categoryRepo.GetById(id);
             if (category == null)
             {
                 return NotFound();
             }
-
+            var imageUrl = string.IsNullOrEmpty(category.ImageUrl) ? "/Images/Products/default.png" : category.ImageUrl;
             var viewModel = new CategoriesViewModel
             {
                 Id = category.Id,
@@ -104,7 +110,7 @@ namespace Ecommerce_Website.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(CategoriesViewModel model)
+        public IActionResult Edit(CategoriesViewModel model, IFormFile? Image)
         {
             if (!ModelState.IsValid)
             {
@@ -118,8 +124,42 @@ namespace Ecommerce_Website.Controllers
             }
 
             category.Name = model.Name;
+            category.ImageUrl = model.ImageUrl;
             category.Description = model.Description;
             category.UpdatedOn = DateTime.Now;
+
+            if (Image != null && Image.Length > 0)
+            {
+
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Categories");
+                string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // التأكد من وجود المجلد
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                // حفظ الصورة في المجلد
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    Image.CopyTo(fileStream);
+                }
+
+                // حذف الصورة القديمة إن وجدت
+                if (!string.IsNullOrEmpty(category.ImageUrl))
+                {
+                    string oldImagePath = Path.Combine(uploadsFolder, Path.GetFileName(category.ImageUrl));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                // تحديث الصورة في قاعدة البيانات
+                category.ImageUrl = uniqueFileName;
+            }
 
             _categoryRepo.Update(category);
             return RedirectToAction("Categories");
@@ -380,5 +420,107 @@ namespace Ecommerce_Website.Controllers
             };
             return View(ViewModel);
         }
+
+        public IActionResult Borshors()
+        {
+            var Borshors = _borshorRepo.GetAll();
+            return View(Borshors);
+        }
+
+        public IActionResult AddBorshor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddBorshor(BorshorViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var borshor = new Borshor
+            {
+                Titel = model.Titel,
+                Description = model.Description,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            if (model.Image !=null) {
+
+                var extension = Path.GetExtension(model.Image.FileName).ToLower();
+                if (!_allowedExtensions.Contains(extension))
+                {
+                    ModelState.AddModelError(nameof(model.Image), "Not allowed extension");
+                    return View(model);
+                }
+                if (model.Image.Length > _MaxSize)
+                {
+                    ModelState.AddModelError(nameof(model.Image), "Maximum size is 5MB");
+                    return View(model);
+                }
+                var imageName = $"{Guid.NewGuid()}{extension}";
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/Borshors", imageName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    model.Image.CopyTo(stream);
+                }
+                borshor.ImageUrl = imageName;
+            }
+            if (model.Pdf != null)
+            {
+                var extension = Path.GetExtension(model.Pdf.FileName).ToLower();
+                if (! _PdfallowedExtensions.Contains(extension))
+                {
+                    ModelState.AddModelError(nameof(model.Pdf), "Not allowed extension");
+                    return View(model);
+                }
+                var pdfName = $"{Guid.NewGuid()}{extension}";
+                var pdfPath = Path.Combine(_webHostEnvironment.WebRootPath, "Pdf/Borshors", pdfName);
+                using (var stream = new FileStream(pdfPath, FileMode.Create))
+                {
+                    model.Pdf.CopyTo(stream);
+                }
+                borshor.PdfUrl = pdfName;
+            }
+            _borshorRepo.Add(borshor);
+            return RedirectToAction("Borshors");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteBorshor(int id)
+        {
+            var borshor = _borshorRepo.GetById(id);
+
+            if (borshor == null)
+            {
+                return NotFound();
+            }
+
+            // Optional: Delete the image from wwwroot if it exists
+            if (!string.IsNullOrEmpty(borshor.ImageUrl))
+            {
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/Borshors", borshor.ImageUrl);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+            if (!string.IsNullOrEmpty(borshor.PdfUrl))
+            {
+                var PdfPath = Path.Combine(_webHostEnvironment.WebRootPath, "Pdf/Borshors", borshor.PdfUrl);
+                if (System.IO.File.Exists(PdfPath))
+                {
+                    System.IO.File.Delete(PdfPath);
+                }
+            }
+
+            // Delete the product
+            _borshorRepo.Delete(id);
+            return RedirectToAction("Borshors"); // Redirect after deletion
+        }
+
     }
 }

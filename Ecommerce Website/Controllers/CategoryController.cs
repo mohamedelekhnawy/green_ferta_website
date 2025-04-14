@@ -1,4 +1,5 @@
-﻿using Ecommerce_Website.Repositories;
+﻿using System.Threading.Tasks.Dataflow;
+using Ecommerce_Website.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,11 @@ namespace Ecommerce_Website.Controllers
     public class CategoryController : Controller
     {
         private readonly IRepository<CategoryModel> _categoryRepo;
+        
         public CategoryController(IRepository<CategoryModel> categoryRepo)
         {
-            _categoryRepo = categoryRepo ;
-
+            _categoryRepo = categoryRepo;
+            
         }
         public IActionResult Index()
         {
@@ -32,10 +34,13 @@ namespace Ecommerce_Website.Controllers
             {
                 Id = category.Id,
                 Name = category.Name,
+                ImageUrl = category.ImageUrl,
                 Description = category.Description
             };
 
             return View("CategoryDetails", viewModel);
         }
+        
+
     }
 }

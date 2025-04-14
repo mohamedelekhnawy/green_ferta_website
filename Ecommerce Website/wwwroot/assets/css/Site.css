@@ -1,3 +1,175 @@
-﻿@tailwind base;
-@tailwind components;
-@tailwind utilities;
+﻿
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo/Cairo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo/Cairo-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Cairo', sans-serif !important;
+}
+.single-product {
+    height: 1%;
+    min-height: 400px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.product-image img {
+    height: 220px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+.product-info {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.badge.av, .badge.un {
+    font-size: 13px;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+.price {
+    margin-top: 10px;
+}
+
+.Headerbar {
+    background-color: rgb(34 46 61) !important;
+}
+.logoh {
+    width:10rem !important;
+    
+}
+.socialf {
+    margin-left: -70px !important;
+}
+.sec1h {
+    background-image: linear-gradient(to bottom, #007e2e, #90ee90);
+    overflow: visible !important;
+    height: fit-content;
+}
+.bg-image {
+    
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0px 50px;
+    margin-bottom: 50px;
+}
+
+.btn {
+    b
+    color: white;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+.pf{
+    color:white;
+}
+h1 {
+    font-size: 50px !important;
+}
+.product-image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+.product-image {
+    display: flex;
+    justify-content: center; /* توسيط أفقي */
+    align-items: center; /* توسيط رأسي */
+    height: 220px; /* أو أي ارتفاع يناسب الكارد */
+}
+.carousel-image {
+    width: 45%; /* تأكد من أن الصورة تأخذ عرض العنصر الرئيسي */
+    object-fit: cover; /* تأكد من أن الصورة تغطي كامل المساحة بدون تشويه */
+    object-position: center; /* مركز الصورة */
+}
+@media (max-width: 768px) {
+    #gallery .relative {
+        height: 300px; /* اضبط الحجم الأقصى للعنصر الرئيسي */
+    }
+}
+.about-container {
+    padding: 40px 20px;
+    direction: rtl;
+}
+
+.section-box {
+    background-color:ghostwhite;
+    border-radius: 20px;
+    padding: 25px;
+
+}
+
+.company-logo {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+}
+.company-section {
+    width:100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+    direction: rtl;
+    background-color: ghostwhite;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.company-logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+}
+
+.company-logo {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.25);
+}
+
+.company-description p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+.Aboutus {
+    font-size: 30px;
+}

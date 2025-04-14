@@ -12,7 +12,7 @@ namespace Ecommerce_Website.Core.ViewModels
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
 
-        public IFormFile? CatImage { get; set; }
+        public IFormFile? Image { get; set; }
         public string? ImageUrl { get; set; }
 
         public ICollection<Product> Products { get; set; } = new List<Product>();

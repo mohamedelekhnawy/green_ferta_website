@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Products Page";
+}
+@model IEnumerable<Product>
+
+
+<section class="py-5">
+    <h1 class="text-center ">المنتجات</h1>
+    <p class="text-center">استعرض جميع المنتجات التابعة لهذا الصنف.</p>
+
+    <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id">
+                        <div class="single-product">
+                            <aasp-controller ="Product" asp-action="ProductDetails" asp-route-id="@product.Id">
+                                <div class="product-image">
+                                    <img src="~/Images/Products/@product.ImageUrl" alt="@product.Name">
+                                    <div class="button">
+                                        <a asp-controller="Order" asp-action="index" class="btn"><i class="lni lni-cart"></i> اطلب الان </a>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h4 class="title">
+                                        <a asp-controller="" asp-action="">@product.Name</a>
+                                    </h4>
+                                    <div>
+                                        @if (product.IsAvailable)
+                                        {
+                                            <span class="badge bg-success av">متوفر</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger un">غير متوفر حاليا!</span>
+                                        }
+                                    </div>
+                                    <div class="price">
+
+                                        @if (product.DiscountedPrice > 0 && product.DiscountedPrice < product.Price)
+                                        {
+                                            <p>
+                                                <strong>السعر:</strong>
+                                                <span style="text-decoration: line-through; color: gray;">$@product.Price</span>
+                                            </p>
+                                            <p>
+                                                <strong>السعر بعد الخصم :</strong>
+                                                <span style="color: #d9534f; font-weight: bold;">$@product.DiscountedPrice</span>
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p><strong>السعر:</strong> $@product.Price</p>
+                                        }
+
+                                    </div>
+                                </div>
+                            </aasp-controller>
+                        </div>
+                    </a>
+                    <!-- End Single Product -->
+                </div>
+
+            }
+        </div>
+</section>
+

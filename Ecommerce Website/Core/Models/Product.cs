@@ -37,8 +37,6 @@ namespace Ecommerce_Website.Core.Models
 
         public virtual CategoryModel? Category { get; set; }
 
-        [NotMapped]
-        public string CategoryName => Category?.Name ?? string.Empty;
 
         // New Quantity for Shopping Cart
         [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1")]
