@@ -1,0 +1,43 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "تسجيل الدخول";
+}
+
+<link rel="stylesheet" href="~/Css/custom-login.css" />
+
+<form class="form" method="post">
+    <p class="form-title">تسجيل الدخول إلى حسابك</p>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+    <div class="input-container">
+        <input asp-for="Input.Email" placeholder="أدخل البريد الإلكتروني" autocomplete="username" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+
+    <div class="input-container">
+        <input asp-for="Input.Password" placeholder="أدخل كلمة المرور" autocomplete="current-password" />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+
+    <div class="input-container ">
+        <label>
+            <input class="rm " asp-for="Input.RememberMe" />
+            @Html.DisplayNameFor(m => m.Input.RememberMe)
+        </label>
+    </div>
+
+    <button type="submit" class="submit">تسجيل الدخول</button>
+
+    <p class="signup-link">
+        لا تملك حساباً؟ <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">إنشاء حساب</a>
+    </p>
+    <p class="signup-link">
+        <a asp-page="./ForgotPassword">نسيت كلمة المرور؟</a>
+    </p>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

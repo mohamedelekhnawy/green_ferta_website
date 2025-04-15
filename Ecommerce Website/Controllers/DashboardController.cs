@@ -1,28 +1,32 @@
 ﻿using Ecommerce_Website.Core.Models;
 using Ecommerce_Website.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NuGet.Packaging.Signing;
 namespace Ecommerce_Website.Controllers
 {
+    [Authorize (Roles ="Admin")]
     public class DashboardController : Controller
     {
 
         private readonly IRepository<CategoryModel> _categoryRepo;
         private readonly IRepository<Product> _productRepo;
         private readonly IRepository<Borshor> _borshorRepo;
+        private readonly IRepository<ApplicationUser> _userRepository;
         private readonly IWebHostEnvironment _webHostEnvironment; 
         private readonly List<string> _allowedExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
         private readonly List<string> _PdfallowedExtensions = new List<string> { ".pdf" };
         private readonly int _MaxSize= 5242880 ;
-        
 
-        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment, IRepository<Borshor> borshorRepo)
+
+        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment, IRepository<Borshor> borshorRepo, IRepository<ApplicationUser> userRepository)
         {
             _categoryRepo = categoryRepo;
             _productRepo = productRepo;
             _webHostEnvironment = webHostEnvironment;
             _borshorRepo = borshorRepo;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
@@ -520,6 +524,23 @@ namespace Ecommerce_Website.Controllers
             // Delete the product
             _borshorRepo.Delete(id);
             return RedirectToAction("Borshors"); // Redirect after deletion
+        }
+
+        public IActionResult Users()
+        {
+            var users = _userRepository.GetAll();
+
+            var viewModelList = users.Select(user => new UsersViewModel
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt
+            }).ToList();
+
+            return View(viewModelList);
         }
 
     }

@@ -1,0 +1,38 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "إنشاء حساب";
+}
+
+<link rel="stylesheet" href="~/css/custom-login.css" />
+
+<form class="form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <p class="form-title">إنشاء حساب جديد</p>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+    <div class="input-container">
+        <input asp-for="Input.Email" placeholder="أدخل البريد الإلكتروني" autocomplete="username" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+
+    <div class="input-container">
+        <input asp-for="Input.Password" placeholder="أدخل كلمة المرور" autocomplete="new-password" />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+
+    <div class="input-container">
+        <input asp-for="Input.ConfirmPassword" placeholder="تأكيد كلمة المرور" autocomplete="new-password" />
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="submit">تسجيل</button>
+
+    <p class="signup-link">
+        لديك حساب؟ <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">تسجيل الدخول</a>
+    </p>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -33,9 +33,51 @@
                 </button>
             </div>
 
-            <!-- Login and Register Buttons -->
-            <a href="#" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">تسجيل الدخول</a>
-            <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">إنشاء حساب</a>
+            <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" class="flex items-center justify-center w-10 h-10 text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" type="button">
+                <span class="sr-only">Open user menu</span>
+                <!-- أيقونة المستخدم -->
+                <img src="   https://cdn-icons-png.flaticon.com/512/3135/3135768.png " width="256" height="256" alt="" title="" class="img-small">
+            </button>
+
+
+            <div id="dropdownAvatar" class="z-10 hidden bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-black-600 rounded-lg shadow-lg w-48">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <!-- ✅ المستخدم مسجل دخول -->
+                    <div class="px-4 py-3 text-sm text-gray-900 dark:text-black">
+                        <div class="font-semibold">مرحبًا تم تسجيل الدخول</div>
+                       
+                    </div>
+                    <div class="py-2">
+                        <form class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-black-700" method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
+                            <button type="submit" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-black-700 w-full">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" />
+                                </svg>
+                                تسجيل الخروج
+                            </button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <!-- 🚪 المستخدم مش مسجل -->
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-300" aria-labelledby="dropdownUserAvatarButton">
+                        <li>
+                            <a asp-area="Identity" asp-page="/Account/Login" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-black-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#000" stroke-width="2"><path d="..." /></svg>
+                                تسجيل دخول
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="Identity" asp-page="/Account/Register" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-black-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#000" stroke-width="2"><path d="..." /></svg>
+                                إنشاء حساب
+                            </a>
+                        </li>
+                    </ul>
+                }
+            </div>
 
             <!-- Mobile Menu Toggle Button -->
             <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 focus:outline-none">

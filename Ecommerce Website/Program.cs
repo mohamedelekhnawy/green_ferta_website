@@ -1,6 +1,8 @@
 using Ecommerce_Website.Data;
 using Ecommerce_Website.Repositories;
+using Ecommerce_Website.Seeds;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,16 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount =false)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultUI()
+    .AddDefaultTokenProviders();    
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IRepository<CategoryModel>, CategoryRepository>();
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IRepository<Borshor>, BorshorRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IRepository<ApplicationUser>, UserRepository>();
 
 
 
@@ -40,8 +46,18 @@ app.UseStaticFiles();
 
 
 app.UseRouting();
-
 app.UseAuthorization();
+//-----------------------//
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+var scope = scopeFactory.CreateScope();
+
+var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+
+await DefaultRoles.SeedRolesAsync(roleManager);
+await DefaultUsers.SeedAdminUserAsync(userManager);
+//-----------------------//
 
 app.MapControllerRoute(
     name: "default",
