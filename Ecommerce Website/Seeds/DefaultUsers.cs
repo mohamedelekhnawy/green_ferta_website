@@ -8,7 +8,8 @@ namespace Ecommerce_Website.Seeds
         {
             ApplicationUser admin = new()
             {
-                UserName = "admin",
+                FullName = "Admin User",
+                UserName = "greenferta@gmail.com",
                 Email = "greenferta@gmail.com",
                 EmailConfirmed = true,
             };

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/logo png.png" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="~/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="~/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+    <link href="~/assets/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/custom-login.css" />
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts")
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

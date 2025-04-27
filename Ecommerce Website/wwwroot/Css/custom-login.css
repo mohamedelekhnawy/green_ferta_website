@@ -2,10 +2,13 @@
     background-color: #fff;
     display: block;
     padding: 1rem;
-    max-width: 350px;
-    margin: 2rem auto;
+    max-width: 450px;
+    margin: 4rem auto;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    direction: rtl;
+    text-align: right;
+
 }
 
 .form-title {
@@ -21,22 +24,22 @@
     margin-bottom: 1rem;
 }
 
-    .input-container input,
-    .form button {
-        outline: none;
-        border: 1px solid #e5e7eb;
-        margin: 8px 0;
-    }
+.input-container input,
+.form button {
+    outline: none;
+    border: 1px solid #e5e7eb;
+    margin: 8px 0;
+}
 
-    .input-container input {
-        background-color: #fff;
-        padding: 1rem;
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        width: 100%;
-        border-radius: 0.5rem;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    }
+.input-container input {
+    background-color: #fff;
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
 
 
 .submit {
@@ -60,10 +63,130 @@
     margin-top: 1rem;
 }
 
-    .signup-link a {
-        text-decoration: underline;
-    }
+.signup-link a {
+    text-decoration: underline;
+}
 
+.phone{
+    text-align:right;
+}
 .rm {
     width: fit-content !important;
+}
+.cp {
+    direction: ltr;
+    text-align: left;
+}
+/* الخط العام */
+body {
+    background-color: #222e3d;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+}
+
+/* الحاوية الأساسية */
+.form-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* عنوان الفورم */
+.form-container h2 {
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* الحقول */
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-container input:focus {
+    border-color: #5b3cc4;
+}
+
+    /* زر التسجيل */
+.form-container button {
+background-color: #5b3cc4;
+color: white;
+padding: 12px;
+width: 100%;
+border: none;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+transition: background-color 0.3s ease-in-out;
+}
+
+.form-container button:hover {
+    background-color: #472fa3;
+}
+
+/* رابط تسجيل الدخول */
+.form-container .login-link {
+margin-top: 20px;
+font-size: 14px;
+}
+
+.form-container .login-link a {
+    color: #5b3cc4;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-container .login-link a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    padding-right: 40px; /* مساحة علشان الأيقونة تدخل */
+    direction:rtl; /* لو شغال عربي، عشان الكتابة تبدأ من اليمين */
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px; /* لو إنجليزي، حط left بدل right */
+    cursor: pointer;
+    color: #888;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.validation-summary-errors {
+    color: red !important;
+    font-weight: bolder !important;
+    padding: 10px 0px !important;
+}
+.confirmation-message {
+    text-align: center;
+    padding: 15px;
+}
+.submit{
+    text-align:center;
 }

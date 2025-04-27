@@ -1,23 +1,40 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = "تأكيد التسجيل";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-<p>
-    This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
-</p>
-    }
-    else
-    {
-<p>
-        Please check your email to confirm your account.
-</p>
-    }
+<link rel="stylesheet" href="~/Css/custom-login.css" />
+
+<div class="form">
+    <p class="form-title">@ViewData["Title"]</p>
+
+    <div class="confirmation-message">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-check-circle-fill text-success mb-3" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </svg>
+
+        <p class="text-center">
+            تم إنشاء حسابك بنجاح 🎉<br />
+            لقد أرسلنا رسالة تأكيد إلى بريدك الإلكتروني.
+        </p>
+
+    </div>
+
+    <form method="post" class="text-center">
+        <button type="submit" class="submit resend-btn">
+            إعادة إرسال رابط التأكيد
+        </button>
+    </form>
+
+    <p class="signup-link">
+        العودة إلى
+        <a href="/"> الصفحة الرئيسية</a>
+    </p>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
 

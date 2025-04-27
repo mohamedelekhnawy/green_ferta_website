@@ -1,28 +1,37 @@
 using System.Diagnostics;
+using Ecommerce_Website.Core.Models;
+using Ecommerce_Website.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce_Website.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
+
     {
+        private readonly IRepository<Testmonials> _testmonials;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepository<Testmonials> testmonials)
         {
             _logger = logger;
+            _testmonials = testmonials;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var testmonials = _testmonials.GetAll();
+            return View(testmonials);
+            
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

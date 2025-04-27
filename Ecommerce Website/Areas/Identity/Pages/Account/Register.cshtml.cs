@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -72,11 +73,14 @@ namespace Ecommerce_Website.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required(ErrorMessage = "الاسم مطلوب")]
+            [Display(Name = "الاسم الكامل")]
+            public string FullName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "البريد الالكترونى مطلوب")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -85,20 +89,33 @@ namespace Ecommerce_Website.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "من فضلك أدخل كلمة المرور")]
+            [StringLength(100, ErrorMessage = "كلمة المرور يجب ألا تقل عن {2} أحرف.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
+
             public string Password { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Required(ErrorMessage = "من فضلك أكد كلمة المرور")]
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "كلمة المرور وتأكيدها غير متطابقين")]
             public string ConfirmPassword { get; set; }
+
+            
+            [Required(ErrorMessage = "رقم الهاتف مطلوب")]
+            [Phone(ErrorMessage = "رقم الهاتف غير صالح")]
+            [Display(Name = "رقم الهاتف")]
+            public string PhoneNumber { get; set; }
+
+            
+
+            [Display(Name = "اسم المستخدم")]
+            public string UserName { get; set; }
         }
 
 
@@ -116,10 +133,13 @@ namespace Ecommerce_Website.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None); // Username = Email
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
 
+                user.FullName = Input.FullName;
+
+                var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

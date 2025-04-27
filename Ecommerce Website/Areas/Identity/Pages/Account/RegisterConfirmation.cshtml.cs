@@ -56,7 +56,7 @@ namespace Ecommerce_Website.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return NotFound($"Unable to load user with email '{email}'.");
+                return NotFound($"لم يتم العثور على البريد الالكترونى الخاص بك  '{email}'.");
             }
 
             Email = email;

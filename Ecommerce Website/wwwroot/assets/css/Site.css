@@ -80,8 +80,6 @@ body {
 }
 
 .btn {
-    b
-    color: white;
     font-weight: bold;
     padding: 15px 30px;
     border-radius: 5px;
@@ -89,9 +87,9 @@ body {
     transition: background-color 0.3s ease;
 }
 
-    .btn:hover {
-        background-color: #0056b3;
-    }
+.btn:hover {
+    background-color: #0056b3;
+}
 
 .pf{
     color:white;
@@ -162,7 +160,7 @@ h1 {
     width: 300px;
     height: 300px;
     object-fit: contain;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 128, 0, 0.25);
 }
 
@@ -172,4 +170,177 @@ h1 {
 }
 .Aboutus {
     font-size: 30px;
+}
+
+header {
+    background-color: #081828 !important;
+    color: white;
+
+}
+.menu {
+    background-color: #081828 !important;
+    align-items:end;
+}
+
+.search-input {
+    background-color: #f8fafc;
+    color: #334155 !important;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.search-input::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+}
+
+.search-input:focus {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+.searchdt {
+    color: #000 !important;
+}
+.HeaderLogo{
+    width:8rem !important;
+}
+/* استايل قسم لماذا Green Ferta؟ */
+.why-green-ferta {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+    .why-green-ferta .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .why-green-ferta .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+        .why-green-ferta .section-header h2 {
+            color: #1A3E1A;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .why-green-ferta .section-header p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+    .why-green-ferta .features-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 0;
+        list-style: none;
+    }
+
+    .why-green-ferta .feature-card {
+        flex: 1 1 200px;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .why-green-ferta .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+    .why-green-ferta .feature-icon {
+        font-size: 2.5rem;
+        color: #8BC34A;
+        margin-bottom: 15px;
+    }
+
+    .why-green-ferta .feature-content h3 {
+        color: #1A3E1A;
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+
+    .why-green-ferta .feature-content p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .why-green-ferta .feature-card {
+        flex: 1 1 100%;
+        max-width: 300px;
+    }
+
+    .why-green-ferta .section-header h2 {
+        font-size: 1.8rem;
+    }
+}
+.testimonials-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    height: fit-content !important;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+    .section-header h2 {
+        color: #1a3e1a;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .section-header p {
+        color: #666;
+        font-size: 1.1rem;
+    }
+
+.testimonial-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 2px 2px 6px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom:3px;
+    height:fit-content !important;
+    width: 90%;
+}
+
+.quote-icon {
+    width:40px !important;
+    height: 40px !important;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.client-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.client-message {
+    font-size: 18px; /* كبرت حجم الكومنت */
+    color: #666666;
+    margin-top: 5px;
 }

@@ -1,10 +1,24 @@
 ﻿@page
 @model AccessDeniedModel
 @{
-    ViewData["Title"] = "Access denied";
+    ViewData["Title"] = "Access Denied";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<link rel="stylesheet" href="~/Css/custom-login.css" />
+
+<form class="form">
+    <p class="form-title text-danger">🚫 وصول مرفوض</p>
+
+    <div class="input-container" style="text-align: center;">
+        <p class="text-danger">ليس لديك صلاحية للوصول إلى هذا المورد.</p>
+    </div>
+
+    <a href="/" class="submit" style="text-align: center; display: block; text-decoration: none;">
+        الرجوع إلى الصفحة الرئيسية
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

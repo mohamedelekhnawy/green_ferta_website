@@ -533,6 +533,7 @@ namespace Ecommerce_Website.Controllers
             var viewModelList = users.Select(user => new UsersViewModel
             {
                 Id = user.Id,
+                FullName = user.FullName,
                 UserName = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,

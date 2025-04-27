@@ -1,8 +1,33 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Confirm email";
+    ViewData["Title"] = "تأكيد البريد الإلكتروني";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+
+<form class="form">
+    <p class="form-title">تأكيد البريد الإلكتروني</p>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="status-message text-success" style="text-align: center; margin-top: 20px;">
+            @Model.StatusMessage
+        </div>
+    }
+    else
+    {
+        <div class="status-message text-danger" style="text-align: center; margin-top: 20px;">
+            حدث خطأ أثناء تأكيد البريد الإلكتروني.
+        </div>
+    }
+
+    <p class="signup-link" style="text-align: center; margin-top: 20px;">
+        <a asp-page="/Account/Login">العودة لتسجيل الدخول</a>
+    </p>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

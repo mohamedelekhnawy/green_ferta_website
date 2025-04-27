@@ -56,5 +56,25 @@ namespace Ecommerce_Website.Controllers
             // Pass the products to the view
             return View(products);
         }
+        public ActionResult Search(string query)
+        {
+            var results = _productRepository.Search(query);
+            return View("Index", results);
+        }
+        [HttpGet]
+        public JsonResult AutoComplete(string term)
+        {
+            var results = _productRepository.Search(term)
+                .Select(p => new
+                {
+                    label = p.Name,
+                    id = p.Id
+                })
+                .Take(10)
+                .ToList();
+
+            return Json(results);
+        }
+
     }
 }

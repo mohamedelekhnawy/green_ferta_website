@@ -3,6 +3,7 @@ using Ecommerce_Website.Repositories;
 using Ecommerce_Website.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,17 +13,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 
-builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount =false)
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount =true)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI()
     .AddDefaultTokenProviders();    
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IRepository<CategoryModel>, CategoryRepository>();
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IRepository<Borshor>, BorshorRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IRepository<Testmonials>,TestmonialsRepository >();
 builder.Services.AddScoped<IRepository<ApplicationUser>, UserRepository>();
 
 

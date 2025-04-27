@@ -1,6 +1,7 @@
 ﻿
 using Ecommerce_Website.Data;
 using Ecommerce_Website.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 public class ProductRepository : IProductRepository
 {
@@ -53,5 +54,16 @@ public class ProductRepository : IProductRepository
     public IEnumerable<CategoryModel> GetAllCategories()
     {
         return _context.Categories.ToList();
+    }
+    public IEnumerable<Product> Search(string query)
+    {
+        return _context.Products
+            .Include(p => p.Category)
+            .Where(p =>
+                p.Name.Contains(query) ||
+                p.Description.Contains(query) ||
+                p.Category.Name.Contains(query) ||
+                p.Category.Description.Contains(query))
+            .ToList();
     }
 }

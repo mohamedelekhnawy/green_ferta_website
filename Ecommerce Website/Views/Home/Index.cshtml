@@ -1,29 +1,32 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "الصفحة الرأيسية";
 }
 
+@model IEnumerable<Testmonials>
 
+<section class="call-action section">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-8 offset-lg-2 col-12">
+                <div class="inner">
+                    <div class="content">
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">
+                            نزرع مستقبلًا أكثر خضرة
+                        </h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            مع جرين فرتا،
+                            <br> كل موسم زراعي أفضل من السابق. اكتشف منتجاتنا وابدأ رحلتك نحو حصاد وفير وصحة نباتية أفضل.
 
-<br />
-<!-- Section with the main message -->
-<div class="bg-image sec1h">
-    <!-- Container for text and button -->
-    <div class="text-center z-10">
-        <!-- Main Heading -->
-        <h1 class="text-5xl font-bold mb-6">نزرع مستقبلًا أكثر خضرة</h1>
-
-        <!-- Subheading -->
-        <p class="text-xl mb-10 pf">
-            مع جرين فرتا، كل موسم زراعي أفضل من السابق. اكتشف منتجاتنا وابدأ رحلتك نحو حصاد وفير وصحة نباتية أفضل.
-
-        </p>
-
-        <!-- Call to Action Button -->
-        <a asp-controller="product" asp-action="index" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300">
-            اعرف أكثر عن منتجاتنا →
-        </a>
+                        </p>
+                        <div class="button wow fadeInUp" data-wow-delay=".8s">
+                            <a asp-controller="product" asp-action="index" class="btn"> اعرف أكثر عن منتجاتنا →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>  
+</section>
 
 <div id="gallery" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
@@ -68,3 +71,122 @@
     </button>
 </div>
 <br />
+
+<section class="banner section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="single-banner" style="background-image:url('assets/images/banner/banner-1-bg.jpg')">
+                    <div class="content">
+                        <h2>Smart Watch 2.0</h2>
+                        <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
+                        <div class="button">
+                            <a href="product-grids.html" class="btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="single-banner custom-responsive-margin" style="background-image:url('assets/images/banner/banner-2-bg.jpg')">
+                    <div class="content">
+                        <h2>Smart Headphone</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, <br>eiusmod tempor
+                            incididunt ut labore.
+                        </p>
+                        <div class="button">
+                            <a href="product-grids.html" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="why-green-ferta">
+    <div class="container">
+        <div class="section-header">
+            <h2>لماذا Green Ferta?</h2>
+            <p>نقدم لكم أفضل الحلول الزراعية بجودة عالية</p>
+        </div>
+
+        <ul class="features-list">
+            <!-- توصيل سريع -->
+            <li class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck-fast"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>توصيل سريع</h3>
+                    <p>توصيل خلال 24-48 ساعة لجميع المحافظات</p>
+                </div>
+            </li>
+
+            <!-- منتجات عالية الجودة -->
+            <li class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>منتجات عالية الجودة</h3>
+                    <p>منتجات معتمدة وذات كفاءة عالية</p>
+                </div>
+            </li>
+
+            <!-- دعم فني متخصص -->
+            <li class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>دعم فني متخصص</h3>
+                    <p>استشارات زراعية من خبراء متخصصين</p>
+                </div>
+            </li>
+
+            <!-- ضمان الجودة -->
+            <li class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>ضمان الجودة</h3>
+                    <p>منتجاتنا خاضعة لرقابة الجودة الدورية</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+<section class="testimonials-section">
+    <div class="section-header">
+        <h2>آراء عملائنا</h2>
+        <p>ما يقوله المزارعون عن منتجاتنا</p>
+    </div>
+    <div id="testimonialsGallery" class="relative w-full" data-carousel="slide" data-carousel-interval="5000">
+        <!-- Carousel wrapper -->
+        <div class="relative h-56 overflow-hidden rounded-lg md:h-80">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <div class="testimonial-card flex items-center bg-white rounded-lg shadow-md p-4 mx-2 h-full">
+                            <img class="quote-icon mr-4" src="@Url.Content("~/images/quote by iconsvg.co.svg")" alt="Quote Icon" />
+                            <div class="text-section">
+                                <h4 class="client-name text-base font-bold text-gray-800 mb-1">@item.Name</h4>
+                                <p class="client-message text-lg text-gray-600">"@item.Message"</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>لا توجد آراء متاحة حالياً</p>
+            }
+        </div>
+    </div>
+</section>

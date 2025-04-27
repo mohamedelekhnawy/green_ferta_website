@@ -4,5 +4,6 @@
     {
         IEnumerable<Product> GetProductsByCategoryId(int categoryId);
         IEnumerable<CategoryModel> GetAllCategories();
+        IEnumerable<Product> Search(string query);
     }
 }
