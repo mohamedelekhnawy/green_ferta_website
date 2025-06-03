@@ -3,9 +3,7 @@
     ViewData["Title"] = "الاصناف";
 }
 @model IEnumerable<CategoryModel>
-<h1 class="text-center ">الاصناف</h1>
-<p class="text-center">استعرض جميع الاصناف المتاحة لدينا.</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+<div class="cat-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
 
     @foreach (var category in Model)
     {

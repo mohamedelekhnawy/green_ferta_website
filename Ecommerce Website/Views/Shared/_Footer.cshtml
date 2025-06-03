@@ -7,26 +7,23 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-contact">
-                            <h3>تواصل معنا</h3>
-                            <p class="phone">Phone: </p>
+                            <h3>تواصلوا معانا</h3>
+                            <p class="phone">رقم التليفون: <a href="tel:+201234567890">+20 1159728917</a></p>
                             <p class="mail">
-                                <a href="mailto:support@shopgrids.com">greenferta@gmail.com</a>
+                                <a href="mailto:greenferta@gmail.com">greenferta@gmail.com</a>
                             </p>
+                            <p class="address">العنوان</p>
                         </div>
                         <!-- End Single Widget -->
                     </div>
                     <div class="col-lg-3 col-md-6 col-12">
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-link">
-                            <h3>معلومات عن الشركة</h3>
+                            <h3>خدماتنا</h3>
                             <ul>
-                                <li><a href="javascript:void(0)">About Us</a></li>
-                                <li><a href="javascript:void(0)">Contact Us</a></li>
-                                <li><a href="javascript:void(0)">Downloads</a></li>
-                                <li><a href="javascript:void(0)">Sitemap</a></li>
-                                <li><a href="javascript:void(0)">FAQs Page</a></li>
+                                <li><a asp-controller="Services" asp-action="Consulting">استشارات زراعية</a></li>
+                                <li><a asp-controller="Services" asp-action="Wholesale">طلبات الجملة</a></li>
+                                <li><a asp-controller="Services" asp-action="Delivery">خدمة التوصيل</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -34,9 +31,23 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-link">
-                            <h3>اقسام اخرى</h3>
+                            <h3>اعرف أكتر عن الشركة</h3>
                             <ul>
-
+                                <li><a asp-controller="AboutUs" asp-action="Index">عن الشركة</a></li>
+                                <li><a asp-controller="Contact" asp-action="Index">تواصل معانا</a></li>
+                                <li><a asp-controller="FAQs" asp-action="Index">الأسئلة الشائعة</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer f-link">
+                            <h3>أقسام الموقع</h3>
+                            <ul>
+                                <li><a asp-controller="Product" asp-action="Index">المنتجات</a></li>
+                                <li><a asp-controller="Category" asp-action="Index">الأصناف</a></li>
+                                <li><a asp-controller="Borshor" asp-action="Index">البرشورز</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -52,21 +63,25 @@
             <div class="inner-content">
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-12">
-                        <div class="flex items-center space-x-3 ">
-                            <img src="~/Images/logo png.png" alt="Green Ferta" class="h-11 w-11 rounded-full object-cover">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-[#FFFBE6] p-2 rounded-lg shadow-md">
+                                <img src="~/Images/logo png.png" alt="Green Ferta" class="h-11 w-11 rounded-full object-cover">
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
                         <div class="copyright">
-                            <p>Designed and Developed by<a href="http://mynewportoflio.runasp.net/" rel="nofollow" target="_blank">Mohamed Elekhnawy</a></p>
+                            <p>© ٢٠٢٥ جرين فرتا - كل الحقوق محفوظة. تصميم وتطوير <a href="http://mynewportoflio.runasp.net/" rel="nofollow" target="_blank">محمد الخناوي</a></p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-12 socialf">
                         <ul class="socila">
                             <li>
-                                <span>Follow Us On:</span>
+                                <span>تابعنا على:</span>
                             </li>
                             <li><a href="https://www.facebook.com/profile.php?id=61572704130190"><i class="lni lni-facebook-filled"></i></a></li>
+                            <li><a href="https://wa.me/201159728917"><i class="lni lni-whatsapp"></i></a></li>
+                            <li><a href="https://www.instagram.com/greenferta"><i class="lni lni-instagram-filled"></i></a></li>
                         </ul>
                     </div>
                 </div>

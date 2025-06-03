@@ -14,19 +14,21 @@ namespace Ecommerce_Website.Controllers
         private readonly IRepository<Product> _productRepo;
         private readonly IRepository<Borshor> _borshorRepo;
         private readonly IRepository<ApplicationUser> _userRepository;
+        private readonly IRepository<Testmonials> _testmonialsRepo;
         private readonly IWebHostEnvironment _webHostEnvironment; 
         private readonly List<string> _allowedExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
         private readonly List<string> _PdfallowedExtensions = new List<string> { ".pdf" };
         private readonly int _MaxSize= 5242880 ;
 
 
-        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment, IRepository<Borshor> borshorRepo, IRepository<ApplicationUser> userRepository)
+        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment, IRepository<Borshor> borshorRepo, IRepository<ApplicationUser> userRepository, IRepository<Testmonials> testmonialsRepo)
         {
             _categoryRepo = categoryRepo;
             _productRepo = productRepo;
             _webHostEnvironment = webHostEnvironment;
             _borshorRepo = borshorRepo;
             _userRepository = userRepository;
+            _testmonialsRepo = testmonialsRepo;
         }
 
         public IActionResult Index()
@@ -542,6 +544,23 @@ namespace Ecommerce_Website.Controllers
             }).ToList();
 
             return View(viewModelList);
+        }
+        public IActionResult Testmonials()
+        {
+            var testmonials = _testmonialsRepo.GetAll();
+            return View(testmonials);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteTestmonials(int id) 
+        {
+            var testmonials = _testmonialsRepo.GetById(id);
+            if (testmonials == null)
+            {
+                return NotFound();
+            }
+            _testmonialsRepo.Delete(id);
+            return RedirectToAction("Testmonials");
         }
 
     }

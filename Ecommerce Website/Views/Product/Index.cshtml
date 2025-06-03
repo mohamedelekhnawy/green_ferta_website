@@ -7,8 +7,6 @@
 
 <section class="py-5">
     <div class="container">
-		<h1 class="text-center ">المنتجات</h1>
-		<p class="text-center">استعرض جميع المنتجات المتاحة لدينا.</p>	
         <div class="row">
             @foreach (var product in Model)
             {
@@ -19,13 +17,16 @@
                             <aasp-controller ="Product" asp-action="ProductDetails" asp-route-id="@product.Id">
                                 <div class="product-image">
                                     <img src="~/Images/Products/@product.ImageUrl" alt="@product.Name">
-                                    <div class="button">
-                                        <a asp-controller="Order" asp-action="Index" class="btn"><i class="lni lni-cart"></i> اطلب الان </a>
+                                    <div class="button order-btn">
+                                        <a asp-controller="Order" asp-action="Index" class="btn order-btn "><i class="lni lni-cart"></i> اطلب الان </a>
+                                    </div>
+                                    <div class="button order-btn">
+                                        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id" class="btn order-btn "> عرض المنج </a>
                                     </div>
                                 </div>
                                 <div class="product-info">
                                     <h4 class="title">
-                                        <a asp-controller="" asp-action="">@product.Name</a>
+                                        @product.Name
                                     </h4>
                                     <div>
                                         @if (product.IsAvailable)

@@ -26,6 +26,7 @@ namespace Ecommerce_Website.Data
                 .HasForeignKey(p => p.CategoryId);
 
         }
+        public DbSet<Ecommerce_Website.Core.ViewModels.TestmonialsViewModel> TestmonialsViewModel { get; set; } = default!;
 
     }
 }

@@ -15,6 +15,13 @@
 
 body {
     font-family: 'Cairo', sans-serif !important;
+    background-color: #FFFBE6;
+}
+.footer {
+    background-color: #347928 !important;
+}
+.scroll-top {
+    background-color: #347928 !important;
 }
 .single-product {
     height: 1%;
@@ -173,13 +180,13 @@ h1 {
 }
 
 header {
-    background-color: #081828 !important;
+    background-color: #347928 !important;
     color: white;
-
+    margin-bottom: 70px;
 }
 .menu {
-    background-color: #081828 !important;
-    align-items:end;
+    background-color: #347928 !important;
+    align-items: end;
 }
 
 .search-input {
@@ -206,7 +213,6 @@ header {
 }
 /* استايل قسم لماذا Green Ferta؟ */
 .why-green-ferta {
-    background-color: #f8f9fa;
     padding: 60px 0;
 }
 
@@ -344,3 +350,211 @@ header {
     color: #666666;
     margin-top: 5px;
 }
+.call-action {
+    background-color: #394d2c !important;
+}
+.order {
+    margin-top: 146px !important;
+}
+.cat-cards {
+    margin-top: 146px !important;
+}
+.container-fluid {
+    margin-top: 146px !important;
+}
+.order-btn {
+    background-color: #347928 !important;
+    color: white !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s ease; /* لإضافة سلاسة في التغيير */
+}
+
+.order-btn:hover {
+    background-color: #2a5e20 !important; /* اختر لوناً أغمق أو مختلف حسب رغبتك */
+}
+
+.featured-products {
+    background-color: #FFFFFF;
+    padding: 60px 0;
+}
+
+    .featured-products .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .featured-products .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+        .featured-products .section-header h2 {
+            color: #347928;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .featured-products .section-header p {
+            color: #6C757D;
+            font-size: 1.1rem;
+        }
+
+    .featured-products .products-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 0;
+        list-style: none;
+    }
+
+    .featured-products .product-card {
+        flex: 1 1 250px;
+        background: #F7F1E3;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(53, 94, 59, 0.05);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .featured-products .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(53, 94, 59, 0.1);
+        }
+
+    .featured-products .product-image {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
+
+    .featured-products .product-content h3 {
+        color: #347928;
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+
+    .featured-products .product-content p {
+        color: #6C757D;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .featured-products .product-content .btn {
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        background-color: #C2D4A9;
+        color: #347928;
+        transition: background-color 0.3s ease;
+    }
+
+        .featured-products .product-content .btn:hover {
+            background-color: #F4D7D7;
+            color: #347928;
+        }
+/* تصميم الفوتر */
+.footer {
+    background-color: #347928;
+    color: #FFFFFF;
+}
+
+.footer-middle .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+
+.footer-middle .single-footer h3 {
+    color: #FFFBE6;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-middle .single-footer p,
+.footer-middle .single-footer a {
+    color: #E0E7FF;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+    /* تعديل لون الهوفر للروابط */
+    .footer-middle .single-footer a:hover {
+        color: #C2D4A9 !important; /* استخدام !important للتغلب على أنماط Tailwind */
+        text-decoration: none; /* لإزالة أي تسطير افتراضي */
+    }
+
+.footer-middle .single-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+    .footer-middle .single-footer ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-bottom .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .footer-bottom .copyright p {
+        color: #FFFBE6;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .footer-bottom .copyright a {
+        color: #C2D4A9;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+        /* تعديل لون الهوفر لروابط حقوق الملكية */
+        .footer-bottom .copyright a:hover {
+            color: #F4D7D7 !important; /* استخدام !important للتغلب على أنماط Tailwind */
+            text-decoration: none;
+        }
+
+    .footer-bottom .socialf ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
+        .footer-bottom .socialf ul li span {
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .socialf ul li a {
+            color: #FFFBE6;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+            /* تعديل لون الهوفر لأيقونات وسائل التواصل الاجتماعي */
+            .footer-bottom .socialf ul li a:hover {
+                color: #C2D4A9 !important; /* استخدام !important للتغلب على أنماط Tailwind */
+            }
+
+    .footer-bottom .flex .bg-[#FFFBE6] {
+        padding: 5px;
+        border-radius: 5px;
+    }

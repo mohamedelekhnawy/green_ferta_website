@@ -4,7 +4,7 @@
 @model ProductsViewModel
 
 <div class="container-fluid p-4">
-    <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary mb-4">
+    <a asp-controller="Product" asp-action="Index" class="btn order-btn mb-4">
         <i class="bi bi-arrow-left"></i> الرجوع لجميع المنتجات
     </a>
 
@@ -67,7 +67,7 @@
                         <p><strong>السعر:</strong> <span class="fs-4">@Model.Price EGP</span></p>
                     }
                     <div class="button">
-                        <a asp-controller="Order" asp-action="Index" class="btn"><i class="lni lni-cart"></i> اطلب الان </a>
+                        <a asp-controller="Order" asp-action="Index" class="btn order-btn"><i class="lni lni-cart"></i> اطلب الان </a>
                     </div>
 
                 </div>
