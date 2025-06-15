@@ -3,9 +3,8 @@
     ViewData["Title"] = "المنشورات";
 }
 @model IEnumerable<Borshor>
-<h1 class="text-center ">البرشورز</h1>
-<p class="text-center">استعرض جميع البرشورز المتاحة لدينا.</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+
+<div class="bh  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
     @foreach (var borshor in Model)
     {
         <a href="~/Pdf/Borshors/@borshor.PdfUrl" target="_blank" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">

@@ -362,6 +362,9 @@ header {
 .container-fluid {
     margin-top: 146px !important;
 }
+.bh {
+    margin-top: 146px !important;
+}
 .order-btn {
     background-color: #347928 !important;
     color: white !important;
@@ -558,3 +561,45 @@ header {
         padding: 5px;
         border-radius: 5px;
     }
+
+/* From Uiverse.io by web3relic */
+.pl {
+    width: 8em;
+    height: 8em;
+}
+
+    .pl circle {
+        transform-box: fill-box;
+        transform-origin: 50% 50%;
+    }
+
+.pl__ring1 {
+    animation: ring1_ 4s 0s ease-in-out infinite;
+}
+
+.pl__ring2 {
+    animation: ring2_ 4s 0.04s ease-in-out infinite;
+}
+
+.pl__ring3 {
+    animation: ring3_ 4s 0.08s ease-in-out infinite;
+}
+
+.pl__ring4 {
+    animation: ring4_ 4s 0.12s ease-in-out infinite;
+}
+
+.pl__ring5 {
+    animation: ring5_ 4s 0.16s ease-in-out infinite;
+}
+
+.pl__ring6 {
+    animation: ring6_ 4s 0.2s ease-in-out infinite;
+}
+
+.preloader-icon span {
+    background-color: rgba(52, 121, 40, 0.7) !important;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+}
