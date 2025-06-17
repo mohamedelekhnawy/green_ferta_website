@@ -1,0 +1,168 @@
+﻿@model List<CartItem>
+@{
+    ViewData["Title"] = "سلة المشتريات";
+    decimal total = Model.Sum(item => item.TotalPrice);
+}
+
+<div class="container py-3" style="max-width: 800px;">
+    <div class="cart-header mb-3 text-center">
+        <h2 class="mb-3">
+            <i class="fas fa-shopping-basket"></i> سلة المشتريات
+        </h2>
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success py-2 mb-3">
+                <i class="fas fa-check-circle"></i> @TempData["Message"]
+            </div>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-cart text-center py-4">
+            <i class="fas fa-shopping-basket fa-3x mb-3 text-muted"></i>
+            <h4 class="text-muted mb-3">سلة المشتريات فارغة</h4>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-primary px-4">
+                <i class="fas fa-arrow-left me-2"></i>العودة للتسوق
+            </a>
+        </div>
+    }
+    else
+    {
+        <form asp-controller="Cart" asp-action="UpdateCart" method="post">
+            <div class="cart-items mb-4">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="cart-item card mb-3 border-0 shadow-sm">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-3 col-md-2 text-center p-2">
+                                <img src="~/Images/Products/@Model[i].ImageUrl"
+                                     class="img-fluid rounded"
+                                     style="max-height: 80px;"
+                                     alt="@Model[i].ProductName">
+                            </div>
+                            <div class="col-5 col-md-6">
+                                <div class="card-body py-2">
+                                    <h6 class="card-title mb-1">@Model[i].ProductName</h6>
+                                    <div class="price-section mb-2">
+                                        @if (Model[i].DiscountedPrice.HasValue && Model[i].DiscountedPrice > 0)
+                                        {
+                                            <span class="original-price">@Model[i].Price.ToString("N0") ج.م</span>
+                                            <span class="discounted-price">@Model[i].DiscountedPrice.Value.ToString("N0") ج.م</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="current-price">@Model[i].Price.ToString("N0") ج.م</span>
+                                        }
+                                    </div>
+                                    <div class="quantity-control mb-2">
+                                        <input type="number"
+                                               class="form-control form-control-sm text-center"
+                                               name="Items[@i].Quantity"
+                                               value="@Model[i].Quantity"
+                                               min="1" max="100"
+                                               style="width: 70px;">
+                                        <input type="hidden" name="Items[@i].ProductId" value="@Model[i].ProductId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4">
+                                <div class="card-body py-2 text-end">
+                                    <div class="d-flex flex-column flex-md-row justify-content-end gap-2">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary px-3">
+                                            <i class="fas fa-redo-alt"></i> تحديث
+                                        </button>
+                                        <a asp-controller="Cart" asp-action="RemoveItem"
+                                           asp-route-productId="@Model[i].ProductId"
+                                           class="btn btn-sm btn-outline-danger px-3">
+                                            <i class="fas fa-trash"></i> حذف
+                                        </a>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="fw-bold">@Model[i].TotalPrice.ToString("N0") ج.م</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="cart-summary">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary px-4">
+                        <i class="fas fa-arrow-left me-2"></i>متابعة التسوق
+                    </a>
+                    <div class="text-end">
+                        <h5 class="mb-2">الإجمالي: <span class="text-success">@total.ToString("N0") ج.م</span></h5>
+                        <a asp-controller="Order" asp-action="Add" class="btn btn-success px-4">
+                            <i class="fas fa-credit-card me-2"></i>إتمام الطلب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+</div>
+
+<style>
+    .cart-item {
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .cart-item:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+        }
+
+    .price-section {
+        font-size: 0.9rem;
+    }
+
+    .original-price {
+        text-decoration: line-through;
+        color: #999;
+        margin-left: 5px;
+        font-size: 0.8rem;
+    }
+
+    .discounted-price {
+        color: #e53935;
+        font-weight: bold;
+    }
+
+    .current-price {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .quantity-control input {
+        width: 70px;
+        display: inline-block;
+    }
+
+    .empty-cart {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 2rem;
+    }
+
+    @@media (max-width: 768px) {
+        .cart-item .col-3 {
+            padding-right: 0;
+        }
+
+        .cart-item img {
+            max-height: 60px;
+        }
+
+        .cart-item .card-title {
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+    }
+</style>

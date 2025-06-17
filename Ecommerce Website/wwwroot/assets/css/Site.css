@@ -371,6 +371,13 @@ header {
     border-radius: 5px !important;
     transition: background-color 0.3s ease; /* لإضافة سلاسة في التغيير */
 }
+.addToCart-btn {
+    max-width: 250px !important;
+    background-color: #347928 !important;
+    color: white !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s ease;
+}
 
 .order-btn:hover {
     background-color: #2a5e20 !important; /* اختر لوناً أغمق أو مختلف حسب رغبتك */

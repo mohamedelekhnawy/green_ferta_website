@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "تم إتمام الطلب بنجاح";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card shadow">
+                <div class="card-body py-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle fa-5x text-success"></i>
+                    </div>
+                    <h2 class="mb-3">شكراً لك!</h2>
+                    <p class="lead mb-4">تم استلام طلبك بنجاح وسيتم التواصل معك قريباً</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="/" class="btn btn-primary px-4">
+                            <i class="fas fa-home"></i> الصفحة الرئيسية
+                        </a>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary px-4">
+                            <i class="fas fa-shopping-bag"></i> مواصلة التسوق
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

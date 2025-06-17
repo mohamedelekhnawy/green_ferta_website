@@ -1,0 +1,148 @@
+﻿@model OrderViewModel
+@{
+    ViewData["Title"] = "إتمام الطلب";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-receipt"></i> تفاصيل الطلب
+                    </h3>
+                </div>
+                
+                <div class="card-body">
+                    <form asp-action="Add" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <h5 class="mb-3">معلومات العميل</h5>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="CustomerName" class="form-label"></label>
+                                <input asp-for="CustomerName" class="form-control" />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label asp-for="CustomerPhone" class="form-label"></label>
+                                <input asp-for="CustomerPhone" class="form-control" />
+                                <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label asp-for="CustomerAddress" class="form-label"></label>
+                                <textarea asp-for="CustomerAddress" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <h5 class="mb-3">المنتجات المطلوبة</h5>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>المنتج</th>
+                                        <th>الكمية</th>
+                                        <th>السعر</th>
+                                        <th>الإجمالي</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (var i = 0; i < Model.Items.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Model.Items[i].ProductName
+                                                <input type="hidden" asp-for="Items[i].ProductId" />
+                                                <input type="hidden" asp-for="Items[i].ProductName" />
+                                            </td>
+                                            <td>
+                                                @Model.Items[i].Quantity
+                                                <input type="hidden" asp-for="Items[i].Quantity" />
+                                            </td>
+                                            <td>
+                                                @if (Model.Items[i].DiscountedPrice.HasValue && Model.Items[i].DiscountedPrice.Value > 0)
+                                                {
+                                                    <span class="text-decoration-line-through text-muted">
+                                                        @Model.Items[i].Price.ToString("N2") ج.م
+                                                    </span>
+                                                    <span class="text-danger">
+                                                        @Model.Items[i].DiscountedPrice.Value.ToString("N2") ج.م
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>
+                                                        @Model.Items[i].Price.ToString("N2") ج.م
+                                                    </span>
+                                                }
+                                                <input type="hidden" asp-for="Items[i].Price" />
+                                                <input type="hidden" asp-for="Items[i].DiscountedPrice" />
+                                            </td>
+                                            <td>
+                                                @Model.Items[i].TotalPrice.ToString("N2") ج.م
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- بعد جدول المنتجات مباشرة -->
+                            <div class="cart-summary mt-4">
+                                <div class="d-flex justify-content-end">
+                                    <div class="text-end">
+                                        <h5 class="mb-3">
+                                            الإجمالي:
+                                            <span class="text-success">
+                                                @{
+                                                    decimal total = 0;
+                                                    foreach (var item in Model.Items)
+                                                    {
+                                                        var price = item.DiscountedPrice.HasValue &&
+                                                        item.DiscountedPrice > 0 &&
+                                                        item.DiscountedPrice < item.Price
+                                                        ? item.DiscountedPrice.Value
+                                                        : item.Price;
+                                                        total += item.Quantity * price;
+                                                    }
+                                                    @total.ToString("N0") 
+                                                }
+                                            </span>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .cart-summary {
+                                    padding: 1.5rem;
+                                    background-color: #f8f9fa;
+                                    border-radius: 0.5rem;
+                                }
+
+                                .text-success {
+                                    color: #28a745;
+                                    font-weight: bold;
+                                }
+                            </style>
+                        
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left"></i> العودة للسلة
+                                </a>
+                                <button type="submit" class="btn btn-success px-4">
+                                    <i class="fas fa-check-circle"></i> تأكيد الطلب
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -12,6 +12,8 @@ namespace Ecommerce_Website.Data
         {
         }
 
+        public DbSet<Order> orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Review> Reviews { get; set; }
@@ -26,7 +28,5 @@ namespace Ecommerce_Website.Data
                 .HasForeignKey(p => p.CategoryId);
 
         }
-        public DbSet<Ecommerce_Website.Core.ViewModels.TestmonialsViewModel> TestmonialsViewModel { get; set; } = default!;
-
     }
 }

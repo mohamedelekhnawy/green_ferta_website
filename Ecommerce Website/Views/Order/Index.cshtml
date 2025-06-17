@@ -1,54 +1,133 @@
-﻿@{
-    ViewData["Title"] = "طلب منتج";
+﻿@model List<Order>
+@{
+    Layout = "~/Views/Dashboard/_Layout.cshtml";
+    ViewData["Title"] = "Orders";
 }
 
-<div class="order max-w-2xl mx-auto mt-16 mb-3 p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-300 dark:border-gray-700 m-b ">
-    <div class="mb-6 text-center">
-        <h2 class="text-3xl font-bold text-green-600 mb-2">طلب منتجاتنا بسهولة</h2>
-        <p class="text-gray-600 dark:text-black-300 text-sm">
-			لضمان خدمة تواصل أكثر فاعلية، يُرجى ملء البيانات بدقة، وسيتم تحويلك مباشرة إلى الواتساب لإتمام الطلب.
-        </p>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-clipboard-list"></i> @ViewData["Title"]
+                    </h3>
+                </div>
+
+                <div class="card-body">
+                    @if (!Model.Any())
+                    {
+                        <div class="alert alert-info text-center py-4">
+                            <i class="fas fa-info-circle fa-2x mb-3"></i>
+                            <h4>لا توجد طلبات مسجلة</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="list-group">
+                            @foreach (var order in Model.OrderByDescending(o => o.CreatedAt))
+                            {
+                                decimal orderTotal = 0;
+                                <div class="list-group-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-1">#@order.Id - @order.CustomerName</h5>
+                                            <small class="text-muted">
+                                                <i class="far fa-calendar-alt me-1"></i>
+                                                @order.CreatedAt.ToString("yyyy/MM/dd hh:mm tt")
+                                            </small>
+                                            <div class="mt-1">
+                                                <i class="fas fa-map-marker-alt me-1"></i>
+                                                <small>@order.CustomerAddress</small>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            @{
+                                                orderTotal = order.Items.Sum(i =>
+                                                {
+                                                    var price = i.DiscountedPrice ?? i.Price;
+                                                    return i.Quantity * price;
+                                                });
+                                            }
+                                            <span class="badge bg-primary">
+                                                @orderTotal.ToString("N2") ج.م
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- تفاصيل الطلب -->
+                                    <div class="mt-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>المنتج</th>
+                                                        <th>الكمية</th>
+                                                        <th>سعر الوحدة</th>
+                                                        <th>الإجمالي</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in order.Items)
+                                                    {
+                                                        // تحديد السعر الفعلي المستخدم
+                                                        var actualPrice = item.DiscountedPrice.HasValue &&
+                                                        item.DiscountedPrice > 0 &&
+                                                        item.DiscountedPrice < item.Price
+                                                        ? item.DiscountedPrice.Value
+                                                        : item.Price;
+
+                                                        var itemTotal = item.Quantity * actualPrice;
+
+                                                        <tr>
+                                                            <td>@(item.Product?.Name ?? "غير معروف")</td>
+                                                            <td>@item.Quantity</td>
+                                                            <td>
+                                                                @if (item.DiscountedPrice.HasValue &&
+                                                                                                                    item.DiscountedPrice > 0 &&
+                                                                                                                    item.DiscountedPrice < item.Price)
+                                                                {
+                                                                    <span class="text-decoration-line-through text-muted me-2">
+                                                                        @item.Price.ToString("N2")
+                                                                    </span>
+                                                                    <span class="text-danger fw-bold">
+                                                                        @item.DiscountedPrice.Value.ToString("N2")
+                                                                    </span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="fw-bold">
+                                                                        @item.Price.ToString("N2")
+                                                                    </span>
+                                                                }
+                                                                <span>ج.م</span>
+                                                            </td>
+                                                            <td>@itemTotal.ToString("N2") ج.م</td>
+                                                        </tr>
+                                                    }
+                                                    <tr class="table-light">
+                                                        <td colspan="3" class="text-end fw-bold">المجموع الكلي</td>
+                                                        <td class="fw-bold">
+                                                            @order.Items.Sum(i => {
+                                                            var price = i.DiscountedPrice.HasValue &&
+                                                            i.DiscountedPrice > 0 &&
+                                                            i.DiscountedPrice < i.Price
+                                                            ? i.DiscountedPrice.Value
+                                                            : i.Price;
+                                                            return i.Quantity * price;
+                                                        }).ToString("N2") ج.م
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- نموذج الطلب -->
-    <form id="orderForm" class="space-y-5">
-        <div>
-            <label class="block mb-1 text-sm font-semibold text-black dark:text-black">اسمك الكامل</label>
-            <input type="text" id="fullName" class="w-full px-4 py-2 border border-gray-400 rounded-xl bg-white text-black focus:ring-2 focus:ring-green-500" required />
-        </div>
-
-        <div>
-            <label class="block mb-1 text-sm font-semibold text-black dark:text-black">اسم المنتج</label>
-            <input type="text" id="productName" class="w-full px-4 py-2 border border-gray-400 rounded-xl bg-white text-black focus:ring-2 focus:ring-green-500" required />
-        </div>
-
-        <div>
-            <label class="block mb-1 text-sm font-semibold text-black dark:text-black">الكمية المطلوبة</label>
-            <input type="text" id="quantity" class="w-full px-4 py-2 border border-gray-400 rounded-xl bg-white text-black focus:ring-2 focus:ring-green-500" min="1" required />
-        </div>
-        <div>
-            <label class="block mb-1 text-sm font-semibold text-black dark:text-black">مكان توصيل الطلب</label>
-            <input type="text" id="location" class="w-full px-4 py-2 border border-gray-400 rounded-xl bg-white text-black focus:ring-2 focus:ring-green-500" min="1" required />
-        </div>
-
-        <button type="button" onclick="sendToWhatsapp()"
-                class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl text-lg font-bold transition duration-300">
-            إرسال الطلب عبر واتساب
-        </button>
-    </form>
 </div>
-
-
-<script>
-    function sendToWhatsapp() {
-        const name = document.getElementById("fullName").value;
-        const product = document.getElementById("productName").value;
-        const quantity = document.getElementById("quantity").value;
-		const location = document.getElementById("location").value;
-
-        const message = `مرحبًا، اسمي ${name}%0Aأرغب في طلب المنتج التالي:%0A- المنتج: ${product}%0A- الكمية: ${quantity}%0A- مكان توصيل الطلب: ${location}`;
-        const phoneNumber = "201159728917";
-
-        window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
-    }
-</script>

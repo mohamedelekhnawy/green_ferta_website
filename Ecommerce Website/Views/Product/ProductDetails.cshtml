@@ -66,13 +66,44 @@
                     {
                         <p><strong>السعر:</strong> <span class="fs-4">@Model.Price EGP</span></p>
                     }
-                    <div class="button">
-                        <a asp-controller="Order" asp-action="Index" class="btn order-btn"><i class="lni lni-cart"></i> اطلب الان </a>
+                </div>
+                <form asp-controller="Cart" asp-action="AddToCart" method="post" onsubmit="return showAddedToCart(event)" class="d-flex flex-column gap-3 mt-3">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="quantity" class="fw-bold">الكمية:</label>
+                        <input type="number" name="quantity" id="quantity" value="1" min="1" class="form-control w-auto" style="width: 100px;" />
                     </div>
 
-                </div>
+                    <button type="submit" class="btn addToCart-btn ">🛒 أضف إلى السلة</button>
+                </form>
+
 
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function showAddedToCart(event) {
+        event.preventDefault(); // نوقف الإرسال مؤقتًا
+
+        Swal.fire({
+            title: 'تمت الإضافة!',
+            text: 'تمت إضافة المنتج إلى السلة بنجاح.',
+            icon: 'success',
+            confirmButtonText: 'تمام',
+            timer: 1500,
+            showConfirmButton: false
+        });
+
+        // نرسل الفورم بعد ثانية
+        setTimeout(() => {
+            event.target.submit();
+        }, 1000);
+
+        return false;
+    }
+</script>
+

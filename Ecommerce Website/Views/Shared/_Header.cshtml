@@ -1,4 +1,5 @@
-﻿<header id="header" class="header-main fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-[#347928] border-b border-[#6AA84F]">
+﻿
+<header id="header" class="header-main fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-[#347928] border-b border-[#6AA84F]">
     <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo with Box -->
         <a asp-controller="Home" asp-action="Index" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -27,6 +28,19 @@
                     </svg>
                 </button>
             </form>
+        </div>
+        <!-- Shopping Cart Icon -->
+        <div class="relative hidden md:block">
+            <a asp-controller="Cart" asp-action="Index" class="text-white hover:text-[#E0E7FF] transition-colors relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1 2h13M6 21a1 1 0 100-2 1 1 0 000 2zm12 0a1 1 0 100-2 1 1 0 000 2z" />
+                </svg>
+                <span id="cart-count"
+                      class="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">
+                    0
+                </span>
+            </a>
         </div>
 
         <!-- User Avatar Dropdown -->
@@ -121,6 +135,14 @@
                 </svg>
                 عن الشركة
             </a>
+            <a asp-controller="Cart" asp-action="Index" class="mobile-link flex items-center text-white hover:bg-[#6AA84F]/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1 2h13M6 21a1 1 0 100-2 1 1 0 000 2zm12 0a1 1 0 100-2 1 1 0 000 2z" />
+                </svg>
+                السلة
+            </a>
+
         </div>
         <!-- Mobile Search Menu (Inside Mobile Menu) -->
         <div class="px-4 py-3 border-t border-[#6AA84F]">

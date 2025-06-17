@@ -26,6 +26,11 @@ builder.Services.AddScoped<IRepository<Borshor>, BorshorRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IRepository<Testmonials>,TestmonialsRepository >();
 builder.Services.AddScoped<IRepository<ApplicationUser>, UserRepository>();
+builder.Services.AddScoped<IRepository<Order>, OrdersRepository>();
+
+builder.Services.AddSession();
+
+
 
 
 
@@ -42,7 +47,7 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
