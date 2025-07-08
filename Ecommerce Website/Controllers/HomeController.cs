@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Ecommerce_Website.Core.Models;
 using Ecommerce_Website.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce_Website.Controllers
@@ -31,6 +32,16 @@ namespace Ecommerce_Website.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult SetLanguage(string culture ,string returnUrl)
+        {
+            Response.Cookies.Append(
+               CookieRequestCultureProvider.DefaultCookieName,
+               CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+            return LocalRedirect(returnUrl);
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -19,13 +19,26 @@
 
         <!-- User Avatar Dropdown -->
         <div class="relative">
-            <a asp-controller="Cart" asp-action="Index" class="shpping-cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-            <button id="user-menu-toggle" class="avatar-btn text-black text-xl user-icon" type="button">
-                <i class="fa-regular fa-user"></i>
-            </button>
 
+            <div class="relative flex items-center gap-4">
+                <!-- Language Selector -->
+                @* <partial name="_SelectLanguage" /> *@
+
+                <!-- Cart -->
+                <a asp-controller="Cart" asp-action="Index" class="shpping-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+
+                <!-- User Avatar -->
+                <button id="user-menu-toggle" class="avatar-btn text-black text-xl user-icon" type="button">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+
+                <!-- Dropdown -->
+                <div id="user-dropdown" class="dropdown hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 overflow-hidden border border-gray-200">
+                    <!-- محتوى القائمة زي ما هو -->
+                </div>
+            </div>
 
             <div id="user-dropdown" class="dropdown hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 overflow-hidden border border-gray-200">
                 @if (User.Identity.IsAuthenticated)
