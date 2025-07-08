@@ -8,7 +8,6 @@
 <div class="content">
     <div class="container-fluid d-flex justify-content-start align-items-start">
 
-        <!-- فورم إضافة المنتج -->
         <form method="post" asp-controller="Dashboard" asp-action="AddProduct" enctype="multipart/form-data">
 
             <div class="mb-3">
@@ -16,6 +15,7 @@
                 <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name">
                 <span asp-validation-for="Name"></span>
             </div>
+
             <div class="mb-3">
                 <div class="container">
                     <div class="card">
@@ -59,8 +59,7 @@
                     <input type="number" value="0" asp-for="DiscountedPrice" class="form-control">
                     <span asp-validation-for="DiscountedPrice"></span>
                 </div>
-            </div>           
-
+            </div>
 
             <div class="mb-3">
                 <label class="form-label">Category *</label>
@@ -84,14 +83,25 @@
     </div>
 </div>
 
+<!-- CKEditor -->
+<script src="~/lib/ckeditor5/build/ckeditor.js"></script>
 <script>
     function previewImage(event) {
         var reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = function () {
             var output = document.getElementById('imagePreview');
             output.src = reader.result;
             output.style.display = "block";
         };
         reader.readAsDataURL(event.target.files[0]);
     }
+
+    // تهيئة CKEditor لكل textarea في الصفحة
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('textarea').forEach(textarea => {
+            ClassicEditor
+                .create(textarea)
+                .catch(error => console.error(error));
+        });
+    });
 </script>

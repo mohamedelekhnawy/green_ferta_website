@@ -1,9 +1,11 @@
 ﻿using Ecommerce_Website.Core.Models;
+using Ecommerce_Website.Core.ViewModels;
 using Ecommerce_Website.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NuGet.Packaging.Signing;
+using System.Linq;
 namespace Ecommerce_Website.Controllers
 {
     [Authorize (Roles ="Admin")]
@@ -15,13 +17,16 @@ namespace Ecommerce_Website.Controllers
         private readonly IRepository<Borshor> _borshorRepo;
         private readonly IRepository<ApplicationUser> _userRepository;
         private readonly IRepository<Testmonials> _testmonialsRepo;
+        private readonly IOrderRepository _orderRepo;
+        private readonly IRepository<Blog> _blogrepo;
+
         private readonly IWebHostEnvironment _webHostEnvironment; 
         private readonly List<string> _allowedExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
         private readonly List<string> _PdfallowedExtensions = new List<string> { ".pdf" };
-        private readonly int _MaxSize= 5242880 ;
+        private readonly int _MaxSize= 11242880 ;
 
 
-        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment, IRepository<Borshor> borshorRepo, IRepository<ApplicationUser> userRepository, IRepository<Testmonials> testmonialsRepo)
+        public DashboardController(IRepository<CategoryModel> categoryRepo, IRepository<Product> productRepo, IWebHostEnvironment webHostEnvironment, IRepository<Borshor> borshorRepo, IRepository<ApplicationUser> userRepository, IRepository<Testmonials> testmonialsRepo, IOrderRepository orderRepo, IRepository<Blog> blogrepo)
         {
             _categoryRepo = categoryRepo;
             _productRepo = productRepo;
@@ -29,12 +34,24 @@ namespace Ecommerce_Website.Controllers
             _borshorRepo = borshorRepo;
             _userRepository = userRepository;
             _testmonialsRepo = testmonialsRepo;
+            _orderRepo = orderRepo;
+            _blogrepo = blogrepo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = new DashboardViewModel
+            {
+                TotalOrdersCount = _orderRepo.GetTotalOrdersCount(),
+                TodayOrdersCount = _orderRepo.GetTodayOrdersCount(),
+                TotalRevenue = _orderRepo.GetTotalRevenue(),
+                TodayRevenue = _orderRepo.GetTodayRevenue(),
+                RecentOrders = _orderRepo.GetRecentOrders(7)
+            };
+
+            return View(model);
         }
+
 
         public IActionResult Categories()
         {
@@ -180,7 +197,6 @@ namespace Ecommerce_Website.Controllers
         }
 
 
-        // ✅ عرض فورم إضافة منتج جديد
         public IActionResult Product()
         {
             var products = _productRepo.GetAll() ?? new List<Product>(); 
@@ -218,7 +234,6 @@ namespace Ecommerce_Website.Controllers
             return View(model);
         }
 
-        // ✅ إضافة منتج جديد مع حفظ صورة
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(ProductsViewModel model)
@@ -463,7 +478,7 @@ namespace Ecommerce_Website.Controllers
                 }
                 if (model.Image.Length > _MaxSize)
                 {
-                    ModelState.AddModelError(nameof(model.Image), "Maximum size is 5MB");
+                    ModelState.AddModelError(nameof(model.Image), "Maximum size is 10MB");
                     return View(model);
                 }
                 var imageName = $"{Guid.NewGuid()}{extension}";
@@ -526,6 +541,159 @@ namespace Ecommerce_Website.Controllers
             // Delete the product
             _borshorRepo.Delete(id);
             return RedirectToAction("Borshors"); // Redirect after deletion
+        }
+
+        public IActionResult Blogs()
+        {
+            var blogs = _blogrepo.GetAll();
+            return View(blogs);
+        }
+        public IActionResult AddBlog()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddBlog(BlogsViewModel model )
+        {
+
+            if (ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var blog = new Blog
+            {
+                Title = model.Title,
+                Content = model.Content,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            if (model.Image != null)
+            {
+
+                var extension = Path.GetExtension(model.Image.FileName).ToLower();
+                if (!_allowedExtensions.Contains(extension))
+                {
+                    ModelState.AddModelError(nameof(model.Image), "Not allowed extension");
+                    return View(model);
+                }
+                if (model.Image.Length > _MaxSize)
+                {
+                    ModelState.AddModelError(nameof(model.Image), "Maximum size is 10MB");
+                    return View(model);
+                }
+                var imageName = $"{Guid.NewGuid()}{extension}";
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/Blogs", imageName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    model.Image.CopyTo(stream);
+                }
+                blog.ImageUrl = imageName;
+            }
+            _blogrepo.Add(blog);
+            return RedirectToAction(nameof(Blogs));
+        }
+        public IActionResult EditBlog(int id)
+        {
+            var blog = _blogrepo.GetById(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            var viewModel = new BlogsViewModel
+            {
+                Id = blog.Id,
+                Title = blog.Title,
+                Content = blog.Content,
+                ImageUrl = blog.ImageUrl
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditBlog(BlogsViewModel model, IFormFile? Image)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var blog =_blogrepo.GetById(model.Id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            if (!ModelState.IsValid)
+            {
+                // إعادة تحميل الصورة القديمة في الموديل لو فيه خطأ
+                model.ImageUrl = blog.ImageUrl;
+                return View(model);
+            }
+
+            // ✅ تحديث بيانات البلوج
+            blog.Title = model.Title;
+            blog.Content = model.Content;
+            blog.UpdatedAt = DateTime.UtcNow;
+
+            // ✅ معالجة تحديث الصورة
+            if (Image != null && Image.Length > 0)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Blogs");
+                string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // إنشاء المجلد لو مش موجود
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                // حفظ الصورة الجديدة
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    Image.CopyTo(fileStream);
+                }
+
+                // حذف الصورة القديمة
+                if (!string.IsNullOrEmpty(blog.ImageUrl))
+                {
+                    string oldImagePath = Path.Combine(uploadsFolder, Path.GetFileName(blog.ImageUrl));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                // تحديث رابط الصورة في قاعدة البيانات
+                blog.ImageUrl = uniqueFileName;
+            }
+
+            _blogrepo.Update(blog);
+
+            return RedirectToAction("Blogs"); 
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteBlog(int id)
+        {
+            var blog = _blogrepo.GetById(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            // Optional: Delete the image from wwwroot if it exists
+            if (!string.IsNullOrEmpty(blog.ImageUrl))
+            {
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/Blogs", blog.ImageUrl);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+            // Delete the blog
+            _blogrepo.Delete(id);
+            return RedirectToAction("Blogs"); // Redirect after deletion
         }
 
         public IActionResult Users()

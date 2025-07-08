@@ -9,85 +9,83 @@
     </a>
 
     <div class="card shadow-sm border-0 rounded-4 overflow-hidden w-100">
-        <div class="row g-0" style="min-height: 500px;">
-
-            <!-- Left: Product Image -->
-            <div class="col-md-5 col-lg-4" style="background-color: #f9f9f9;">
-                <img src="~/Images/Products/@Model.ImageUrl"
-                     alt="@Model.Name"
-                     class="img-fluid h-100 w-100 object-fit-cover"
-                     style="object-fit: cover;" />
+        <div class="product-details-card">
+            <div class="product-details-image">
+                <img src="~/Images/Products/@Model.ImageUrl" alt="@Model.Name">
             </div>
 
-            <!-- Right: Product Info -->
-            <div class="col-md-7 col-lg-8 p-5 d-flex flex-column justify-content-between">
-                <div>
-                    <h1 class="fw-bold mb-3">@Model.Name</h1>
+            <div class="product-details-info">
+                <h1>@Model.Name</h1>
 
-                    @if (Model.IsAvailable)
-                    {
-                        <span class="badge bg-success mb-3 px-3 py-2 fs-6">متوفر</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger mb-3 px-3 py-2 fs-6">غير متوفر حاليا !!</span>
-                    }
+                @if (Model.IsAvailable)
+                {
+                    <span class="badge bg-success available-badge">متوفر</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger available-badge">غير متوفر حاليا !!</span>
+                }
 
-                    <div class="mb-4">
-                        <h5>وصف المنتج:</h5>
-                        <p class="text-muted fs-5">@Model.Description</p>
-                    </div>
 
-                    <div class="mb-4">
-                        <h5>الاهمية:</h5>
-                        <p class="text-muted fs-5">@Model.Importance</p>
-                    </div>
 
-                    <div class="mb-4">
-                        <h5>طريقه الاستخدام:</h5>
-                        <p class="text-muted fs-5">@Model.HowToUse</p>
-                    </div>
-                </div>
 
-                <!-- Price Section -->
-                <div>
+
+
+                <div class="product-price">
                     @if (Model.DiscountedPrice > 0 && Model.DiscountedPrice < Model.Price)
                     {
-                        <p class="mb-1">
-                            <strong>السعر:</strong>
-                            <span class="text-decoration-line-through text-muted">@Model.Price EGP</span>
-                        </p>
-                        <p>
-                            <strong>السعر بعد الخصم:</strong>
-                            <span class="text-danger fw-bold fs-4">@Model.DiscountedPrice EGP</span>
-                        </p>
+                        <p><strong>السعر:</strong> <span class="text-decoration-line-through text-muted">@Model.Price EGP</span></p>
+                        <p><strong>السعر بعد الخصم:</strong> <span class="text-danger fw-bold fs-4">@Model.DiscountedPrice EGP</span></p>
                     }
                     else
                     {
                         <p><strong>السعر:</strong> <span class="fs-4">@Model.Price EGP</span></p>
                     }
                 </div>
-                <form asp-controller="Cart" asp-action="AddToCart" method="post" onsubmit="return showAddedToCart(event)" class="d-flex flex-column gap-3 mt-3">
-                    <input type="hidden" name="productId" value="@Model.Id" />
+                <!-- إضافة للسلة -->
+                <div class="add-to-cart-container" style="margin-top: 20px;">
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post" onsubmit="return showAddedToCart(event)" class="add-to-cart-form">
+                        <input type="hidden" name="productId" value="@Model.Id" />
 
-                    <div class="d-flex align-items-center gap-2">
-                        <label for="quantity" class="fw-bold">الكمية:</label>
-                        <input type="number" name="quantity" id="quantity" value="1" min="1" class="form-control w-auto" style="width: 100px;" />
-                    </div>
+                        <div class="quantity-container">
+                            <label for="quantity" class="quantity-label">الكمية:</label>
+                            <input type="number" name="quantity" id="quantity" value="1" min="1" class="quantity-input" />
+                        </div>
 
-                    <button type="submit" class="btn addToCart-btn ">🛒 أضف إلى السلة</button>
-                </form>
-
+                        <button type="submit" class="addToCart-btn">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                             أضف إلى السلة
+                        </button>
+                    </form>
+                </div>
 
             </div>
         </div>
+
+        <div class="product-extra-card">
+            <h4>وصف المنتج:</h4>
+            <div class="product-text">@Html.Raw(Model.Description)</div>
+        </div>
+
+        <div class="product-extra-card">
+            <h4>طريقة الاستخدام:</h4>
+            <div class="product-text">@Html.Raw(Model.HowToUse)</div>
+        </div>
+        <div class="product-extra-card">
+            <h4>الاهمية:</h4>
+            <div class="product-text">@Html.Raw(Model.Importance)</div>
+        </div>
     </div>
 </div>
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     function showAddedToCart(event) {
-        event.preventDefault(); // نوقف الإرسال مؤقتًا
+        event.preventDefault(); 
 
         Swal.fire({
             title: 'تمت الإضافة!',

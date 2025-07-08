@@ -1,53 +1,31 @@
 ﻿
-<header id="header" class="header-main fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-[#347928] border-b border-[#6AA84F]">
+
+<header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent backdrop-blur-0 border-b border-[#6AA84F]">
     <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
-        <!-- Logo with Box -->
-        <a asp-controller="Home" asp-action="Index" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <div class="bg-[#FFFBE6] p-2 rounded-lg shadow-md">
-                <img src="~/Images/logo png.png" alt="Green Ferta" class="h-16 w-16 rounded-full object-cover HeaderLogo">
-            </div>
+        <!-- Logo -->
+        <a asp-controller="Home" asp-action="Index">
+            <img src="~/Images/Home_Images/logo.png" alt="Green Ferta" class="object-cover HeaderLogo">
         </a>
 
         <!-- Desktop Nav -->
         <nav class="hidden md:flex space-x-6 rtl:space-x-reverse text-sm font-medium">
-            <a asp-controller="Home" asp-action="Index" class="nav-link text-white hover:text-[#E0E7FF] transition-colors">الرئيسية</a>
-            <a asp-controller="Category" asp-action="Index" class="nav-link text-white hover:text-[#E0E7FF] transition-colors">الأصناف</a>
-            <a asp-controller="Product" asp-action="Index" class="nav-link text-white hover:text-[#E0E7FF] transition-colors">المنتجات</a>
-            <a asp-controller="Borshor" asp-action="Index" class="nav-link text-white hover:text-[#E0E7FF] transition-colors">البرشورز</a>
-            <a asp-controller="AboutUs" asp-action="Index" class="nav-link text-white hover:text-[#E0E7FF] transition-colors">عن الشركة</a>
+            <a asp-controller="Home" asp-action="Index" class="nav-link text-black hover:text-[#1F2937] transition-colors">الرئيسية</a>
+            <a asp-controller="Category" asp-action="Index" class="nav-link text-black hover:text-[#1F2937] transition-colors">الأصناف</a>
+            <a asp-controller="Product" asp-action="Index" class="nav-link text-black hover:text-[#1F2937] transition-colors">المنتجات</a>
+            <a asp-controller="Borshor" asp-action="Index" class="nav-link text-black hover:text-[#1F2937] transition-colors">البرشورز</a>
+            <a asp-controller="Blog" asp-action="Index" class="nav-link text-black hover:text-[#1F2937] transition-colors">المقالات</a>
+            <a asp-controller="AboutUs" asp-action="Index" class="nav-link text-black hover:text-[#1F2937] transition-colors">عن الشركة</a>
         </nav>
-
-        <!-- Search Bar (Desktop) -->
-        <div class="hidden md:block w-72 mr-auto">
-            <form action="/Product/Search" method="get" class="relative">
-                <input type="search" name="query" dir="rtl" placeholder="ابحث عن المنتجات..."
-                       class="w-full py-2 pl-10 pr-4 bg-white rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6AA84F] focus:bg-white transition-all duration-300 shadow-sm text-[#347928]">
-                <button type="submit" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#347928] hover:text-[#6AA84F]">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </button>
-            </form>
-        </div>
-        <!-- Shopping Cart Icon -->
-        <div class="relative hidden md:block">
-            <a asp-controller="Cart" asp-action="Index" class="text-white hover:text-[#E0E7FF] transition-colors relative">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1 2h13M6 21a1 1 0 100-2 1 1 0 000 2zm12 0a1 1 0 100-2 1 1 0 000 2z" />
-                </svg>
-                <span id="cart-count"
-                      class="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">
-                    0
-                </span>
-            </a>
-        </div>
 
         <!-- User Avatar Dropdown -->
         <div class="relative">
-            <button id="user-menu-toggle" class="avatar-btn" type="button">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="User Avatar" class="rounded-full w-10 h-10">
+            <a asp-controller="Cart" asp-action="Index" class="shpping-cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <button id="user-menu-toggle" class="avatar-btn text-black text-xl user-icon" type="button">
+                <i class="fa-regular fa-user"></i>
             </button>
+
 
             <div id="user-dropdown" class="dropdown hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 overflow-hidden border border-gray-200">
                 @if (User.Identity.IsAuthenticated)
@@ -91,10 +69,9 @@
                 }
             </div>
         </div>
-
         <!-- Mobile Menu Button -->
-        <div id="menu-wrapper" class="md:hidden">
-            <button id="menu-toggle" class="p-2 rounded-md text-white hover:bg-[#6AA84F]/20 focus:outline-none">
+        <div class="md:hidden">
+            <button id="menu-toggle" class="p-2 rounded-md text-black hover:bg-gray-100 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -103,109 +80,59 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#347928] border-t border-[#6AA84F] menu">
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
         <div class="px-4 py-3 space-y-2">
-            <a asp-controller="Home" asp-action="Index" class="mobile-link flex items-center text-white hover:bg-[#6AA84F]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                الرئيسية
-            </a>
-            <a asp-controller="Category" asp-action="Index" class="mobile-link flex items-center text-white hover:bg-[#6AA84F]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                </svg>
-                الأصناف
-            </a>
-            <a asp-controller="Product" asp-action="Index" class="mobile-link flex items-center text-white hover:bg-[#6AA84F]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-                المنتجات
-            </a>
-            <a asp-controller="Borshor" asp-action="Index" class="mobile-link flex items-center text-white hover:bg-[#6AA84F]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                </svg>
-                البرشورز
-            </a>
-            <a asp-controller="AboutUs" asp-action="Index" class="mobile-link flex items-center text-white hover:bg-[#6AA84F]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                عن الشركة
-            </a>
-            <a asp-controller="Cart" asp-action="Index" class="mobile-link flex items-center text-white hover:bg-[#6AA84F]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1 2h13M6 21a1 1 0 100-2 1 1 0 000 2zm12 0a1 1 0 100-2 1 1 0 000 2z" />
-                </svg>
-                السلة
-            </a>
-
-        </div>
-        <!-- Mobile Search Menu (Inside Mobile Menu) -->
-        <div class="px-4 py-3 border-t border-[#6AA84F]">
-            <form action="/Product/Search" method="get" class="relative">
-                <input type="search" name="query" dir="rtl" placeholder="ابحث عن المنتجات..."
-                       class="w-full py-2 px-4 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6AA84F] focus:border-transparent transition-all duration-200 text-[#347928] bg-white">
-                <button type="submit" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#347928] hover:text-[#6AA84F] transition-colors duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </button>
-            </form>
+            <a asp-controller="Home" asp-action="Index" class="block text-black hover:bg-gray-100 rounded px-2 py-1">الرئيسية</a>
+            <a asp-controller="Category" asp-action="Index" class="block text-black hover:bg-gray-100 rounded px-2 py-1">الأصناف</a>
+            <a asp-controller="Product" asp-action="Index" class="block text-black hover:bg-gray-100 rounded px-2 py-1">المنتجات</a>
+            <a asp-controller="Borshor" asp-action="Index" class="block text-black hover:bg-gray-100 rounded px-2 py-1">البرشورز</a>
+            <a asp-controller="AboutUs" asp-action="Index" class="block text-black hover:bg-gray-100 rounded px-2 py-1">عن الشركة</a>
         </div>
     </div>
 </header>
 
 <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const userToggle = document.getElementById('user-menu-toggle');
-    const userDropdown = document.getElementById('user-dropdown');
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const header = document.getElementById("header");
+        const userToggle = document.getElementById('user-menu-toggle');
+        const userDropdown = document.getElementById('user-dropdown');
 
-    // Toggle mobile menu
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        mobileMenu.classList.toggle('hidden');
+        // ✅ Toggle mobile menu
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            userDropdown.classList.add('hidden'); // اقفل قائمة اليوزر لو كانت مفتوحة
+        });
 
-        // إغلاق قائمة المستخدم إذا كانت مفتوحة
-        userDropdown.classList.add('hidden');
+        // ✅ Toggle user dropdown
+        userToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+            mobileMenu.classList.add('hidden'); // اقفل المنيو لو كانت مفتوحة
+        });
+
+        // ✅ Close both menus when clicking outside
+        document.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            userDropdown.classList.add('hidden');
+        });
+
+        // ✅ Prevent closing when clicking inside menus
+        mobileMenu.addEventListener('click', (e) => e.stopPropagation());
+        userDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+        // ✅ Scroll background change
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 10) {
+                header.classList.remove("bg-transparent", "backdrop-blur-0");
+                header.classList.add("bg-white/40", "backdrop-blur-md");
+            } else {
+                header.classList.remove("bg-white/40", "backdrop-blur-md");
+                header.classList.add("bg-transparent", "backdrop-blur-0");
+            }
+        });
     });
-
-    // Toggle user dropdown
-    userToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        userDropdown.classList.toggle('hidden');
-
-        // إغلاق القائمة الموبايل إذا كانت مفتوحة
-        mobileMenu.classList.add('hidden');
-    });
-
-    // إغلاق القوائم عند النقر خارجها
-    document.addEventListener('click', () => {
-        userDropdown.classList.add('hidden');
-        mobileMenu.classList.add('hidden');
-    });
-
-    // منع إغلاق القوائم عند النقر داخلها
-    mobileMenu.addEventListener('click', (e) => e.stopPropagation());
-    userDropdown.addEventListener('click', (e) => e.stopPropagation());
-
-    let lastScrollTop = 0;
-    const header = document.getElementById("header");
-
-    window.addEventListener("scroll", function() {
-        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (currentScroll > lastScrollTop) {
-            // المستخدم نازل -> اخفي الهيدر
-            header.style.transform = "translateY(-100%)";
-        } else {
-            // المستخدم طالع لفوق -> اظهر الهيدر
-            header.style.transform = "translateY(0)";
-        }
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // للتأكد من انه مش سالب
-    }, false);
 </script>
+

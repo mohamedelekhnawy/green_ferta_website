@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "المقالات";
+}
+@model IEnumerable<BlogsViewModel>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 container-fluid">
+
+    @foreach (var blog in Model)
+    {
+        <a asp-controller="Blog" asp-action="BlogDetails" asp-route-id="@blog.Id"
+           class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+            <img class="object-cover w-full h-48 rounded-t-lg"
+                 src="~/Images/Blogs/@blog.ImageUrl"
+                 alt="@Html.Raw(blog.Title)"/>
+
+            <div class="flex flex-col justify-between p-4 leading-normal text-center">
+                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">@Html.Raw(blog.Title)</h5>
+                @* <p class="mb-3 text-gray-700 dark:text-gray-400">
+                    @blog.Content.Substring(0, Math.Min(100, blog.Content.Length))...
+                </p> *@
+            </div>
+        </a>
+    }
+</div>

@@ -13,14 +13,15 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Bootstrap Grid -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css">
 
     <!-- Material Dashboard CSS -->
     <link rel="stylesheet" href="~/Dashboard/assets/css/material-dashboard.css">
+
     <!-- Data Table -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -30,6 +31,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/Dashboard/assets/css/StyleSheet.css">
+    @RenderSection("Styles", required: false)
 </head>
 
 <body class="dark-edition">
@@ -42,7 +44,7 @@
             -->
             <div class="logo">
                 <a href="#" class="simple-text logo-normal">
-                    Green Ferta
+                    Medra
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -80,12 +82,20 @@
                     </li>
                     <li class="nav-item active  ">
                         <a asp-controller="Dashboard" asp-action="Testmonials" class="nav-link">
+                            <i class="fa-solid fa-comments"></i>
                             <p>Testimonials</p>
                         </a>
                     </li>
                     <li class="nav-item active  ">
                         <a asp-controller="Order" asp-action="Index" class="nav-link">
+                            <i class="fa-solid fa-truck"></i>
                             <p>Orders</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active  ">
+                        <a asp-controller="Dashboard" asp-action="Blogs" class="nav-link">
+                            <i class="fa-solid fa-pen"></i>                            
+                            <p>Blogs</p>
                         </a>
                     </li>
                     <li class="nav-item active  ">
@@ -158,6 +168,8 @@
     <!-- Material Dashboard Core JS -->
     <script src="~/Dashboard/assets/js/material-dashboard.js"></script>
     <script src="~/Dashboard/assets/demo/demo.js"></script>
+
+    
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -1,8 +1,8 @@
 ﻿body {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Cairo', sans-serif !important;
     font-size: 16px;
     background-color: #f8f9fa;
-    color: white;
+
     margin: 0;
     padding: 0;
 }
@@ -14,13 +14,7 @@
     height: 100vh;
 }
 
-.mb-3 {
-    border: 5px solid #28a745;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: transparent;
-    margin-bottom: 15px;
-}
+
 
 .form-label {
     font-weight: bold;

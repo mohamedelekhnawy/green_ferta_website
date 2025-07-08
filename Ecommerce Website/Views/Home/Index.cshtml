@@ -1,180 +1,90 @@
 ﻿@{
-    ViewData["Title"] = "الصفحة الرأيسية";
+    ViewData["Title"] = "الصفحة الرئيسية";
 }
 
 @model IEnumerable<Testmonials>
 
-<section class="call-action section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-12">
-                <div class="inner">
-                    <div class="content">
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">
-                            مع جرين فرتا، زراعتك هتبقى أحسن بكتير!
-                        </h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">
-                            بنقدملك أفضل المنتجات الزراعية عشان تحسن إنتاجك وتخلي أرضك تطلع أحلى المحاصيل. جرب منتجاتنا وشوف الفرق بنفسك!
-                        </p>
-                        <div class="button wow fadeInUp" data-wow-delay=".8s">
-                            <a asp-controller="product" asp-action="index" class="btn"> اعرف أكثر عن منتجاتنا →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Hero Section -->
+<section class="hero-section h-screen relative" data-aos="fade-up">
+    <div class="container mx-auto h-full flex justify-center items-center">
+        <img src="/Images/Home_Images/man.png" alt="Man-Hero-Section" class="man-image">
     </div>
 </section>
 
-<section class="galary">
-    <div id="gallery" class="relative w-full" data-carousel="slide">
-        <!-- Carousel wrapper -->
-        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-            <!-- Item 1 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="~/Images/Home_Images/RootVit.png" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 carousel-image" alt="">
-            </div>
-            <!-- Item 2 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                <img src="~/Images/Home_Images/FertaCal.png" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 carousel-image" alt="">
-            </div>
-            <!-- Item 3 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="~/Images/Home_Images/AlgharbiaRoots SM.png" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 carousel-image" alt="">
-            </div>
-            <!-- Item 4 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="~/Images/Home_Images/FertaGrow.png" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 carousel-image" alt="">
-            </div>
-            <!-- Item 5 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="~/Images/Home_Images/FertaMino.png" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 carousel-image" alt="">
-            </div>
-        </div>
-        <!-- Slider controls -->
-        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                </svg>
-                <span class="sr-only">Previous</span>
-            </span>
-        </button>
-        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                </svg>
-                <span class="sr-only">Next</span>
-            </span>
-        </button>
+<!-- Ticker (ممكن تضيف محتوى ليه لاحقاً) -->
+<div class="ticker-wrapper" data-aos="fade-left">
+    <div class="ticker">
     </div>
-</section>
+</div>
 
-<section class="why-green-ferta">
-    <div class="container">
+<!-- How we can help -->
+<section data-aos="fade-up">
+    <div class="frame-parent">
         <div class="section-header">
-            <h2>ليه تختار جرين فرتا؟</h2>
-            <p>عشان بنهتم بيك وبأرضك، وهنساعدك تزود إنتاجك وتحافظ على محاصيلك بأحسن جودة!</p>
+            <h2 class="how-we-can">إزاي نقدر نساعدك</h2>
         </div>
 
-        <ul class="features-list">
-            <!-- توصيل سريع -->
-            <li class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-truck-fast"></i>
+        <div class="grid-container">
+            <!-- Example Card -->
+            <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card-img">
+                    <img src="~/Images/Home_Images/2 1.png" alt="تمكين المزارعين">
                 </div>
-                <div class="feature-content">
-                    <h3>توصيل على السريع</h3>
-                    <p>طلبك يوصلك في 24-48 ساعة في أي محافظة في مصر</p>
-                </div>
-            </li>
+                <h3>تمكين المزارعين</h3>
+                <p>نوفر أدوات متقدمة لزيادة إنتاجية محصولك.</p>
+            </div>
 
-            <!-- منتجات عالية الجودة -->
-            <li class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-seedling"></i>
+            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card-img">
+                    <img src="~/Images/Home_Images/3 1.png" alt="تقليل المخاطر">
                 </div>
-                <div class="feature-content">
-                    <h3>منتجات على المضمون</h3>
-                    <p>كل منتجاتنا معتمدة ومضمونة، عشان أرضك تستاهل الأفضل</p>
-                </div>
-            </li>
+                <h3>تقليل المخاطر</h3>
+                <p>ننفذ نظام تأمين زراعي قوي لتقليل الخسائر والمخاطر المالية.</p>
+            </div>
 
-            <!-- دعم فني متخصص -->
-            <li class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
+            <div class="card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card-img">
+                    <img src="~/Images/Home_Images/6 1.png" alt="قرارات مرنة">
                 </div>
-                <div class="feature-content">
-                    <h3>دعمك على طول الخط</h3>
-                    <p>عندك سؤال أو محتاج نصيحة؟ فريقنا المتخصص معاك دايمًا</p>
-                </div>
-            </li>
+                <h3>قرارات مرنة</h3>
+                <p>توقعات الطقس والمحاصيل لحظيًا لاتخاذ قرارات مناسبة.</p>
+            </div>
 
-            <!-- ضمان الجودة -->
-            <li class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-award"></i>
+            <div class="card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="card-img">
+                  <img src="~/Images/Home_Images/Untitled design 1.png" alt="تحسين صحة التربة">
                 </div>
-                <div class="feature-content">
-                    <h3>جودة متقلقش منها</h3>
-                    <p>منتجاتنا بتعدي على فحوصات جودة عشان نضمنلك أفضل نتيجة</p>
+                <h3>تحسين صحة التربة</h3>
+                <p>أدوات لتوقع حالة التربة وتقديم توصيات لتحسينها.</p>
+            </div>
+
+            <div class="card" data-aos="zoom-in" data-aos-delay="500">
+                <div class="card-img">
+                    <img src="~/Images/Home_Images/4 1.png" alt="تنبيهات في الوقت المناسب">
                 </div>
-            </li>
-        </ul>
+                <h3>تنبيهات في الوقت المناسب</h3>
+                <p>إشعارات بالمهام الجارية والقادمة لاتخاذ الإجراء في الوقت المناسب.</p>
+            </div>
+
+            <div class="card" data-aos="zoom-in" data-aos-delay="600">
+                <div class="card-img">
+                    <img src="~/Images/Home_Images/5 1.png" alt="معرفة الاسمدة و الموبيدات">
+                </div>
+                <h3>معرفة بالأسمدة و الموبيدات</h3>
+                <p>معلومات عن الأسمدة و الموبيدات لتحسين العمليات الزراعية.</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- قسم جديد: منتجاتنا المميزة -->
-<section class="featured-products">
-    <div class="container">
-        <div class="section-header">
-            <h2>منتجاتنا المميزة</h2>
-            <p>جرب منتجاتنا اللي هتفرق معاك في زراعتك!</p>
-        </div>
-
-        <ul class="products-list">
-            <!-- RootVit -->
-            <li class="product-card">
-                <img src="~/Images/Home_Images/RootVit.png" alt="RootVit" class="product-image">
-                <div class="product-content">
-                    <h3>RootVit</h3>
-                    <p>سماد بيحسن نمو الجذور ويقوي النبات من البداية</p>
-                    <a asp-controller="product" asp-action="index" class="btn order-btn">اكتشف المزيد</a>
-                </div>
-            </li>
-
-            <!-- FertaGrow -->
-            <li class="product-card">
-                <img src="~/Images/Home_Images/FertaGrow.png" alt="FertaGrow" class="product-image">
-                <div class="product-content">
-                    <h3>FertaGrow</h3>
-                    <p>محسن نمو بيخلي المحاصيل تكبر بسرعة وصحة أحسن</p>
-                    <a asp-controller="product" asp-action="index" class="btn order-btn">اكتشف المزيد</a>
-                </div>
-            </li>
-
-            <!-- FertaCal -->
-            <li class="product-card">
-                <img src="~/Images/Home_Images/FertaCal.png" alt="FertaCal" class="product-image">
-                <div class="product-content">
-                    <h3>FertaCal</h3>
-                    <p>مكمل كالسيوم بيحافظ على قوة النبات ويزود الإنتاج</p>
-                    <a asp-controller="product" asp-action="index" class="btn order-btn">اكتشف المزيد</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</section>
-
-<section class="testimonials-section">
+<!-- Testimonials -->
+<section class="testimonials-section" data-aos="fade-up">
     <div class="section-header">
         <h2>المزارعين بيقولوا إيه عن جرين فرتا؟</h2>
         <p>اسمع من زمايلك المزارعين واعرف تجاربهم مع منتجاتنا!</p>
     </div>
+
     <div id="testimonialsGallery" class="relative w-full" data-carousel="slide" data-carousel-interval="5000">
-        <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-80">
             @if (Model.Any())
             {
@@ -182,7 +92,7 @@
                 {
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <div class="testimonial-card flex items-center bg-white rounded-lg shadow-md p-4 mx-2 h-full">
-                            <img class="quote-icon mr-4" src="@Url.Content("~/images/quote by iconsvg.co.svg")" alt="Quote Icon" />
+                            <img class="quote-icon mr-4" src="@Url.Content("~/images/quote-by-iconsvg.co.svg")" alt="Quote Icon" />
                             <div class="text-section">
                                 <h4 class="client-name text-base font-bold text-gray-800 mb-1">@item.Name</h4>
                                 <p class="client-message text-lg text-gray-600">"@item.Message"</p>

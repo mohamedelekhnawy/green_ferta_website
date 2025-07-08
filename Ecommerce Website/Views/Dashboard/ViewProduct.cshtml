@@ -32,17 +32,17 @@
             <!-- Category Badge -->
             @if (!string.IsNullOrEmpty(Model.CategoryName))
             {
-                <span class="badge bg-secondary mb-3">@Model.CategoryName</span>
+                <span class="badge bg-secondary mb-3">@Html.Raw(Model.CategoryName)</span>
             }
 
             <!-- Description -->
-            <p class="card-text">@Model.Description</p>
+            <p class="card-text">@Html.Raw(Model.Description)</p>
 
             <!-- Additional Details -->
             <div class="row mt-4">
                 <div class="col-md-6">
-                    <p><strong>Importance:</strong> @Model.Importance</p>
-                    <p><strong>Using way:</strong> @Model.HowToUse</p>
+                    <p><strong>Importance:</strong> @Html.Raw(Model.Importance)</p>
+                    <p><strong>Using way:</strong> @Html.Raw(Model.HowToUse)</p>
                     @if (Model.IsAvailable)
                     {
                         <span class="badge bg-success">In Stock</span>

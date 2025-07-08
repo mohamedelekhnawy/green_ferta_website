@@ -55,9 +55,9 @@ else
                                              alt="Product Image"
                                              style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid #28a745;">
                                     </td>
-                                    <td>@product.Importance</td>
+                                    <td>@Html.Raw(product.Importance)</td>
                                     <td>@product.Price</td>
-									<td>@product.HowToUse</td>
+									<td>@Html.Raw(product.HowToUse)</td>
                                     <td>@product.CreatedAt</td>
                                     <td>@product.UpdatedAt</td>
                                     

@@ -40,6 +40,10 @@
         "tailwind.min.css",
         "utilities.min.css"
       ]
+    },
+    {
+      "library": "ckeditor5@44.3.0",
+      "destination": "wwwroot/lib/ckeditor5/"
     }
   ]
 }

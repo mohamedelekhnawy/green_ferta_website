@@ -53,7 +53,7 @@
                                              alt="Product Image"
                                              style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid #28a745;">
                                     </td>
-                                    <td>@category.Description</td>
+                                    <td>@Html.Raw(category.Description)</td>
                                     <td>@category.CreatedOn.ToString("yyyy-MM-dd")</td>
                                     <td>@category.UpdatedOn?.ToString("yyyy-MM-dd")</td>
                                     <td>
@@ -79,24 +79,23 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <script>
-            function confirmDelete(productId) {
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "This action cannot be undone!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#6c757d",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById("deleteForm-" + productId).submit();
-                    }
-                });
-            }
-        </script>
-
 
     }
 </div>
+<script>
+    function confirmDelete(productId) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#6c757d",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("deleteForm-" + productId).submit();
+            }
+        });
+    }
+</script>

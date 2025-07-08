@@ -1,8 +1,5 @@
 ﻿@{
     Layout = "~/Views/Dashboard/_Layout.cshtml";
-}
-
-@{
     ViewData["Title"] = "Edit Product";
 }
 
@@ -18,7 +15,6 @@
                 <span asp-validation-for="Name"></span>
             </div>
 
-
             <div class="mb-3">
                 <div class="container">
                     <div class="card">
@@ -29,11 +25,9 @@
                     <div class="input-group">
                         <input type="file" asp-for="Image" class="form-control" onchange="previewImage(event)">
                         <label class="input-group-text">Image</label>
-                        
                     </div>
                 </div>
             </div>
-
 
             <div class="mb-3">
                 <label class="form-label">Importance (الاهمية)</label>
@@ -58,43 +52,26 @@
 
             <div class="mb-3">
                 <div class="input-group mb-3">
-                    <!-- Label -->
                     <label class="form-label mt-2" for="DiscountedPrice">Discount:</label>
-
-                    <!-- Input Group -->
                     <span class="input-group-text" id="discount-currency">EGP</span>
-                    <input type="number"
-                           id="DiscountedPrice"
-                           asp-for="DiscountedPrice"
-                           class="form-control"
-                           placeholder="0"
-                           aria-label="Discounted Price"
-                           aria-describedby="discount-currency"
-                           min="0"
-                           step="0.01">
-
-                    <!-- Validation Message -->
+                    <input type="number" id="DiscountedPrice" asp-for="DiscountedPrice" class="form-control" placeholder="0" aria-label="Discounted Price" aria-describedby="discount-currency" min="0" step="0.01">
                     <span asp-validation-for="DiscountedPrice" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Category</label>
-                <select asp-for="SelectedCategoryId" asp-items="Model.Categories" class="form-control" >
+                <select asp-for="SelectedCategoryId" asp-items="Model.Categories" class="form-control">
                     <option>-- Select Category --</option>
                 </select>
             </div>
+
             <div class="form-check form-switch d-flex align-items-center">
-                <input class="form-check-input custom-switch"
-                       type="checkbox"
-                       role="switch"
-                       id="IsAvailableSwitch"
-                       asp-for="IsAvailable"
-                       onchange="updateAvailabilityStatus(this)">
+                <input class="form-check-input custom-switch" type="checkbox" role="switch" id="IsAvailableSwitch" asp-for="IsAvailable" onchange="updateAvailabilityStatus(this)">
                 <label class="form-check-label ms-2" for="IsAvailableSwitch">
                     Available
                 </label>
-                <span id="availabilityStatus" class="ms-2"></span> <!-- Real-time feedback -->
+                <span id="availabilityStatus" class="ms-2"></span>
             </div>
 
             <div class="mb-3">
@@ -111,6 +88,7 @@
     </div>
 </div>
 
+<script src="~/lib/ckeditor5/build/ckeditor.js"></script>
 <script>
     function previewImage(event) {
         var reader = new FileReader();
@@ -121,10 +99,9 @@
         };
         reader.readAsDataURL(event.target.files[0]);
     }
-    function updateAvailabilityStatus(checkbox) {
-    const statusElement = document.getElementById('availabilityStatus');
 
-        // Update the status message
+    function updateAvailabilityStatus(checkbox) {
+        const statusElement = document.getElementById('availabilityStatus');
         if (checkbox.checked) {
             statusElement.textContent = 'Product is available';
             statusElement.style.color = 'green';
@@ -132,10 +109,14 @@
             statusElement.textContent = 'Product is unavailable';
             statusElement.style.color = 'red';
         }
-
-        // Optional: Log the updated value to the console (for debugging)
-        console.log('IsAvailable:', checkbox.checked);
     }
+
+    // CKEditor لكل textarea
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('textarea').forEach(textarea => {
+            ClassicEditor
+                .create(textarea)
+                .catch(error => console.error(error));
+        });
+    });
 </script>
-
-

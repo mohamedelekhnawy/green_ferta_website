@@ -4,6 +4,7 @@
 }
 @model IEnumerable<Product>
 
+<partial name="_SearchBar" />
 
 <section class="py-5">
     <div class="container">
@@ -18,7 +19,7 @@
                                 <div class="product-image">
                                     <img src="~/Images/Products/@product.ImageUrl" alt="@product.Name">
                                     <div class="button order-btn">
-                                        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id" class="btn order-btn "> عرض المنج </a>
+                                        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id" class="btn order-btn "> عرض المنتج </a>
                                     </div>
                                 </div>
                                 <div class="product-info">

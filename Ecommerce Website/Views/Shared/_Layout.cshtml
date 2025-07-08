@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Green Verta-@ViewBag.Title</title>
+    <title>Medra-@ViewBag.Title</title>
     <meta property="og:title" content="@ViewBag.Title" />
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -10,13 +10,13 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/Images/logo png.png" />
     <!-- ========================= SweetAlert2 here ========================= -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <!-- ========================= Tailwind here ========================= -->
-	<link href="~/lib/tailwindcss/base.min.css" rel="stylesheet" />
-	<link href="~/lib/tailwindcss/components.min.css" rel="stylesheet" />
-	<link href="~/lib/tailwindcss/tailwind-dark.min.css" rel="stylesheet" />
-	<link href="~/lib/tailwindcss/tailwind.min.css" rel="stylesheet" />
-	<link href="~/lib/tailwindcss/tailwind-experimental.min.css" rel="stylesheet" />
-	<link href="~/lib/tailwindcss/utilities.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/assets/css/LineIcons.3.0.css" />
@@ -57,5 +57,12 @@
     <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        AOS.init({
+          duration: 1000,
+          once: true,       // تظهر مرة واحدة فقط
+          offset: 50        // تبدأ الحركة قبل ما العنصر يوصل بنقطة صغيرة
+        });
+    </script>
 </body>
 </html>

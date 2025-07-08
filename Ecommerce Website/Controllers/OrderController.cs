@@ -1,5 +1,6 @@
 ﻿using Ecommerce_Website.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -9,8 +10,8 @@ namespace Ecommerce_Website.Controllers
     {
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<Product> _productRepository;
-
-        public OrderController(IRepository<Order> orderRepository, IRepository<Product> productRepository)
+        private readonly ILogger<OrderController> _logger;
+        public OrderController(IRepository<Order> orderRepository, IRepository<Product> productRepository ,ILogger<OrderController> logger)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
@@ -30,13 +31,13 @@ namespace Ecommerce_Website.Controllers
             return View(orders);
         }
 
+        [HttpGet]
         public IActionResult Add()
         {
-            // قراءة السلة من السيشن
             var cartJson = HttpContext.Session.GetString("Cart");
             var cartItems = string.IsNullOrEmpty(cartJson)
-                            ? new List<CartItem>()
-                            : JsonConvert.DeserializeObject<List<CartItem>>(cartJson)!;
+                ? new List<CartItem>()
+                : JsonConvert.DeserializeObject<List<CartItem>>(cartJson)!;
 
             var vm = new OrderViewModel
             {
@@ -51,33 +52,44 @@ namespace Ecommerce_Website.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Add(OrderViewModel vm)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(vm);
-            }
-
-            var order = new Order
-            {
-                CustomerName = vm.CustomerName,
-                CustomerPhone = vm.CustomerPhone,
-                CustomerAddress = vm.CustomerAddress,
-                CreatedAt = DateTime.Now,
-                Items = vm.Items.Select(item => new OrderItem
+                if (!ModelState.IsValid)
                 {
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity,
-                    Price = item.Price,
-                    DiscountedPrice = item.DiscountedPrice
-                }).ToList()
-            };
+                    _logger.LogWarning("النموذج غير صالح. أخطاء التحقق: {@Errors}",
+                        ModelState.Values.SelectMany(v => v.Errors));
+                    return View(vm);
+                }
 
-            _orderRepository.Add(order);
+                // 4. التحقق من وجود عناصر في السلة
+                if (!vm.Items.Any())
+                {
+                    _logger.LogWarning("محاولة إتمام طلب بسلة فارغة");
+                    ModelState.AddModelError("", "السلة فارغة. لا يمكن إتمام الطلب بدون منتجات.");
+                    return View(vm);
+                }
+
+                // 5. إنشاء الطلب
+                var order = new Order
+                {
+                    CustomerName = vm.CustomerName,
+                    CustomerPhone = vm.CustomerPhone,
+                    CustomerAddress = vm.CustomerAddress,
+                    CreatedAt = DateTime.Now,
+                    Items = vm.Items.Select(item => new OrderItem
+                    {
+                        ProductId = item.ProductId,
+                        Quantity = item.Quantity,
+                        Price = item.Price,
+                        DiscountedPrice = item.DiscountedPrice
+                    }).ToList()
+                };
+
+                _orderRepository.Add(order);
 
             // تنظيف السلة
-            HttpContext.Session.Remove("Cart");
+                HttpContext.Session.Remove("Cart");
 
-            return RedirectToAction("Success");
-        }
+                return RedirectToAction("Success");
+            }
 
         public IActionResult Success(int orderId)
         {

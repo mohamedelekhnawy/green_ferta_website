@@ -4,6 +4,11 @@ using Ecommerce_Website.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Localization;
+using Ecommerce_Website.Core.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +32,32 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IRepository<Testmonials>,TestmonialsRepository >();
 builder.Services.AddScoped<IRepository<ApplicationUser>, UserRepository>();
 builder.Services.AddScoped<IRepository<Order>, OrdersRepository>();
+builder.Services.AddScoped<IOrderRepository, OrdersRepository>();
+builder.Services.AddScoped<IRepository<Blog>, BlogRepository>();
+
+builder.Services.AddLocalization();
+builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
+builder.Services.AddMvc()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            return factory.Create(typeof(JsonStringLocalizer));
+        };
+    });
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("ar-EG"),
+        new CultureInfo("en-US"),
+    };
+    options.DefaultRequestCulture = new RequestCulture(culture: supportedCultures[0], uiCulture: supportedCultures[0] );
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 builder.Services.AddSession();
 
@@ -53,6 +84,17 @@ app.UseStaticFiles();
 
 
 app.UseRouting();
+
+var supportedCultures = new[] { "ar-EG", "en-US" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+ 
+app.UseRequestLocalization(localizationOptions);
+
+
+
 app.UseAuthorization();
 //-----------------------//
 var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
