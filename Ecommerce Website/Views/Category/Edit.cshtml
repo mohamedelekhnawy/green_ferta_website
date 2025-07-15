@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/Views/Dashboard/_Layout.cshtml";
+}
+
+@{
+    ViewData["Titel"] = "Edit Categories";
+}
+
+@model CategoriesViewModel
+
+<div class="content">
+    <div class="container-fluid d-flex " style="height: 100vh;">
+        <form method="post" asp-controller="Category" asp-action="Edit" enctype="multipart/form-data">
+            <div class="mb-3" style="border: 5px solid #28a745; padding: 20px; border-radius: 10px; width: 600px; background-color: transparent;">
+                <label name="Name" class="form-label">Category Name</label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name" style="border-radius: 5px;">
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div class="mb-3">
+                <div class="container">
+                    <div class="card">
+                        <h5 class="card-title">Preview Image</h5>
+                        <img id="CategoryImagePreview" src="~/Images/Categories/@Model.ImageUrl" alt="Selected Image" class="product-image" style="display: block;" />
+                    </div>
+
+                    <div class="input-group">
+                        <input type="file" asp-for="Image" class="form-control" onchange="previewImage(event)">
+                        <label class="input-group-text">Image</label>
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3" style="border: 5px solid #28a745; padding: 10px; border-radius: 10px; width: 600px; background-color: transparent;">
+                <label name="Description" class="form-label">Description</label>
+                <textarea class="form-control" asp-for="Description" placeholder="Enter Description" rows="3"></textarea>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-warning mb-3">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ✅ CKEditor + Preview Image -->
+<script src="~/lib/ckeditor5/build/ckeditor.js"></script>
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('CategoryImagePreview');
+            output.src = reader.result;
+            output.style.display = "block";
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // تهيئة CKEditor لكل textarea
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('textarea').forEach(textarea => {
+            ClassicEditor
+                .create(textarea)
+                .catch(error => console.error(error));
+        });
+    });
+</script>

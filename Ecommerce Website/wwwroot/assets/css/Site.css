@@ -33,6 +33,7 @@ body {
 }
 
 .shpping-cart {
+    font-size: 20px;
     color: black;
     margin: 9px;
 }
@@ -67,6 +68,34 @@ body {
 
 
 /*end of Hero section  */
+
+/*info section*/
+.custom-shape {
+    border-top-right-radius: 150px;
+    border-bottom-left-radius: 150px;
+    object-fit: cover;
+    width: 80%;
+    height: auto;
+    margin:auto;
+}
+.info-mu {
+    margin: auto;
+}
+.info-section {
+    padding-right: 30px;
+}
+.underline {
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .custom-shape {
+        
+    }
+}
+
+
+/*end of info section*/
 .ticker-wrapper {
     width: 100%;
     overflow: hidden;
@@ -208,12 +237,12 @@ body {
     text-align: right;
 }
 
-    .product-details-info h1 {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        color: #222;
-        font-weight: bold;
-    }
+.product-details-info h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #222;
+    font-weight: bold;
+}
 
 .available-badge {
     width: fit-content;
@@ -324,7 +353,7 @@ body {
     font-size: 30px;
 }
 
-
+/*
 .quote-icon {
     width:40px !important;
     height: 40px !important;
@@ -343,10 +372,10 @@ body {
 }
 
 .client-message {
-    font-size: 18px; /* كبرت حجم الكومنت */
+    font-size: 18px; 
     color: #666666;
     margin-top: 5px;
-}
+}*/
 .call-action {
     background-color: #394d2c !important;
 }
@@ -369,7 +398,7 @@ body {
     background-color: #347928 !important;
     color: white !important;
     border-radius: 5px !important;
-    transition: background-color 0.3s ease; /* لإضافة سلاسة في التغيير */
+    transition: background-color 0.3s ease;
 }
 .quantity-container {
     display: flex;
@@ -380,7 +409,7 @@ body {
 
 /* الليبول */
 .quantity-label {
-    font-size: 1.1rem; /* زي الهيدنجز */
+    font-size: 1.1rem; 
     font-weight: bold;
     color: #222;
     margin-bottom: 0;
@@ -390,17 +419,17 @@ body {
 .quantity-input {
     width: 100px;
     padding: 8px 12px;
-    border: 2px solid #000; /* بوردر أسود */
+    border: 2px solid #000; 
     border-radius: 8px;
     font-size: 1rem;
     text-align: center;
     transition: border-color 0.3s;
 }
 
-    .quantity-input:focus {
-        border-color: #555; /* لون مختلف عند الفوكس */
-        outline: none;
-    }
+.quantity-input:focus {
+    border-color: #555; 
+    outline: none;
+}
 
 /* زر الإضافة للسلة */
 .addToCart-btn {
@@ -419,7 +448,7 @@ body {
         background-color: #218838;
     }
 
-.featured-products {
+/*.featured-products {
     background-color: #FFFFFF;
     padding: 60px 0;
 }
@@ -506,7 +535,7 @@ body {
     background-color: #F4D7D7;
     color: #347928;
 }
-
+*/
 
 
 /* سيكشن ازاى نساعدك */
@@ -539,12 +568,13 @@ body {
 
 /* الكارت */
 .card {
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
     text-align: center;
     padding: 15px;
-    border-radius: 12px;
     transition: transform 0.3s ease;
     box-shadow: none; /* تأكيد مفيش خلفية أو ظل */
-    background: none;
+    background-color:#fff;
 }
 
 /* تأثير hover بسيط */
@@ -586,3 +616,72 @@ body {
 .blog-content {
     text-align: start;
 }
+
+/*Our team*/
+
+.team-card {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-card .card-img img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.team-card h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.team-card p {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    margin: 0 8px;
+    font-size: 20px;
+    color: #6AA84F;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #1F2937;
+}
+.ourteam {
+    background-color: #59861f;
+}
+/* end of Our team*/
+
+/*map*/
+.map-responsive {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.map-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;ءء
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+/*end of map*/

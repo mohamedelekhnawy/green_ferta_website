@@ -1,6 +1,6 @@
 ﻿using Ecommerce_Website.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -8,29 +8,34 @@ namespace Ecommerce_Website.Controllers
 {
     public class OrderController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly List<string> _allowedExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
+        private readonly List<string> _PdfallowedExtensions = new List<string> { ".pdf" };
+        private readonly int _MaxSize = 11242880;
+
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<Product> _productRepository;
         private readonly ILogger<OrderController> _logger;
-        public OrderController(IRepository<Order> orderRepository, IRepository<Product> productRepository ,ILogger<OrderController> logger)
+        public OrderController(IRepository<Order> orderRepository, IRepository<Product> productRepository, ILogger<OrderController> logger, IWebHostEnvironment webHostEnvironment)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
-            // تأكد من أنك تستخدم IQueryable وليس IEnumerable
+    
             var orders = _orderRepository.GetAll()
-                .AsQueryable() // تحويل إلى IQueryable إذا لم يكن كذلك
+                .AsQueryable() 
                 .Include(o => o.Items)
-                    .ThenInclude(i => i.Product) // إذا كنت تحتاج بيانات المنتج
+                    .ThenInclude(i => i.Product)
                 .Where(o => o != null)
                 .OrderByDescending(o => o.CreatedAt)
                 .ToList();
 
             return View(orders);
         }
-
         [HttpGet]
         public IActionResult Add()
         {
@@ -46,8 +51,6 @@ namespace Ecommerce_Website.Controllers
 
             return View(vm);
         }
-
-        // POST: Order/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Add(OrderViewModel vm)
@@ -90,7 +93,6 @@ namespace Ecommerce_Website.Controllers
 
                 return RedirectToAction("Success");
             }
-
         public IActionResult Success(int orderId)
         {
             ViewBag.OrderId = orderId;

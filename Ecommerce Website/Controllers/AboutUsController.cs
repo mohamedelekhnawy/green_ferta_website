@@ -1,4 +1,5 @@
 ﻿using Ecommerce_Website.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce_Website.Controllers
@@ -17,7 +18,15 @@ namespace Ecommerce_Website.Controllers
         {
             return View();
         }
-        
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Testmonials()
+        {
+            var testmonials = _testmonialsRepository.GetAll();
+            return View(testmonials);
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Testmonials(Testmonials model)
         {
@@ -30,6 +39,19 @@ namespace Ecommerce_Website.Controllers
             };
             _testmonialsRepository.Add(model);
             return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult DeleteTestmonials(int id)
+        {
+            var testmonials = _testmonialsRepository.GetById(id);
+            if (testmonials == null)
+            {
+                return NotFound();
+            }
+            _testmonialsRepository.Delete(id);
+            return RedirectToAction("Testmonials");
         }
     }
 }

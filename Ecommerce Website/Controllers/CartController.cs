@@ -6,6 +6,7 @@ namespace Ecommerce_Website.Controllers
 {
     public class CartController : Controller
     {
+
         private readonly IRepository<Product> _productRepository;
 
         public CartController(IRepository<Product> productRepository)
@@ -71,6 +72,7 @@ namespace Ecommerce_Website.Controllers
             }
 
             // حفظ السلة
+            HttpContext.Session.SetInt32("CartCount", cartItems.Sum(x => x.Quantity)); // ✅ أضف هذا السطر
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartItems));
             TempData["Success"] = "تمت إضافة المنتج إلى السلة بنجاح!";
 
@@ -110,6 +112,7 @@ namespace Ecommerce_Website.Controllers
             }
 
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartItems));
+            HttpContext.Session.SetInt32("CartCount", cartItems.Sum(x => x.Quantity)); // ✅ هنا كمان
             TempData["Success"] = "تم تحديث السلة بنجاح";
             return RedirectToAction("Index");
         }
@@ -126,6 +129,7 @@ namespace Ecommerce_Website.Controllers
                 {
                     cartItems.Remove(itemToRemove);
                     HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartItems));
+                    HttpContext.Session.SetInt32("CartCount", cartItems.Sum(x => x.Quantity)); // ✅ هنا كمان
                     TempData["Success"] = "تم إزالة المنتج من السلة";
                 }
             }

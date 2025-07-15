@@ -1,10 +1,14 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var cartCount = HttpContextAccessor.HttpContext.Session.GetInt32("CartCount") ?? 0;
+}
 
 <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent backdrop-blur-0 border-b border-[#6AA84F]">
     <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo -->
         <a asp-controller="Home" asp-action="Index">
-            <img src="~/Images/Home_Images/logo.png" alt="Green Ferta" class="object-cover HeaderLogo">
+            <img src="~/Images/Home_Images/logo.png" alt="Medra" class="object-cover HeaderLogo">
         </a>
 
         <!-- Desktop Nav -->
@@ -19,26 +23,19 @@
 
         <!-- User Avatar Dropdown -->
         <div class="relative">
+            <a asp-controller="Cart" asp-action="Index" class="position-relative shpping-cart">
+                <i class="fa-solid fa-cart-shopping"></i>               
+                @if (cartCount > 0)
+                {
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em;">
+                        @cartCount
+                    </span>
+                }
+            </a>
 
-            <div class="relative flex items-center gap-4">
-                <!-- Language Selector -->
-                @* <partial name="_SelectLanguage" /> *@
-
-                <!-- Cart -->
-                <a asp-controller="Cart" asp-action="Index" class="shpping-cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
-
-                <!-- User Avatar -->
-                <button id="user-menu-toggle" class="avatar-btn text-black text-xl user-icon" type="button">
-                    <i class="fa-regular fa-user"></i>
-                </button>
-
-                <!-- Dropdown -->
-                <div id="user-dropdown" class="dropdown hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 overflow-hidden border border-gray-200">
-                    <!-- محتوى القائمة زي ما هو -->
-                </div>
-            </div>
+            <button id="user-menu-toggle" class="avatar-btn text-black text-xl user-icon" type="button">
+                <i class="fa-regular fa-user"></i>
+            </button>
 
             <div id="user-dropdown" class="dropdown hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 overflow-hidden border border-gray-200">
                 @if (User.Identity.IsAuthenticated)

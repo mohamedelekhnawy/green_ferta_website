@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "~/Views/Dashboard/_Layout.cshtml";
+    ViewData["Title"] = "Edit Blog";
+}
+
+@model Ecommerce_Website.Core.ViewModels.BlogsViewModel
+
+<div class="content">
+    <div class="container-fluid py-4">
+        <form method="post" asp-controller="Blog" asp-action="Edit" enctype="multipart/form-data" class="w-100">
+
+            <!-- ID -->
+            <input type="hidden" asp-for="Id" />
+            <!-- Keep old image -->
+            <input type="hidden" asp-for="ImageUrl" />
+
+            <!-- Blog Title -->
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Blog Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Enter Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <!-- Image Preview + Upload -->
+            <div class="mb-3">
+                <label class="form-label">Current Image</label>
+                <div class="card p-2">
+                    <img id="imagePreview"
+                         src="@(!string.IsNullOrEmpty(Model.ImageUrl) ? Url.Content("~/Images/Blogs/" + Model.ImageUrl) : "#")"
+                         alt="Selected Image"
+                         class="img-thumbnail mx-auto d-block"
+                         style="max-height: 250px; max-width: 100%; @((string.IsNullOrEmpty(Model.ImageUrl)) ? "display:none;" : "")" />
+                </div>
+
+                <div class="input-group mt-2">
+                    <input type="file" name="Image" class="form-control" onchange="previewImage(event)" />
+                    <label class="input-group-text">Upload New Image</label>
+                </div>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <!-- Blog Content -->
+            <div class="mb-3">
+                <label asp-for="Content" class="form-label">Content</label>
+                <textarea asp-for="Content" class="form-control" placeholder="Enter Blog Content" rows="6"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-warning">Save Changes</button>
+                <a class="btn btn-secondary" asp-action="Blogs">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- jQuery Validation -->
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<!-- ✅ CKEditor & Preview Script -->
+<script src="~/lib/ckeditor5/build/ckeditor.js"></script>
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = "block";
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('textarea').forEach(textarea => {
+            ClassicEditor
+                .create(textarea)
+                .catch(error => console.error(error));
+        });
+    });
+</script>

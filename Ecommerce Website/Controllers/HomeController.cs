@@ -11,6 +11,11 @@ namespace Ecommerce_Website.Controllers
     public class HomeController : Controller
 
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly List<string> _allowedExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
+        private readonly List<string> _PdfallowedExtensions = new List<string> { ".pdf" };
+        private readonly int _MaxSize = 11242880;
+
         private readonly IRepository<Testmonials> _testmonials;
         private readonly ILogger<HomeController> _logger;
 

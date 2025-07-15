@@ -23,6 +23,7 @@
     <Folder Include="wwwroot\Images\Categories\" />
     <Folder Include="wwwroot\Images\Borshors\" />
     <Folder Include="wwwroot\Images\Blogs\" />
+    <Folder Include="wwwroot\Images\Products\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
