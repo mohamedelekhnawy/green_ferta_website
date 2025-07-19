@@ -7,14 +7,14 @@ namespace Ecommerce_Website.Core.ViewModels
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(200)]
+        
         public string Name { get; set; } = null!;
         [Required]
-        [StringLength(1000)]
+        
         public string? Description { get; set; }
         
 
-        [StringLength(200)]
+        
         public string? Importance { get; set; }
 
         [Required]
@@ -37,10 +37,6 @@ namespace Ecommerce_Website.Core.ViewModels
         public List<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
         //-------------------//
 
-        /*[Required]
-        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1")]
-        public int Quantity { get; set; }*/
-        [StringLength(1000)]
         public string? HowToUse { get; set; }
         public bool IsAvailable { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

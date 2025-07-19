@@ -21,18 +21,20 @@
             <a asp-controller="AboutUs" asp-action="Index" class="nav-link text-black hover:text-[#1F2937] transition-colors">عن الشركة</a>
         </nav>
 
-        <!-- User Avatar Dropdown -->
+        <!--Header Icons -->
         <div class="relative">
+            <!-- cart -->
             <a asp-controller="Cart" asp-action="Index" class="position-relative shpping-cart">
-                <i class="fa-solid fa-cart-shopping"></i>               
+                <i class="fa-solid fa-cart-shopping"></i>
                 @if (cartCount > 0)
                 {
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em;">
                         @cartCount
+                        <span class="visually-hidden">عناصر في السلة</span>
                     </span>
                 }
             </a>
-
+            <!-- User Avatar Dropdown -->
             <button id="user-menu-toggle" class="avatar-btn text-black text-xl user-icon" type="button">
                 <i class="fa-regular fa-user"></i>
             </button>

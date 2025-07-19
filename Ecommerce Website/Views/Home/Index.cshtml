@@ -5,236 +5,412 @@
 @model IEnumerable<Testmonials>
 
 <!-- Hero Section -->
-<section class="hero-section h-screen relative" data-aos="fade-up">
+<section class="hero-section h-screen relative">
     <div class="container mx-auto h-full flex justify-center items-center">
+        <!-- Arabic Text (right side) -->
+        <div class="hidden md:block absolute right-10 lg:right-20 xl:right-32 text-right" data-aos="fade-left">
+            <h1 class="text-3xl lg:text-5xl xl:text-6xl font-bold text-white">
+                حلول زراعية
+                <br>
+                متطورة
+                <br>
+                <span class="text-green-400">لنمو مستدام</span>
+            </h1>
+        </div>
+
+        <!-- English Text (left side) -->
+        <div class="hidden md:block absolute left-10 lg:left-20 xl:left-32 text-left" data-aos="fade-right">
+            <h1 class="text-3xl lg:text-5xl xl:text-6xl font-bold text-white">
+                Advanced <br>Agricultural
+                <br>
+                <span class="text-green-400">Solutions for <br>Sustainable<br> Growth</span>
+            </h1>
+        </div>
+
         <img src="/Images/Home_Images/man.png" alt="Man-Hero-Section" class="man-image">
     </div>
 </section>
+
 <!-- Ticker -->
 <div class="ticker-wrapper" >
     <div class="ticker">
     </div>
 </div>
-<section class="py-5" style="background-color: #f3faf4;">
-    <div class="container ">
-        <div class="row align-items-center">
-            <!-- الصورة -->
-            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-left">
-                <div class="image-wrapper info-mu">
-                    <img src="~/Images/Home_Images/Farming at Sunset.jpeg" class="img-fluid custom-shape" alt="Medra Image">
-                </div>
-            </div>
 
-            <!-- النص -->
-            <div class="col-lg-6 d-flex align-items-center info-section" data-aos="fade-right">
-                <div>
-                    <h1 class="fw-bold mb-4" style="font-size: 1.4rem;">
-                        بتصرف مجهود ووقت، ولسه نتائج مزرعتك <span class="text-success underline">مش زي ما بتحلم؟</span>
-                    </h1>
-                    <ul class="list-unstyled fs-5">
-                        <li class="mb-3">✔ حلول ذكية تناسب طبيعة أرضك ومناخك</li>
-                        <li class="mb-3">✔ دعم فني حقيقي في كل خطوة</li>
-                        <li class="mb-3">✔ منتجات موثوقة بنتائج مثبتة</li>
-                        <li class="mb-3">✔ خطط تغذية متخصصة لأعلى إنتاجية</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="py-5" style="background-color: #f3faf4;">
-    <div class="container">
-        <div class="row align-items-center flex-row-reverse">
-            <!-- الصورة -->
-            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                <div class="image-wrapper info-mu">
-                    <img src="~/Images/Home_Images/farming2.jpeg" class="img-fluid custom-shape" alt="Medra Image">
-                </div>
-            </div>
-
-            <!-- النص -->
-            <div class="col-lg-6 d-flex align-items-center info-section" data-aos="fade-left">
-                <div>
-                    <h1 class="fw-bold mb-4" style="font-size: 1.4rem;">
-                        بتصرف مجهود ووقت، ولسه نتائج مزرعتك <span class="text-success underline">مش زي ما بتحلم؟</span>
-                    </h1>
-                    <ul class="list-unstyled fs-5">
-                        <li class="mb-3">✔ حلول ذكية تناسب طبيعة أرضك ومناخك</li>
-                        <li class="mb-3">✔ دعم فني حقيقي في كل خطوة</li>
-                        <li class="mb-3">✔ منتجات موثوقة بنتائج مثبتة</li>
-                        <li class="mb-3">✔ خطط تغذية متخصصة لأعلى إنتاجية</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- How we can help -->
-<section data-aos="fade-up">
-    <div class="frame-parent">
-        <div class="section-header">
-            <h2 class="how-we-can">إزاي نقدر نساعدك</h2>
-        </div>
-
-        <div class="grid-container">
-            <!-- Example Card -->
-            <div class="card" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/2 1.png" alt="تمكين المزارعين">
-                </div>
-                <h3>تمكين المزارعين</h3>
-                <p>نوفر أدوات متقدمة لزيادة إنتاجية محصولك.</p>
-            </div>
-
-            <div class="card" data-aos="zoom-in" data-aos-delay="200">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/3 1.png" alt="تقليل المخاطر">
-                </div>
-                <h3>تقليل المخاطر</h3>
-                <p>ننفذ نظام تأمين زراعي قوي لتقليل الخسائر والمخاطر المالية.</p>
-            </div>
-
-            <div class="card" data-aos="zoom-in" data-aos-delay="300">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/6 1.png" alt="قرارات مرنة">
-                </div>
-                <h3>قرارات مرنة</h3>
-                <p>توقعات الطقس والمحاصيل لحظيًا لاتخاذ قرارات مناسبة.</p>
-            </div>
-
-            <div class="card" data-aos="zoom-in" data-aos-delay="400">
-                <div class="card-img">
-                  <img src="~/Images/Home_Images/Untitled design 1.png" alt="تحسين صحة التربة">
-                </div>
-                <h3>تحسين صحة التربة</h3>
-                <p>أدوات لتوقع حالة التربة وتقديم توصيات لتحسينها.</p>
-            </div>
-
-            <div class="card" data-aos="zoom-in" data-aos-delay="500">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/4 1.png" alt="تنبيهات في الوقت المناسب">
-                </div>
-                <h3>تنبيهات في الوقت المناسب</h3>
-                <p>إشعارات بالمهام الجارية والقادمة لاتخاذ الإجراء في الوقت المناسب.</p>
-            </div>
-
-            <div class="card" data-aos="zoom-in" data-aos-delay="600">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/5 1.png" alt="معرفة الاسمدة و الموبيدات">
-                </div>
-                <h3>معرفة بالأسمدة و الموبيدات</h3>
-                <p>معلومات عن الأسمدة و الموبيدات لتحسين العمليات الزراعية.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Our team -->
-<section data-aos="fade-up" class="py-12 ourteam">
-    <div class="frame-parent">
-        <div class="section-header text-center mb-8">
-            <h2 class="how-we-can">
-                المهندسون والقادة خلف المشاريع
-
-            </h2>
-        </div>
-
-        <div class="grid-container">
-            <!-- Example Card -->
-            <div class="card team-card" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/team1.jpg" alt="Team Member 1">
-                </div>
-                <h3>م/ ايهاب البحيرى</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                </div>
-            </div>
-
-            <div class="card team-card" data-aos="zoom-in" data-aos-delay="200">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/team2.jpg" alt="Team Member 2">
-                </div>
-                <h3>م/هيثم رمضان</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-            </div>
-
-            <div class="card team-card" data-aos="zoom-in" data-aos-delay="300">
-                <div class="card-img">
-                    <img src="~/Images/Home_Images/team3.jpg" alt="Team Member 3">
-                </div>
-                <h3>م/محمد الاخناوى</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-behance"></i></a>
-                </div>
-            </div>
-
-            <!-- Add more team members as needed -->
-        </div>
-    </div>
-</section>
-<!-- Testimonials -->
-<section class="testimonials-section" data-aos="fade-up">
-    <div class="section-header">
-        <h2>المزارعين بيقولوا إيه عن ميدرا؟</h2>
-        <p>اسمع من زمايلك المزارعين واعرف تجاربهم مع منتجاتنا!</p>
-    </div>
-
-    <div id="testimonialsGallery" class="relative w-full" data-carousel="slide" data-carousel-interval="5000">
-        <div class="relative h-56 overflow-hidden rounded-lg md:h-80">
-            @if (Model.Any())
-            {
-                foreach (var item in Model)
-                {
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <div class="testimonial-card flex items-center bg-white rounded-lg shadow-md p-4 mx-2 h-full">
-                            <img class="quote-icon mr-4" src="@Url.Content("~/images/quote-by-iconsvg.co.svg")" alt="Quote Icon" />
-                            <div class="text-section">
-                                <h4 class="client-name text-base font-bold text-gray-800 mb-1">@item.Name</h4>
-                                <p class="client-message text-lg text-gray-600">"@item.Message"</p>
-                            </div>
-                        </div>
+<div class="px-4 sm:px-6 lg:px-8">
+    <!-- Info Section -->
+    <section class="py-5" style="background-color: #f3faf4;">
+        <div class="container ">
+            <div class="row align-items-center">
+                <!-- الصورة -->
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-left">
+                    <div class="image-wrapper info-mu">
+                        <img src="~/Images/Home_Images/Farming at Sunset.jpeg" class="img-fluid custom-shape" alt="Medra Image">
                     </div>
-                }
-            }
-            else
-            {
-                <p>لا توجد آراء متاحة حالياً</p>
-            }
-        </div>
-    </div>
-</section>
-<!-- location -->
-<section id="location" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5" style="font-size: 2rem;">موقعنا</h2>
-        <div class="row ">
+                </div>
 
-
-            <!-- Map Column -->
-            <div class="col-md-6">
-                <div class="map-responsive rounded-4 shadow-sm overflow-hidden">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d214.1916223710256!2d30.99786961990015!3d30.800784571648816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1752317282170!5m2!1sar!2seg"
-                            width="100%" height="200" style="border:0;"
-                            allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- النص -->
+                <div class="col-lg-6 d-flex align-items-center info-section" data-aos="fade-right">
+                    <div>
+                        <h1 class="text-2xl lg:text-3xl font-bold mb-6 leading-relaxed">
+                            نجاح الزراعة مش صدفة... النجاح بيبدأ من خطة.
+                        </h1>
+                        <p class="text-gray-700 text-lg mb-6">
+                            في ميدرا، بنشتغل معاك خطوة بخطوة علشان نوصل لأفضل إنتاج من أرضك. بنفهم طبيعة التربة والمناخ، وبنحدد لك الخطة المناسبة حسب احتياجات المحصول.
+                        </p>
+                        <ul class="list-disc text-lg text-gray-700 ps-5 space-y-4">
+                            <li>✔ خطة تغذية دقيقة حسب حالة الأرض</li>
+                            <li>✔ متابعة فنية مستمرة في كل مرحلة</li>
+                            <li>✔ منتجات معتمدة وفعالة</li>
+                            <li>✔ نتائج محسوبة ومحسوسة على أرض الواقع</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <!-- Text Column -->
-            <div class="col-md-6 mb-4 mb-md-0">
-                <h4 class="mb-3">عنوان المكتب</h4>
-                <p>شارع المثال - مدينة كذا - محافظة كذا</p>
-                <p>مواعيد العمل: من 9 صباحًا حتى 5 مساءً</p>
-                <p>رقم التواصل: 0100-000-0000</p>
-                <!-- ممكن تضيف هنا أي معلومات إضافية -->
+        </div>
+    </section>
+    <section class="py-5" style="background-color: #f3faf4;">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <!-- الصورة -->
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="image-wrapper info-mu">
+                        <img src="~/Images/Home_Images/farming2.jpeg" class="img-fluid custom-shape" alt="Medra Image">
+                    </div>
+                </div>
+
+                <!-- النص -->
+                <div class="col-lg-6 d-flex align-items-center info-section" data-aos="fade-left">
+                    <div>
+                        <h1 class="text-2xl font-semibold text-gray-800 mb-6">
+                            ليه ميدرا هي اختيارك الزراعي الصح؟
+                        </h1>
+                        <p class="text-gray-700 text-lg mb-6">
+                            لأننا بنقدم لك أكتر من مجرد منتج... إحنا بنقدملك خبرة، دعم، ونتائج. مع ميدرا، أنت مش لوحدك في المزرعة.
+                        </p>
+                        <ul class="list-inside list-disc text-gray-700 text-base space-y-3">
+                            <li>✔ فريق دعم فني متواجد دايمًا</li>
+                            <li>✔ منتجات متخصصة لمراحل النمو المختلفة</li>
+                            <li>✔ خطط تغذية مبنية على تحليل فعلي للتربة</li>
+                            <li>✔ شراكة حقيقية بتحققلك نتائج ملموسة</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- How we can help -->
+    <section data-aos="fade-up">
+        <div class="frame-parent">
+            <div class="section-header">
+                <h2 class="how-we-can">إزاي نقدر نساعدك</h2>
+            </div>
+
+            <div class="grid-container">
+                <!-- Example Card -->
+                <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-img">
+                        <img src="~/Images/Home_Images/2 1.png" alt="تمكين المزارعين">
+                    </div>
+                    <h3>تمكين المزارعين</h3>
+                    <p>نوفر أدوات متقدمة لزيادة إنتاجية محصولك.</p>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-img">
+                        <img src="~/Images/Home_Images/3 1.png" alt="تقليل المخاطر">
+                    </div>
+                    <h3>تقليل المخاطر</h3>
+                    <p>ننفذ نظام تأمين زراعي قوي لتقليل الخسائر والمخاطر المالية.</p>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-img">
+                        <img src="~/Images/Home_Images/6 1.png" alt="قرارات مرنة">
+                    </div>
+                    <h3>قرارات مرنة</h3>
+                    <p>توقعات الطقس والمحاصيل لحظيًا لاتخاذ قرارات مناسبة.</p>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card-img">
+                      <img src="~/Images/Home_Images/Untitled design 1.png" alt="تحسين صحة التربة">
+                    </div>
+                    <h3>تحسين صحة التربة</h3>
+                    <p>أدوات لتوقع حالة التربة وتقديم توصيات لتحسينها.</p>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card-img">
+                        <img src="~/Images/Home_Images/4 1.png" alt="تنبيهات في الوقت المناسب">
+                    </div>
+                    <h3>تنبيهات في الوقت المناسب</h3>
+                    <p>إشعارات بالمهام الجارية والقادمة لاتخاذ الإجراء في الوقت المناسب.</p>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="card-img">
+                        <img src="~/Images/Home_Images/5 1.png" alt="معرفة الاسمدة و الموبيدات">
+                    </div>
+                    <h3>معرفة بالأسمدة و الموبيدات</h3>
+                    <p>معلومات عن الأسمدة و الموبيدات لتحسين العمليات الزراعية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our team -->
+    <section data-aos="fade-up" class="py-12 ourteam card">
+        <div class="frame-parent">
+            <div class="section-header text-center mb-8">
+                <h2 class="how-we-can">
+                    المهندسون والقادة خلف المشاريع
+
+                </h2>
+            </div>
+
+            <div class="grid-container">
+                <!-- Example Card -->
+                <div class="card team-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-img ">
+                        @* <img src="~/Images/Home_Images/team1.jpg" alt="Team Member 1"> *@
+                    </div>
+                    <h3>م/ ايهاب البحيرى</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+
+                <div class="card team-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-img">
+                        @* <img src="~/Images/Home_Images/team2.jpg" alt="Team Member 2"> *@
+                    </div>
+                    <h3>م/هيثم رمضان</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+
+                <div class="card team-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-img">
+                        @* <img src="~/Images/Home_Images/team3.jpg" alt="Team Member 3"> *@
+                    </div>
+                    <h3>م/محمد الاخناوى</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+
+                <!-- Add more team members as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How to order -->
+    <section class="py-12">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800" data-aos="fade-up">طريقة الطلب ببساطة</h2>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 px-4">
+
+            <!-- Step 1 -->
+            <div class="card shadow-md p-6 text-center w-full max-w-xs" data-aos="fade-up">
+                <div class="text-4xl mb-3">
+                    <i class="fas fa-cart-plus"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-1">أضف المنتجات إلى السلة</h3>
+                <p class="text-gray-600 text-sm">تصفح المنتجات واختر اللي يناسبك.</p>
+            </div>
+
+            <!-- Arrow -->
+            <div class="text-3xl text-gray-400 hidden md:block" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="card shadow-md p-6 text-center w-full max-w-xs" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-4xl mb-3">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-1">أكمل الطلب</h3>
+                <p class="text-gray-600 text-sm">راجع السلة وسجل بيانات التواصل.</p>
+            </div>
+
+            <!-- Arrow -->
+            <div class="text-3xl text-gray-400 hidden md:block" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="card shadow-md p-6 text-center w-full max-w-xs" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-4xl mb-3">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-1">تواصل عبر واتساب</h3>
+                <p class="text-gray-600 text-sm">فريقنا هيتواصل معاك لتأكيد التفاصيل خلال 24 ساعة.</p>
+            </div>
+
+            <!-- Arrow -->
+            <div class="text-3xl text-gray-400 hidden md:block" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="card shadow-md p-6 text-center w-full max-w-xs" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-4xl mb-3">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-1">التوصيل</h3>
+                <p class="text-gray-600 text-sm">توصيل سريع وآمن في كل المحافظات.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class=" testimonials-section py-16 bg-design section-bg2 " data-aos="fade-up" >
+        <div class="  ">
+            <div class="text-center mb-12">
+                <i class="fa-solid fa-quote-left text-white text-4xl mb-4"></i>
+                <h2 class="text-3xl font-bold text-white mb-2">المزارعين بيقولوا إيه عن ميدرا؟</h2>
+                <p class="text-white">اسمع من زمايلك المزارعين واعرف تجاربهم مع منتجاتنا!</p>
+            </div>
+
+            <div id="testimonialSliderWrapper" class="overflow-hidden max-w-4xl mx-auto px-4">
+                <div id="testimonialSlider" class="relative h-64">
+                    @if (Model.Any())
+                    {
+                        var index = 0;
+                        foreach (var item in Model)
+                        {
+                            <div class="testimonial-slide absolute inset-0 transition-all duration-1000 ease-in-out transform @(index == 0 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full")" data-index="@index">
+                                <div class="card p-8 bg-white  h-full flex flex-col justify-center">
+                                    <div class="flex items-start gap-6">
+                                        <div>
+                                            <div class="flex items-center mb-4">
+                                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-700 font-bold mr-4">
+                                                    @item.Name.Substring(0, 1)
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-gray-800">@item.Name</h4>
+                                                </div>
+                                            </div>
+                                            <p class="text-gray-600 leading-relaxed text-justify">@item.Message</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            index++;
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-center text-white py-8" data-aos="fade-up">لا توجد آراء متاحة حالياً</p>
+                    }
+                </div>
+
+                <!-- Navigation Dots -->
+                <div class="flex justify-center mt-8 space-x-2 space-x-reverse">
+                    @if (Model.Any())
+                    {
+                        for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300 dot @(i == 0 ? "bg-green-600 w-6" : "")" data-index="@i"></button>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section id="location" class="py-5 bg-light" data-aos="fade-up">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-center mb-5" style="font-size: 2rem;">موقعنا</h2>
+            <div class="row">
+                <!-- Map Column -->
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="map-responsive shadow-sm overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d214.1916223710256!2d30.99786961990015!3d30.800784571648816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1752317282170!5m2!1sar!2seg"
+                                width="100%" height="200" style="border:0;"
+                                allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <!-- Text Column -->
+                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-delay="300">
+                    <h4 class="mb-3">عنوان المكتب</h4>
+                    <p>شارع المثال - مدينة كذا - محافظة كذا</p>
+                    <p>مواعيد العمل: من 9 صباحًا حتى 5 مساءً</p>
+                    <p>رقم التواصل: 0100-000-0000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.getElementById("testimonialSlider");
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        const slideCount = slides.length;
+        let currentIndex = 0;
+        let interval;
+
+        function goToSlide(index) {
+            // Update current index
+            currentIndex = index;
+
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('opacity-100', 'translate-x-0');
+                slide.classList.add('opacity-0', 'translate-x-full');
+            });
+
+            // Show current slide with animation
+            slides[currentIndex].classList.remove('opacity-0', 'translate-x-full');
+            slides[currentIndex].classList.add('opacity-100', 'translate-x-0');
+
+            // Update dots
+            dots.forEach(dot => {
+                dot.classList.remove('bg-green-600', 'w-6');
+                dot.classList.add('bg-gray-300', 'w-3');
+            });
+            dots[currentIndex].classList.add('bg-green-600', 'w-6');
+            dots[currentIndex].classList.remove('bg-gray-300', 'w-3');
+        }
+
+        function nextSlide() {
+            const newIndex = (currentIndex + 1) % slideCount;
+            goToSlide(newIndex);
+        }
+
+        // Auto-rotate slides every 4 seconds
+        function startSlider() {
+            interval = setInterval(nextSlide, 4000);
+        }
+
+        // Pause on hover
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(interval);
+        });
+
+        slider.addEventListener('mouseleave', startSlider);
+
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = parseInt(dot.getAttribute('data-index'));
+                goToSlide(slideIndex);
+                clearInterval(interval);
+                startSlider();
+            });
+        });
+
+        // Initialize
+        if (slideCount > 0) {
+            startSlider();
+        }
+    });
+</script>

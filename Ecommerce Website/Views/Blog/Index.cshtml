@@ -4,14 +4,14 @@
 }
 @model IEnumerable<BlogsViewModel>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 container-fluid">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 container-fluid px-4 sm:px-6 lg:px-8">
 
     @foreach (var blog in Model)
     {
         <a asp-controller="Blog" asp-action="BlogDetails" asp-route-id="@blog.Id"
-           class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+           class="card flex flex-col items-center ">
 
-            <img class="object-cover w-full h-48 rounded-t-lg"
+            <img class="bg-design object-cover w-full h-48"
                  src="~/Images/Blogs/@blog.ImageUrl"
                  alt="@Html.Raw(blog.Title)"/>
 

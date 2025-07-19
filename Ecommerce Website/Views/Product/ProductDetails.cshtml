@@ -3,14 +3,14 @@
 }
 @model ProductsViewModel
 
-<div class="container-fluid p-4">
+<div class="container-fluid p-4 about-wrapper  px-4 sm:px-6 lg:px-8 animate-fade-in">
     <a asp-controller="Product" asp-action="Index" class="btn order-btn mb-4">
         <i class="bi bi-arrow-left"></i> الرجوع لجميع المنتجات
     </a>
 
     <div class="card shadow-sm border-0 rounded-4 overflow-hidden w-100">
-        <div class="product-details-card">
-            <div class="product-details-image">
+        <div class="bg-design product-details-card">
+            <div class="bg-design product-details-image">
                 <img src="~/Images/Products/@Model.ImageUrl" alt="@Model.Name">
             </div>
 
@@ -62,16 +62,16 @@
             </div>
         </div>
 
-        <div class="product-extra-card">
+        <div class="bg-design product-extra-card">
             <h4>وصف المنتج:</h4>
             <div class="product-text">@Html.Raw(Model.Description)</div>
         </div>
 
-        <div class="product-extra-card">
+        <div class="bg-design product-extra-card">
             <h4>طريقة الاستخدام:</h4>
             <div class="product-text">@Html.Raw(Model.HowToUse)</div>
         </div>
-        <div class="product-extra-card">
+        <div class="bg-design product-extra-card">
             <h4>الاهمية:</h4>
             <div class="product-text">@Html.Raw(Model.Importance)</div>
         </div>

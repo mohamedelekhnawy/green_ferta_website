@@ -3,12 +3,12 @@
     ViewData["Title"] = "الاصناف";
 }
 @model IEnumerable<CategoryModel>
-<div class="cat-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+<div class="  grid cat-cards grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8">
 
     @foreach (var category in Model)
     {
-        <a asp-controller="Product" asp-action="ProductsByCategory" asp-route-categoryId="@category.Id" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-            <img class="object-cover w-full h-48 rounded-t-lg" src="~/Images/Categories/@category.ImageUrl" alt="@category.Name" />
+        <a asp-controller="Product" asp-action="ProductsByCategory" asp-route-categoryId="@category.Id" class="card flex flex-col items-center bg-white   ">
+            <img class="bg-design object-cover w-full h-48 " src="~/Images/Categories/@category.ImageUrl" alt="@category.Name" />
             <div class="flex flex-col justify-between p-4 leading-normal text-center">
                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 ">@category.Name</h5>
                 <p class="mb-3 text-gray-700 dark:text-gray-400">@category.Description</p>

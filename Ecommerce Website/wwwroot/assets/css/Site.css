@@ -13,6 +13,13 @@
     font-style: normal;
 }
 
+.section-bg1 {
+}
+
+.section-bg2 {
+    background-color: #59861f;
+}
+
 body {
     font-family: 'Cairo', sans-serif !important;
     background-color: #f9f9f9;
@@ -38,9 +45,9 @@ body {
     margin: 9px;
 }
 
-.shpping-cart :hover {
-    color: #1F2937 ;
-}
+    .shpping-cart :hover {
+        color: #1F2937;
+    }
 /*end of header */
 /*Hearo section */
 .hero-section {
@@ -53,20 +60,23 @@ body {
     position: relative;
 }
 
-/* صورة الراجل */   
 .man-image {
     position: absolute;
     bottom: -36px;
     left: 50%;
     transform: translateX(-50%);
-    height: 80vh; /* خليها نسبة من ارتفاع الشاشة */
-    max-height: 800px; /* أقصى ارتفاع */
-    min-height: 300px; /* أقل ارتفاع */
+    height: 80vh;
+    max-height: 800px;
+    min-height: 300px;
     width: auto;
     object-fit: contain;
 }
 
-
+@media (max-width: 767px) {
+    .hero-section h1 {
+        display: none;
+    }
+}
 /*end of Hero section  */
 
 /*info section*/
@@ -76,21 +86,23 @@ body {
     object-fit: cover;
     width: 80%;
     height: auto;
-    margin:auto;
+    margin: auto;
 }
+
 .info-mu {
     margin: auto;
 }
+
 .info-section {
     padding-right: 30px;
 }
+
 .underline {
     text-decoration: underline;
 }
 
 @media (max-width: 767px) {
     .custom-shape {
-        
     }
 }
 
@@ -109,10 +121,10 @@ body {
     animation: scroll-left 15s linear infinite;
 }
 
-.ticker img {
-    height: 30px;
-    margin:0px 20px;
-}
+    .ticker img {
+        height: 30px;
+        margin: 0px 20px;
+    }
 
 @keyframes scroll {
     0% {
@@ -132,8 +144,11 @@ body {
 }
 
 .scroll-top {
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     background-color: #347928 !important;
 }
+
 .single-product {
     height: 1%;
     min-height: 400px;
@@ -180,20 +195,23 @@ body {
     max-width: 100%;
     object-fit: contain;
 }
+
 .product-image {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     height: 220px;
 }
+
 .carousel-image {
-    width: 45%; 
-    object-fit: cover; 
+    width: 45%;
+    object-fit: cover;
     object-position: center;
 }
+
 @media (max-width: 768px) {
     #gallery .relative {
-        height: 300px; 
+        height: 300px;
     }
 }
 
@@ -237,12 +255,12 @@ body {
     text-align: right;
 }
 
-.product-details-info h1 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #222;
-    font-weight: bold;
-}
+    .product-details-info h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: #222;
+        font-weight: bold;
+    }
 
 .available-badge {
     width: fit-content;
@@ -304,102 +322,37 @@ body {
 }
 
 
-
-
-.about-container {
-    padding: 40px 20px;
-    direction: rtl;
-}
-
-.section-box {
-    background-color:ghostwhite;
-    border-radius: 20px;
-    padding: 25px;
-
-}
-
-.company-section {
-    width:100%;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-    direction: rtl;
-    background-color: ghostwhite;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-}
-
-.company-logo-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 350px;
-}
-
-.company-logo {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.25);
-}
-
-.company-description p {
-    line-height: 1.8;
-    font-size: 1.1rem;
-}
-.Aboutus {
-    font-size: 30px;
-}
-
-/*
-.quote-icon {
-    width:40px !important;
-    height: 40px !important;
-}
-
-.text-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.client-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333333;
-}
-
-.client-message {
-    font-size: 18px; 
-    color: #666666;
-    margin-top: 5px;
-}*/
 .call-action {
     background-color: #394d2c !important;
 }
+
 .order {
     margin-top: 100px !important;
 }
+
 .cat-cards {
     margin-top: 100px !important;
 }
+
 .cart-container {
     margin-top: 100px !important;
 }
+
 .container-fluid {
     margin-top: 100px !important;
 }
+
 .bh {
     margin-top: 100px !important;
 }
+
 .order-btn {
     background-color: #347928 !important;
     color: white !important;
     border-radius: 5px !important;
     transition: background-color 0.3s ease;
 }
+
 .quantity-container {
     display: flex;
     align-items: center;
@@ -409,7 +362,7 @@ body {
 
 /* الليبول */
 .quantity-label {
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
     font-weight: bold;
     color: #222;
     margin-bottom: 0;
@@ -419,17 +372,17 @@ body {
 .quantity-input {
     width: 100px;
     padding: 8px 12px;
-    border: 2px solid #000; 
+    border: 2px solid #000;
     border-radius: 8px;
     font-size: 1rem;
     text-align: center;
     transition: border-color 0.3s;
 }
 
-.quantity-input:focus {
-    border-color: #555; 
-    outline: none;
-}
+    .quantity-input:focus {
+        border-color: #555;
+        outline: none;
+    }
 
 /* زر الإضافة للسلة */
 .addToCart-btn {
@@ -448,94 +401,7 @@ body {
         background-color: #218838;
     }
 
-/*.featured-products {
-    background-color: #FFFFFF;
-    padding: 60px 0;
-}
 
-.featured-products .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-.featured-products .section-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.featured-products .section-header h2 {
-    color: #347928;
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 15px;
-}
-
-.featured-products .section-header p {
-    color: #6C757D;
-    font-size: 1.1rem;
-}
-
-.featured-products .products-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 0;
-    list-style: none;
-}
-
-.featured-products .product-card {
-    flex: 1 1 250px;
-    background: #F7F1E3;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(53, 94, 59, 0.05);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.featured-products .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(53, 94, 59, 0.1);
-}
-
-.featured-products .product-image {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-.featured-products .product-content h3 {
-    color: #347928;
-    font-weight: 600;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-}
-
-.featured-products .product-content p {
-    color: #6C757D;
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-}
-
-.featured-products .product-content .btn {
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    background-color: #C2D4A9;
-    color: #347928;
-    transition: background-color 0.3s ease;
-}
-
-.featured-products .product-content .btn:hover {
-    background-color: #F4D7D7;
-    color: #347928;
-}
-*/
 
 
 /* سيكشن ازاى نساعدك */
@@ -550,14 +416,14 @@ body {
     margin-bottom: 30px;
 }
 
-.section-header h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
+    .section-header h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
 
-.section-header img {
-    width: 100px;
-}
+    .section-header img {
+        width: 100px;
+    }
 
 /* شبكة 3 أعمدة */
 .grid-container {
@@ -566,6 +432,10 @@ body {
     gap: 20px;
 }
 
+.bg-design {
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
 /* الكارت */
 .card {
     border-top-right-radius: 40px;
@@ -574,13 +444,12 @@ body {
     padding: 15px;
     transition: transform 0.3s ease;
     box-shadow: none; /* تأكيد مفيش خلفية أو ظل */
-    background-color:#fff;
+    background-color: #fff;
 }
 
-/* تأثير hover بسيط */
-.card:hover {
-    transform: translateY(-5px);
-}
+    .card:hover {
+        transform: translateY(-5px);
+    }
 
 /* الصورة */
 .card-img {
@@ -613,6 +482,7 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
 .blog-content {
     text-align: start;
 }
@@ -621,7 +491,6 @@ body {
 
 .team-card {
     background-color: #fff;
-    border-radius: 12px;
     overflow: hidden;
     text-align: center;
     padding: 20px;
@@ -629,29 +498,29 @@ body {
     transition: transform 0.3s;
 }
 
-.team-card:hover {
-    transform: translateY(-5px);
-}
+    .team-card:hover {
+        transform: translateY(-5px);
+    }
 
-.team-card .card-img img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
+    .team-card .card-img img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
 
-.team-card h3 {
-    font-size: 20px;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+    .team-card h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
 
-.team-card p {
-    font-size: 14px;
-    color: #6b7280;
-    margin-bottom: 10px;
-}
+    .team-card p {
+        font-size: 14px;
+        color: #6b7280;
+        margin-bottom: 10px;
+    }
 
 .social-links a {
     margin: 0 8px;
@@ -660,9 +529,10 @@ body {
     transition: color 0.3s;
 }
 
-.social-links a:hover {
-    color: #1F2937;
-}
+    .social-links a:hover {
+        color: #1F2937;
+    }
+
 .ourteam {
     background-color: #59861f;
 }
@@ -676,12 +546,88 @@ body {
     height: 0;
 }
 
-.map-responsive iframe {
-    position: absolute;
-    top: 0;
-    left: 0;ءء
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-}
+    .map-responsive iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+    }
 /*end of map*/
+
+/*About us*/
+.stats-section .stat-card {
+    padding: 20px;
+    position: relative;
+}
+
+    .stats-section .stat-card:not(:last-child):after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 50%;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+/* Team Section */
+.team-section img {
+    transition: transform 0.3s ease;
+}
+
+.team-section .card:hover img {
+    transform: scale(1.05);
+}
+
+/* Testimonials */
+.testimonials-section .card {
+    position: relative;
+}
+
+    .testimonials-section .card:before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 80px;
+        color: rgba(13, 148, 136, 0.1);
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+
+/* Animations */
+[data-aos] {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+[data-aos="fade-up"] {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+[data-aos].aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/*End of about us*/
+
+/*Tastimonials*/
+@keyframes slide-infinite {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+    /* لازم تكرر العناصر عشان يكمل اللوب */
+}
+
+.animate-slide-infinite {
+    animation: slide-infinite 40s linear infinite;
+}
+/*Tastimonials*/

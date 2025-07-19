@@ -5,24 +5,25 @@
 
 @model Ecommerce_Website.Core.ViewModels.BlogsViewModel
 
-<div class="container py-4 container-fluid">
+<div class="container py-4 container-fluid   px-4 sm:px-6 lg:px-8">
+    <a asp-controller="Blog" asp-action="Index" class="btn order-btn mb-4">
+        <i class="bi bi-arrow-left"></i> الرجوع لجميع المقالات 
+    </a>
     <div class="card shadow-sm">
 
         <!-- ✅ الصورة -->
         <img src="@Url.Content("~/Images/Blogs/" + Model.ImageUrl)"
-             class="card-img-top"
+             class="bg-design card-img-top"
              alt="@Model.Title"
              style="max-height: 400px; object-fit: cover;">
 
         <!-- ✅ البيانات -->
-        <div class="card-body blog-content">
+        <div class="bg-design card-body blog-content">
             <h2 class="card-title mb-3"> @Html.Raw(Model.Title)</h2>
 
             <p class="card-text text-muted ">@Html.Raw(Model.Content)</p>
 
-            <div class="mt-4">
-                <a asp-action="index" class="btn btn-secondary">العوده لجميع المقالات</a>
-            </div>
+            
         </div>
 
     </div>

@@ -32,6 +32,7 @@ namespace Ecommerce_Website.Controllers
             
         }
 
+
         public IActionResult Privacy()
         {
             return View();

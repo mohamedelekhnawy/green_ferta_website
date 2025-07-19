@@ -3,103 +3,210 @@
     Layout = "_Layout";
 }
 @model Testmonials;
-<div class="about-container">
 
-    <!-- عنوان رئيسي -->
-    <div class="text-center section-box mb-5">
-        <h1 class="fw-bold mb-1">من نحن</h1>
-        <p class="text-muted fs-5">تعرف على شركة Green Ferta وأهدافها</p>
-    </div>
-
-    <div class="company-section">
-        <!-- صورة الشركة -->
-        <div class="company-logo-box mb-4">
-            <img src="~/Images/logo png.png" alt="Green Ferta" class="company-logo shadow" />
+<div class=" container-fluid px-4 sm:px-6 lg:px-8 ">
+    <!-- Hero Section -->
+    <section class="text-center mb-16 relative overflow-hidden card h-96 flex items-center justify-center">
+        <div class="absolute inset-0 " style="background-color:#59861f;"></div>
+        <div class="container mx-auto relative z-10 px-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">ميدرا</h1>
+            <p class="text-xl text-white max-w-2xl mx-auto">حلول زراعية متطورة لنمو مستدام </p>
         </div>
+    </section>
 
-        <!-- وصف الشركة -->
-        <div class="company-description text-center">
-            <h2 class="fw-semibold mb-3 Aboutus">عن Green Ferta</h2>
-            <p class="text-muted fs-5">
-                شركة <strong>Green Ferta</strong> هي شركة رائدة في مجال إنتاج وتوزيع الأسمدة الزراعية،
-                تهدف إلى دعم المزارعين بمنتجات عالية الجودة تسهم في زيادة الإنتاج وتحسين جودة المحاصيل.
-                نلتزم بالممارسات الزراعية المستدامة ونسعى دائمًا لتقديم حلول صديقة للبيئة.
-            </p>
+    <!-- About Section -->
+    <section class="mb-20 max-w-6xl mx-auto animate-fade-up">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-green-700 mb-6">من نحن</h2>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    شركة ميدرا الزراعية هي شركة رائدة في تقديم حلول الزراعة الذكية والمغذيات العضوية منذ عام 2010. نعمل على تمكين المزارعين من خلال التكنولوجيا والمعرفة والخدمة المتميزة.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    من خلال فرقنا المتخصصة، نساعد عملاءنا في تحسين الإنتاجية، وتحقيق الاستدامة الزراعية، والوصول إلى أسواق جديدة بجودة عالية وثقة.
+                </p>
+            </div>
+            <div class="card overflow-hidden ">
+                <img src="/Images/Home_Images/logo.png" alt="فريق ميدرا" class="w-full h-auto object-cover">
+            </div>
         </div>
-    </div>  
+    </section>
 
-    <!-- الرؤية والرسالة -->
-    <div class="row text-center justify-content-center gap-3 mb-5">
-        <div class="col-md-5 section-box">
-            <h4 class="fw-bold mb-3">رسالتنا</h4>
-            <p class="text-muted">
-                توفير أسمدة فعالة وآمنة للمزارعين من أجل تعزيز الزراعة المستدامة وتحقيق الأمن الغذائي.
-            </p>
+    <!-- Stats Section -->
+    <section class="card mb-20 text-white py-12" style="background-color:#59861f;">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold mb-2">5+</div>
+                    <div>سنة خبرة</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">70+</div>
+                    <div>مزرعة مدعومة</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">40+</div>
+                    <div>منتج زراعي</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">20+</div>
+                    <div>خبير زراعي</div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-5 section-box">
-            <h4 class="fw-bold mb-3">رؤيتنا</h4>
-            <p class="text-muted">
-                أن نصبح الخيار الأول للمزارعين في الشرق الأوسط من خلال الابتكار والجودة والالتزام البيئي.
-            </p>
+    </section>
+
+    <!-- Values Section -->
+    <section class="mb-20 animate-fade-up">
+        <h2 class="text-3xl font-bold text-green-700 text-center mb-12">قيمنا</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white p-8 card ">
+                <div class="text-green-600 text-4xl mb-4">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class=" text-xl font-bold mb-3 text-gray-800">الاستدامة</h3>
+                <p class="text-gray-600">نحرص على استخدام حلول صديقة للبيئة تحافظ على التربة والمياه.</p>
+            </div>
+            <div class="card ">
+                <div class="text-green-600 text-4xl mb-4">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-800">الابتكار</h3>
+                <p class="text-gray-600">نقدم حلولًا تقنية متقدمة تواكب تطورات الزراعة الحديثة.</p>
+            </div>
+            <div class="card ">
+                <div class="text-green-600 text-4xl mb-4">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-800">الثقة والدعم</h3>
+                <p class="text-gray-600">علاقتنا بالمزارعين مبنية على الشفافية والدعم المستمر.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- معلومات التواصل -->
-    <div class="section-box text-end mb-5">
-        <h4 class="fw-bold mb-3">معلومات التواصل</h4>
-        <ul class="list-unstyled fs-5 text-muted">
-            <li><i class="bi bi-envelope ms-2 text-success"></i> البريد الإلكتروني: info@greenferta.com</li>
-            <li><i class="bi bi-telephone ms-2 text-success"></i> الهاتف: +20 101 234 5678</li>
-            <li><i class="bi bi-geo-alt ms-2 text-success"></i> العنوان: المنطقة الصناعية، برج العرب، الإسكندرية</li>
-        </ul>
-    </div>
+    <!-- Our team -->
+    <section data-aos="fade-up" class="py-12 ourteam card ">
+        <div class="frame-parent">
+            <div class="section-header text-center mb-8">
+                <h2 class="how-we-can">
+                    المهندسون والقادة خلف المشاريع
 
-    <!-- فورم التواصل -->
-    <div class="section-box mx-auto" style="max-width: 700px;">
-        <h4 class="fw-bold mb-4 text-center">يمكنك تقديم الدعم برساله</h4>
-        <p>عميلنا العزيز لضمان استمرار الخدمه المتميزه يمكنك مصارحتنا برساله علما بان الرساله ستضاف تلقائيا ف الصفحه الرايسية نتمنى لكم التوفيق</p>
+                </h2>
+            </div>
+
+            <div class="grid-container">
+                <!-- Example Card -->
+                <div class="card team-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-img ">
+                        <img src="~/Images/Home_Images/team1.jpg" alt="Team Member 1">
+                    </div>
+                    <h3>م/ ايهاب البحيرى</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="card team-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-img">
+                        <img src="~/Images/Home_Images/team2.jpg" alt="Team Member 2">
+                    </div>
+                    <h3>م/هيثم رمضان</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="card team-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-img">
+                        <img src="~/Images/Home_Images/team3.jpg" alt="Team Member 3">
+                    </div>
+                    <h3>م/محمد الاخناوى</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-behance"></i></a>
+                    </div>
+                </div>
+
+                <!-- Add more team members as needed -->
+            </div>
+        </div>
+    </section>
+
+    @* <!-- Testimonials Section -->
+    <section class="testimonials-section mb-20" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-teal-700 text-center mb-12">آراء عملائنا</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div class="card bg-white p-8 rounded-2xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="text-yellow-400 mr-2">
+                        ★★★★★
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-6 italic">"تعاملنا مع ميدرا لتنفيذ نظام إدارة علاقات العملاء، وكانت النتيجة ممتازة. الفريق محترف جداً ويقدم دعمًا فنيًا مميزًا."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="محمد السيد" class="w-12 h-12 rounded-full object-cover mr-4">
+                    <div>
+                        <h4 class="font-bold text-gray-800">محمد السيد</h4>
+                        <p class="text-gray-500 text-sm">مدير تقنية المعلومات، شركة النور</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-white p-8 rounded-2xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="text-yellow-400 mr-2">
+                        ★★★★★
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-6 italic">"ساعدنا فريق ميدرا في تحويل عملياتنا إلى النظام السحابي، وكانت النتائج تفوق التوقعات. أنصح بهم بشدة لأي شركة تبحث عن حلول تقنية متكاملة."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="نورا أحمد" class="w-12 h-12 rounded-full object-cover mr-4">
+                    <div>
+                        <h4 class="font-bold text-gray-800">نورا أحمد</h4>
+                        <p class="text-gray-500 text-sm">الرئيس التنفيذي، مجموعة التقنية الحديثة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> *@
+    <!-- Comment Form -->
+    <section class="bg-white p-8  max-w-2xl card mx-auto animate-fade-up mt-5">
+        <h4 class="text-xl md:text-2xl font-bold text-green-700 text-center mb-4">اكتبلنا انطباعك عن الشركة</h4>
+        <p class="text-gray-500 text-center mb-6">ضيف كومنت يساعد غيرك هنا وهيتضاف ف الكومناتات  </p>
         <form id="contactForm" method="post" asp-controller="AboutUs" asp-action="Testmonials">
-            <div class="mb-3">
-                <label for="name" class="form-label">الاسم</label>
-                <input asp-for="Name" type="text" class="form-control" id="name" placeholder="اكتب اسمك" />
-				<span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">البريد الإلكتروني</label>
-                <input asp-for="Email" type="email" class="form-control" id="email" placeholder="example@email.com" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">الرسالة</label>
-                <textarea asp-for="Message" class="form-control" id="message" rows="4" placeholder="اكتب رسالتك هنا..."></textarea>
-                <span asp-validation-for="Message" class="text-danger"></span>
-            </div>
-            <div class="text-center">
-                <button type="submit" id="submitBtn" class="btn btn-success">إرسال</button>
-            </div>
+            <input asp-for="Name" type="text" placeholder="الاسم" class="w-full p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+            <span asp-validation-for="Name" class="text-red-500 text-sm"></span>
+            <input asp-for="Email" type="email" placeholder="البريد الإلكتروني" class="w-full p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+            <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+            <textarea asp-for="Message" placeholder="اكتب رسالتك هنا..." class="w-full p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 h-32"></textarea>
+            <span asp-validation-for="Message" class="text-red-500 text-sm"></span>
+            <button type="submit" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors w-full">
+                إرسال <i class="fas fa-paper-plane ml-2"></i>
+            </button>
         </form>
-    </div>
+    </section>
 
 </div>
+<!-- Scripts-->
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault(); // يمنع الإرسال مؤقتًا
-
+            e.preventDefault();
             Swal.fire({
                 icon: 'success',
-                title: 'شكراً!',
-                text: 'تم إرسال رسالتك بنجاح.',
-                timer: 3000, // ← هنا المدة بالميلي ثانية
+                title: 'تم الإرسال! 🚀',
+                text: 'شكرًا لتواصلك معنا، سنرد عليك قريبًا!',
+                timer: 3000,
                 showConfirmButton: false
             });
-
-            // إرسال الفورم بعد انتهاء الرسالة
             setTimeout(() => {
                 e.target.submit();
-            }, 2000); // ← نفس المدة
+            }, 2000);
         });
     </script>
 }

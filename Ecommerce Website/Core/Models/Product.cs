@@ -9,14 +9,14 @@ namespace Ecommerce_Website.Core.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(200)]
+        
         public string Name { get; set; } = null!;
 
         [Required]
-        [StringLength(1000)]
+        
         public string? Description { get; set; }
 
-        [StringLength(200)]
+        
         public string? Importance { get; set; }
 
         [Required]
@@ -43,7 +43,7 @@ namespace Ecommerce_Website.Core.Models
         public int Quantity { get; set; }
 
         // How to Use instead of old Quantity
-        [StringLength(1000)]
+        
         public string? HowToUse { get; set; }
 
         public bool IsAvailable { get; set; } = true;

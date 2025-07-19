@@ -6,7 +6,6 @@ namespace Ecommerce_Website.Controllers
 {
     public class CartController : Controller
     {
-
         private readonly IRepository<Product> _productRepository;
 
         public CartController(IRepository<Product> productRepository)
@@ -27,7 +26,6 @@ namespace Ecommerce_Website.Controllers
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity = 1)
         {
-            // التحقق من الكمية
             if (quantity <= 0)
             {
                 TempData["Error"] = "الكمية يجب أن تكون أكبر من الصفر.";
@@ -41,13 +39,11 @@ namespace Ecommerce_Website.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            // استرجاع السلة الحالية
             var cartJson = HttpContext.Session.GetString("Cart");
             var cartItems = string.IsNullOrEmpty(cartJson)
                 ? new List<CartItem>()
                 : JsonConvert.DeserializeObject<List<CartItem>>(cartJson)!;
 
-            // التحقق من وجود المنتج مسبقًا
             var existingItem = cartItems.FirstOrDefault(ci => ci.ProductId == productId);
             if (existingItem != null)
             {
@@ -71,16 +67,13 @@ namespace Ecommerce_Website.Controllers
                 });
             }
 
-            // حفظ السلة
-            HttpContext.Session.SetInt32("CartCount", cartItems.Sum(x => x.Quantity)); // ✅ أضف هذا السطر
+            // التعديل هنا: استخدام Count بدلاً من Sum لعدد العناصر الفريدة
+            HttpContext.Session.SetInt32("CartCount", cartItems.Count);
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartItems));
             TempData["Success"] = "تمت إضافة المنتج إلى السلة بنجاح!";
 
-            // العودة للصفحة السابقة
-            string referer = Request.Headers["Referer"].ToString();
-            return Redirect(string.IsNullOrEmpty(referer) ? "/" : referer);
+            return Redirect(Request.Headers["Referer"].ToString());
         }
-
 
         [HttpPost]
         public IActionResult UpdateCart(List<CartItemUpdateModel> items)
@@ -111,8 +104,9 @@ namespace Ecommerce_Website.Controllers
                 }
             }
 
+            // التعديل هنا: استخدام Count بدلاً من Sum
+            HttpContext.Session.SetInt32("CartCount", cartItems.Count);
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartItems));
-            HttpContext.Session.SetInt32("CartCount", cartItems.Sum(x => x.Quantity)); // ✅ هنا كمان
             TempData["Success"] = "تم تحديث السلة بنجاح";
             return RedirectToAction("Index");
         }
@@ -128,12 +122,22 @@ namespace Ecommerce_Website.Controllers
                 if (itemToRemove != null)
                 {
                     cartItems.Remove(itemToRemove);
+                    // التعديل هنا: استخدام Count بدلاً من Sum
+                    HttpContext.Session.SetInt32("CartCount", cartItems.Count);
                     HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartItems));
-                    HttpContext.Session.SetInt32("CartCount", cartItems.Sum(x => x.Quantity)); // ✅ هنا كمان
                     TempData["Success"] = "تم إزالة المنتج من السلة";
                 }
             }
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult ClearCart()
+        {
+            HttpContext.Session.Remove("Cart");
+            HttpContext.Session.Remove("CartCount");
+            TempData["Success"] = "تم تفريغ السلة بنجاح";
             return RedirectToAction("Index");
         }
     }
@@ -144,4 +148,3 @@ namespace Ecommerce_Website.Controllers
         public int Quantity { get; set; }
     }
 }
-

@@ -26,16 +26,15 @@ namespace Ecommerce_Website.Controllers
             return View(testmonials);
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Testmonials(Testmonials model)
         {
 
             var viewModel = new TestmonialsViewModel()
             {
-                Name= model.Name,
-                Message= model.Message,
-                CreatedAt= DateTime.Now,
+                Name = model.Name,
+                Message = model.Message,
+                CreatedAt = DateTime.Now,
             };
             _testmonialsRepository.Add(model);
             return RedirectToAction("Index");
@@ -43,7 +42,7 @@ namespace Ecommerce_Website.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult DeleteTestmonials(int id)
+        public IActionResult Delete(int id)
         {
             var testmonials = _testmonialsRepository.GetById(id);
             if (testmonials == null)
