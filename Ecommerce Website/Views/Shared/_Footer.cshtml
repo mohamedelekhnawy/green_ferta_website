@@ -1,92 +1,62 @@
-﻿<footer class="footer">
-    <!-- Start Footer Middle -->
-    <div class="footer-middle">
+﻿<footer class="agri-footer ">
+    <!-- الطبقة الأولى: تعريف أو وصف بسيط للشركة -->
+    <div class="footer-top">
         <div class="container">
-            <div class="bottom-inner">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-contact">
-                            <h3>تواصلوا معانا</h3>
-                            <p class="phone">رقم التليفون: <a href="tel:+201234567890">+20 1159728917</a></p>
-                            <p class="mail">
-                                <a href="mailto:greenferta@gmail.com">greenferta@gmail.com</a>
-                            </p>
-                            <p class="address">العنوان</p>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-link">
-                            <h3>خدماتنا</h3>
-                            <ul>
-                                <li><a asp-controller="Services" asp-action="Consulting">استشارات زراعية</a></li>
-                                <li><a asp-controller="Services" asp-action="Wholesale">طلبات الجملة</a></li>
-                                <li><a asp-controller="Services" asp-action="Delivery">خدمة التوصيل</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-link">
-                            <h3>اعرف أكتر عن الشركة</h3>
-                            <ul>
-                                <li><a asp-controller="AboutUs" asp-action="Index">عن الشركة</a></li>
-                                <li><a asp-controller="Contact" asp-action="Index">تواصل معانا</a></li>
-                                <li><a asp-controller="FAQs" asp-action="Index">الأسئلة الشائعة</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-link">
-                            <h3>أقسام الموقع</h3>
-                            <ul>
-                                <li><a asp-controller="Product" asp-action="Index">المنتجات</a></li>
-                                <li><a asp-controller="Category" asp-action="Index">الأصناف</a></li>
-                                <li><a asp-controller="Borshor" asp-action="Index">البرشورز</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
+            <p>ميدرا | حلول زراعية متطورة لنمو مستدام — نوفر لك كل ما يحتاجه نباتك من مغذيات بخبرة وجودة.</p>
+        </div>
+    </div>
+    <div class="px-4 sm:px-6 lg:px-8">
+        <!-- الطبقة الثانية: روابط وأقسام -->
+        <div class="footer-middle">
+            <div class="container grid-3">
+                <div class="footer-box">
+                    <h3>تواصلوا معنا</h3>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+201159728917">+20 1159728917</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:greenferta@gmail.com">greenferta@gmail.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> العنوان: مصر - كفر الشيخ</p>
+                </div>
+
+                <div class="footer-box">
+                    <h3>روابط مهمة</h3>
+                    <ul>
+                        <li><a asp-controller="AboutUs" asp-action="Index">عن الشركة</a></li>
+                        <li><a asp-controller="Contact" asp-action="Index">اتصل بنا</a></li>
+                        <li><a asp-controller="FAQs" asp-action="Index">الأسئلة الشائعة</a></li>
+                        <li><a asp-controller="Services" asp-action="Consulting">استشارات زراعية</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box">
+                    <h3>الأقسام</h3>
+                    <ul>
+                        <li><a asp-controller="Product" asp-action="Index">المنتجات</a></li>
+                        <li><a asp-controller="Category" asp-action="Index">الأصناف</a></li>
+                        <li><a asp-controller="Borshor" asp-action="Index">البرشورز</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Footer Middle -->
-    <!-- Start Footer Bottom -->
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="inner-content">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-12">
-                        <div class="flex items-center space-x-3">
-                            <div class="">
-                                @* <img src="~/Images/logo png.png" alt="Green Ferta" class="h-11 w-11 rounded-full object-cover"> *@
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="copyright">
-                            <p>© ٢٠٢٥ ميدرا - كل الحقوق محفوظة. تصميم وتطوير <a href="http://mynewportoflio.runasp.net/" rel="nofollow" target="_blank">محمد الاخناوي</a></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12 socialf">
-                        <ul class="socila">
-                            <li>
-                                <span>تابعنا على:</span>
-                            </li>
-                            <li><a href="https://www.facebook.com/profile.php?id=61572704130190"><i class="lni lni-facebook-filled"></i></a></li>
-                            <li><a href="https://wa.me/201159728917"><i class="lni lni-whatsapp"></i></a></li>
-                            <li><a href="https://www.instagram.com/greenferta"><i class="lni lni-instagram-filled"></i></a></li>
-                        </ul>
-                    </div>
+
+        <!-- الطبقة الثالثة: لوجو الشركة ولوجوهات الشركاء -->
+        <div class="footer-bottom">
+            <div class="container bottom-flex">
+                <div class="footer-logo">
+                    <img src="~/Images/Home_Images/logo.png" alt="Green Ferta Logo">
                 </div>
+                <div class="partners-logos">
+                    <img src="~/Images/Home_Images/logo.png" alt="Partner 1">
+                    <img src="~/Images/Home_Images/logo.png" alt="Partner 2">
+                </div>
+                <div class="footer-social">
+                    <span>تابعنا:</span>
+                    <a href="https://www.facebook.com/profile.php?id=61573930712344"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/201159728917"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/medra_agro/"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="copy">
+                <p>© ٢٠٢٥ ميدرا - كل الحقوق محفوظة. تصميم وتطوير <a href="http://mynewportoflio.runasp.net/" target="_blank">محمد الاخناوي</a></p>
             </div>
         </div>
     </div>
-    <!-- End Footer Bottom -->
 </footer>
