@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Dashboard/_Layout.cshtml";
+    ViewData["Title"] = "Add ProductSize";
+}
+@model Ecommerce_Website.Core.ViewModels.ProductFilterViewModel
+
+<form method="post" asp-controller="ProductFilters" asp-action="Add" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">Product Size *</label>
+        <input type="text" asp-for="ProductSize" class="form-control" placeholder="Enter Size">
+        <span asp-validation-for="ProductSize"></span>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-warning"> Add </button>
+        <a class="btn btn-close-white" asp-action="ProductFilter">Cancel</a>
+    </div>
+</form>

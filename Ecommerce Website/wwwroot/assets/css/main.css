@@ -3248,7 +3248,7 @@ top: 2px;
     Product CSS
 ========================================*/
 /* Single Product*/
-.single-product {
+/*.single-product {
   border: 1px solid #eee;
   border-radius: 4px;
   -webkit-transition: all 0.4s ease;
@@ -3259,7 +3259,7 @@ top: 2px;
   padding: 8px;
   background: #fff;
 }
-
+*/
 .single-product .product-image {
   overflow: hidden;
   position: relative;

@@ -64,6 +64,14 @@
                 <select asp-for="SelectedCategoryId" asp-items="Model.Categories" class="form-control">
                     <option>-- Select Category --</option>
                 </select>
+                <span asp-validation-for="SelectedCategoryId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Size</label>
+                <select asp-for="ProductFilterId" asp-items="Model.AvailableSizes" class="form-control">
+                    <option>-- Select Size --</option>
+                </select>
+                <span asp-validation-for="ProductFilterId" class="text-danger"></span>
             </div>
 
             <div class="form-check form-switch d-flex align-items-center">

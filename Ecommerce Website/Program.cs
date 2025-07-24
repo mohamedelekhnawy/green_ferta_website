@@ -27,6 +27,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IRepository<CategoryModel>, CategoryRepository>();
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+builder.Services.AddScoped<IRepository<ProductFilter>, ProductFilterRepository>();
 builder.Services.AddScoped<IRepository<Borshor>, BorshorRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IRepository<Testmonials>,TestmonialsRepository >();

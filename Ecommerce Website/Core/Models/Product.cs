@@ -37,15 +37,16 @@ namespace Ecommerce_Website.Core.Models
 
         public virtual CategoryModel? Category { get; set; }
 
-
-        // New Quantity for Shopping Cart
-        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1")]
-        public int Quantity { get; set; }
-
         // How to Use instead of old Quantity
         
         public string? HowToUse { get; set; }
 
         public bool IsAvailable { get; set; } = true;
+
+        // Product Filter
+        public int? ProductFilterId { get; set; }
+
+        // Navigation Property
+        public virtual ProductFilter? ProductFilter { get; set; }
     }
 }

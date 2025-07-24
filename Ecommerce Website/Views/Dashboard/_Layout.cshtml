@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/favicon.ico" />
     <title>@ViewBag.Title</title>
 
     <!-- Google Fonts -->
@@ -34,7 +35,7 @@
     @RenderSection("Styles", required: false)
 </head>
 
-<body class="dark-edition">
+<body >
     <div class="wrapper ">
         <div class="sidebar" data-color="green" data-background-color="black">
             <!--
@@ -44,7 +45,7 @@
             -->
             <div class="logo">
                 <a href="#" class="simple-text logo-normal">
-                    Medra
+
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -61,7 +62,12 @@
                             <p>Categories</p>
                         </a>
                     </li>
-
+                    <li class="nav-item active  ">
+                        <a asp-controller="ProductFilters" asp-action="ProductFilter" class="nav-link">
+                            <i class="fa-solid fa-filter"></i>
+                            <p>Size</p>
+                        </a>
+                    </li>
                     <li class="nav-item active  ">
                         <a asp-controller="Product" asp-action="Product" class="nav-link">
                             <i class="material-icons">inventory</i>
@@ -70,20 +76,20 @@
                     </li>
                     <li class="nav-item active  ">
                         <a asp-controller="Borshor" asp-action="Borshors" class="nav-link">
-                            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M360-460h40v-80h40q17 0 28.5-11.5T480-580v-40q0-17-11.5-28.5T440-660h-80v200Zm40-120v-40h40v40h-40Zm120 120h80q17 0 28.5-11.5T640-500v-120q0-17-11.5-28.5T600-660h-80v200Zm40-40v-120h40v120h-40Zm120 40h40v-80h40v-40h-40v-40h40v-40h-80v200ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z" /></svg></i>
+                            <i class="fa-solid fa-file"></i>                            
                             <p>Borshors</p>
                         </a>
                     </li>
                     <li class="nav-item active  ">
-                        <a asp-controller="Dashboard" asp-action="Users" class="nav-link">
-                            <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></i>
-                            <p>Users</p>
+                        <a asp-controller="Blog" asp-action="Blogs" class="nav-link">
+                            <i class="fa-solid fa-pen"></i>
+                            <p>Blogs</p>
                         </a>
                     </li>
                     <li class="nav-item active  ">
                         <a asp-controller="AboutUs" asp-action="Testmonials" class="nav-link">
                             <i class="fa-solid fa-comments"></i>
-                            <p>Testimonials</p>
+                            <p>Comments</p>
                         </a>
                     </li>
                     <li class="nav-item active  ">
@@ -92,14 +98,16 @@
                             <p>Orders</p>
                         </a>
                     </li>
+
                     <li class="nav-item active  ">
-                        <a asp-controller="Blog" asp-action="Blogs" class="nav-link">
-                            <i class="fa-solid fa-pen"></i>                            
-                            <p>Blogs</p>
+                        <a asp-controller="Dashboard" asp-action="Users" class="nav-link">
+                            <i class="fa-solid fa-users"></i>
+                            <p>Users</p>
                         </a>
                     </li>
                     <li class="nav-item active  ">
                         <a asp-controller="Home" asp-action="Index" class="nav-link">
+                            <i class="fa-solid fa-street-view"></i>
                             <p>User View</p>
                         </a>
                     </li>

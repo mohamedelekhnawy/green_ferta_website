@@ -1,68 +1,153 @@
-﻿@{
-    Layout = "_Layout";
-    ViewData["Title"] = "المنتجات";
-}
-@model IEnumerable<Product>
+﻿@model ProductsViewModel
 
-<partial name="_SearchBar" />
-
-<section class="py-5">
+<section class="pt-2 pb-2 container-fluid">
     <div class="container px-4 sm:px-6 lg:px-8">
         <div class="row">
-            @foreach (var product in Model)
-            {
-                <div class=" col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <a asp-controller ="Product" asp-action="ProductDetails" asp-route-id="@product.Id">
-                        <div class="card single-product">
-                            <aasp-controller ="Product" asp-action="ProductDetails" asp-route-id="@product.Id">
-                                <div class="product-image">
-                                    <img src="~/Images/Products/@product.ImageUrl" alt="@product.Name">
-                                    <div class="button order-btn">
-                                        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id" class="btn order-btn "> عرض المنتج </a>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h4 class="title">
-                                        @product.Name
-                                    </h4>
-                                    <div>
-                                        @if (product.IsAvailable)
-                                        {
-                                            <span class="badge bg-success av">متوفر</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge bg-danger un">غير متوفر حاليا!</span>
-                                        }
-                                    </div>
-                                    <div class="price">
+            <!-- Sidebar Filters -->
+            <div class="col-lg-3 col-md-4 mb-4 ">
+                <div class="sticky-sidebar" style="position: sticky; top: 90px;">
+                    <!-- Search Bar داخل السايد بار -->
+                    <!-- صندوق البحث -->
+                    <div class="card p-3 mb-4">
+                        <form action="/Product/Search" method="get" class="search-wrapper">
+                            <input type="search" name="query" dir="rtl" placeholder="ابحث عن المنتجات..."
+                                   class="search-input" />
+                            <button type="submit" class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
 
-                                        @if (product.DiscountedPrice > 0 && product.DiscountedPrice < product.Price)
-                                        {
-                                            <p>
-                                                <strong>السعر:</strong>
-                                                <span style="text-decoration: line-through; color: gray;">$@product.Price</span>
-                                            </p>
-                                            <p>
-                                                <strong>السعر بعد الخصم :</strong>
-                                                <span style="color: #d9534f; font-weight: bold;">$@product.DiscountedPrice</span>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p><strong>السعر:</strong> $@product.Price</p>
-                                        }
 
+                    <!-- فلتر الأقسام والأحجام -->
+                    <form asp-controller="Product" asp-action="Index" method="get">
+                        <div class="card p-3 mb-4">
+                            <h5 class="mb-3">فلتر حسب القسم</h5>
+                            @if (Model.Categories != null && Model.Categories.Any())
+                            {
+                                foreach (var category in Model.Categories)
+                                {
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               name="categoryId" value="@category.Value"
+                                               id="cat_@category.Value"
+                                               @(Model.SelectedCategoryId > 0 && Model.SelectedCategoryId.ToString() == category.Value ? "checked" : "") />
+                                        <label class="form-check-label" for="cat_@category.Value">@category.Text</label>
                                     </div>
-                                </div>
-                            </aasp-controller>
+                                }
+                            }
+
+                            <hr />
+
+                            <h5 class="mb-3">فلتر حسب الحجم</h5>
+                            @if (Model.AvailableSizes != null && Model.AvailableSizes.Any())
+                            {
+                                foreach (var size in Model.AvailableSizes)
+                                {
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               name="selectedSizes" value="@size.Value"
+                                               id="size_@size.Value"
+                                               @(Model.SelectedSizes != null && Model.SelectedSizes.Contains(int.Parse(size.Value)) ? "checked" : "") />
+                                        <label class="form-check-label" for="size_@size.Value">@size.Text</label>
+                                    </div>
+                                }
+                            }
+
+                            <button type="submit" class="btn btn-success mt-3 w-100">تطبيق الفلاتر</button>
+                            <a href="@Url.Action("Index", "Product")" class="btn btn-secondary mt-2 w-100">مسح الفلاتر</a>
                         </div>
-                    </a>
-                    <!-- End Single Product -->
+                    </form>
                 </div>
-                
-            }
+            </div>
+
+            <!-- Products Grid -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row">
+                    @if (Model.Products != null && Model.Products.Any())
+                    {
+                        foreach (var product in Model.Products)
+                        {
+                            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                                <div class="card single-product h-100">
+                                    <div class="product-image position-relative">
+                                        <img src="~/Images/Products/@(product.ImageUrl ?? "default.jpg")"
+                                             alt="@(product.Name ?? "منتج")" class="card-img-top">
+                                        <div class="button order-btn">
+                                            <a asp-controller="Product" asp-action="ProductDetails"
+                                               asp-route-id="@product.Id" class="btn order-btn">عرض المنتج</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-info card-body d-flex flex-column">
+                                        <h4 class="title card-title">@product.Name</h4>
+                                        <div class="mb-2">
+                                            @if (product.IsAvailable)
+                                            {
+                                                <span class="badge bg-success av">متوفر</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger un">غير متوفر حاليا!</span>
+                                            }
+                                        </div>
+                                        <div class="price mt-auto">
+                                            @if (product.DiscountedPrice > 0 && product.DiscountedPrice < product.Price)
+                                            {
+                                                <p class="mb-1">
+                                                    <strong>السعر:</strong>
+                                                    <span style="text-decoration: line-through; color: gray;">$@product.Price</span>
+                                                </p>
+                                                <p class="mb-0">
+                                                    <strong>السعر بعد الخصم:</strong>
+                                                    <span style="color: #d9534f; font-weight: bold;">$@product.DiscountedPrice</span>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p class="mb-0"><strong>السعر:</strong> $@product.Price</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-12">
+                            <div class="alert alert-info text-center">
+                                <h4>لا توجد منتجات مطابقة للفلاتر المحددة</h4>
+                                @if (Model.SelectedCategoryId > 0 || (Model.SelectedSizes != null && Model.SelectedSizes.Any()))
+                                {
+                                    <p class="text-muted">
+                                        الفلاتر المطبقة:
+                                        @if (Model.SelectedCategoryId > 0)
+                                        {
+                                            var categoryName = Model.Categories.FirstOrDefault(c => c.Value == Model.SelectedCategoryId.ToString())?.Text;
+                                            if (!string.IsNullOrEmpty(categoryName))
+                                            {
+                                                <span>قسم: @categoryName</span>
+                                            }
+                                        }
+                                        @if (Model.SelectedSizes != null && Model.SelectedSizes.Any())
+                                        {
+                                            var selectedSizeNames = Model.AvailableSizes
+                                            .Where(s => Model.SelectedSizes.Contains(int.Parse(s.Value)))
+                                            .Select(s => s.Text)
+                                            .ToList();
+                                            if (selectedSizeNames.Any())
+                                            {
+                                                <span> | أحجام: @string.Join(", ", selectedSizeNames)</span>
+                                            }
+                                        }
+                                    </p>
+                                }
+                                <a href="@Url.Action("Index", "Product")" class="btn btn-primary">عرض جميع المنتجات</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </section>

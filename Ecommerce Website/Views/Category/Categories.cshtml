@@ -5,40 +5,42 @@
     ViewData["Title"] = "Categories";
 }
 
-<div class="container my-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="text-success">Categories</h2>
-        <a asp-controller="Category" asp-action="Add" class="btn btn-primary">
-            <i class="material-icons">add</i> Add Category
+<div class="">
+
+    <div class="justify-content-between align-items-center mx-auto">
+        <h1 class="">Categories</h1>
+        <a asp-controller="Category" asp-action="Add" class="btn btn-light">
+            <i class="material-icons">add</i> Add Category <i class="mdi mdi-add ms-1"></i>
         </a>
     </div>
 
     @if (!Model.Any())
     {
-        <div class="alert alert-warning d-flex align-items-center" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-diamond me-2" viewBox="0 0 16 16">
-                <path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098z" />
+        <div class="alert alert-warning d-flex align-items-center " role="alert" style="width: 50%;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+                <path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
                 <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
             </svg>
-            <div>No categories yet</div>
+            <div class="ms-2">No categories yet</div>
         </div>
     }
     else
     {
-        <div class="card">
-            <div class="card-header bg-success text-white">
-                <h4 class="mb-0">Categories List</h4>
+        <div class="card border border-success shadow-sm">
+            <div class="d-flex card-header justify-content-between align-items-center">
+                <h5 class="mb-0 text-success">Categories List</h5>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="table-dark">
+
+            <div class="card-body pt-0">
+                <div class="table-responsive" style="overflow-y: auto;">
+                    <table class="table table-hover table-striped mb-0 w-100 align-middle text-center">
+                        <thead>
                             <tr>
                                 <th>Name</th>
-								<th>Image</th>
+                                <th>Image</th>
                                 <th>Description</th>
-                                <th>Creating Date</th>
-                                <th>Updating Date</th>
+                                <th>Created On</th>
+                                <th>Updated On</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -50,7 +52,7 @@
                                     <td>@category.Name</td>
                                     <td>
                                         <img src="@Url.Content("~/Images/Categories/" + category.ImageUrl)"
-                                             alt="Product Image"
+                                             alt="Category Image"
                                              style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid #28a745;">
                                     </td>
                                     <td>@Html.Raw(category.Description)</td>
@@ -58,7 +60,7 @@
                                     <td>@category.UpdatedOn?.ToString("yyyy-MM-dd")</td>
                                     <td>
                                         <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning btn-sm">
-                                            <i class="material-icons">edit</i> Edit
+                                            <i class="material-icons">edit</i>
                                         </a>
                                     </td>
                                     <td>
@@ -67,7 +69,7 @@
                                             <input type="hidden" name="id" value="@category.Id" />
                                         </form>
                                         <button onclick="confirmDelete(@category.Id)" class="btn btn-danger btn-sm">
-                                            <i class="material-icons">delete</i> Delete
+                                            <i class="material-icons">delete</i>
                                         </button>
                                     </td>
                                 </tr>
@@ -79,9 +81,10 @@
         </div>
     }
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function confirmDelete(productId) {
+    function confirmDelete(id) {
         Swal.fire({
             title: "Are you sure?",
             text: "This action cannot be undone!",
@@ -92,7 +95,7 @@
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById("deleteForm-" + productId).submit();
+                document.getElementById("deleteForm-" + id).submit();
             }
         });
     }

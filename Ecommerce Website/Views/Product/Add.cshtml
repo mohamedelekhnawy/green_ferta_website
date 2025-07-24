@@ -68,6 +68,13 @@
                 </select>
                 <span asp-validation-for="SelectedCategoryId"></span>
             </div>
+            <div class="mb-3">
+                <label class="form-label">Size *</label>
+                <select asp-for="ProductFilterId" asp-items="Model.AvailableSizes" class="form-control">
+                    <option>-- Select Size --</option>
+                </select>
+                <span asp-validation-for="ProductFilterId"></span>
+            </div>
 
             <div class="mb-3">
                 <label class="form-label">How to use *</label>

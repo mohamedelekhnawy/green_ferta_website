@@ -310,7 +310,7 @@ namespace Ecommerce_Website.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("ProductFilterId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -325,9 +325,28 @@ namespace Ecommerce_Website.Data.Migrations
 
                     b.HasIndex("CreatedById");
 
+                    b.HasIndex("ProductFilterId");
+
                     b.HasIndex("UpdatedById");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Ecommerce_Website.Core.Models.ProductFilter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductFilters");
                 });
 
             modelBuilder.Entity("Ecommerce_Website.Core.Models.Review", b =>
@@ -583,6 +602,11 @@ namespace Ecommerce_Website.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CreatedById");
 
+                    b.HasOne("Ecommerce_Website.Core.Models.ProductFilter", "ProductFilter")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductFilterId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Ecommerce_Website.Core.Models.ApplicationUser", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById");
@@ -590,6 +614,8 @@ namespace Ecommerce_Website.Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("CreatedBy");
+
+                    b.Navigation("ProductFilter");
 
                     b.Navigation("UpdatedBy");
                 });
@@ -679,6 +705,11 @@ namespace Ecommerce_Website.Data.Migrations
             modelBuilder.Entity("Ecommerce_Website.Core.Models.Order", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Ecommerce_Website.Core.Models.ProductFilter", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -17,6 +17,7 @@ namespace Ecommerce_Website.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductFilter> ProductFilters { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Borshor> Borshors { get; set; }
         public DbSet<Testmonials> Testmonials { get; set; }
@@ -28,6 +29,12 @@ namespace Ecommerce_Website.Data
                 .HasOne(p => p.Category) 
                 .WithMany(c => c.Products) 
                 .HasForeignKey(p => p.CategoryId);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.ProductFilter)
+                .WithMany(f => f.Products)
+                .HasForeignKey(p => p.ProductFilterId)
+                .OnDelete(DeleteBehavior.SetNull);
 
         }
     }

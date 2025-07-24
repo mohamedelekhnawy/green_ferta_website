@@ -1,92 +1,71 @@
 ﻿body {
     font-family: 'Cairo', sans-serif !important;
     font-size: 16px;
-    background-color: #f8f9fa;
-
+    background-color: #ffffff; /* أبيض */
+    color: #212529; /* رمادي غامق للنص */
     margin: 0;
     padding: 0;
 }
 
-.content {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 100vh;
+.sidebar {
+    background-color: #f1f1f1 !important;
+    color: #212529;
 }
 
+    .sidebar .nav-link,
+    .sidebar .nav-link i,
+    .sidebar .nav-link p {
+        color: #212529 !important;
+    }
 
+        .sidebar .nav-link.active {
+            background-color: #e0ffe0; /* أخضر فاتح */
+            border-radius: 10px;
+        }
 
-.form-label {
-    font-weight: bold;
-}
-
-.form-control {
-    border-radius: 5px;
-    font-size: 18px;
-}
-
-.input-group-text {
-    background-color: #28a745;
-    color: white;
-    border: none;
+.navbar {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .card {
-    border: none;
-    text-align: center;
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .card-title {
-    font-weight: bold;
-}
-
-#imagePreview {
-    max-width: 100%;
-    height: auto;
-    display: none;
-}
-
-select.form-control {
-    background-color: #1a2035;
     color: #28a745;
-    border: 2px solid #28a745;
-    padding: 5px;
-    border-radius: 5px;
+    background-color: transparent;
+}
+
+.form-control,
+select.form-control,
+select {
+    background-color: #ffffff !important;
+    color: #212529;
+    border: 1px solid #ced4da;
+}
+
+    select option {
+        background-color: #ffffff;
+        color: #212529;
+    }
+
+.badge {
+    background-color: #28a745;
+    color: white;
 }
 
 .btn-warning {
     background-color: #ffc107;
-    color: black;
-    font-weight: bold;
+    color: #000;
 }
 
-.btn-close-white {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    font-size: 22px;
-}
-
-.form-container, .table-container {
-    font-size: 20px;
-}
-
-.table th, .table td {
-    font-size: 18px;
-}
-
-button {
-    font-size: 18px;
-    padding: 10px 20px;
-}
-
-.custom-table th, .custom-table td {
-    text-align: center;
-    vertical-align: middle;
+.table th,
+.table td {
+    color: #212529;
 }
 
 .custom-table th {
@@ -94,82 +73,19 @@ button {
     color: white;
 }
 
-
-.table-container {
-    max-height: 500px;
-    overflow-y: auto;
+.card .card-body {
+    color: #212529;
 }
 
-.product-image {
-    max-width: 100%; /* يمنع الصورة من تجاوز عرض الحاوية */
-    height: auto; /* يحافظ على نسبة الأبعاد الأصلية */
-    display: block; /* يمنع أي تأثيرات غير مرغوبة */
-    margin: 0 auto; /* يوسّط الصورة داخل الـ card */
-    max-height: 300px; /* يمنع الصورة من أن تكون طويلة جدًا */
-}
-select {
-    background-color: #13182B !important; /* لون الخلفية نفس لون الصفحة */
-    color: #ffffff; /* تغيير لون النص إلى الأبيض */
-    border: 1px solid #4CAF50; /* تحديد لون الإطار */
-    padding: 8px;
-    border-radius: 5px;
-    outline: none;
+/* إزالة تأثير الوضع الداكن */
+.dark-edition {
+    background-color: #ffffff !important;
+    color: #212529 !important;
 }
 
-/* تغيير لون القائمة المنسدلة نفسها */
-select option {
-    background-color: #13182B; /* لون الخلفية عند الفتح */
-    color: #ffffff; /* لون النص */
-    height:20px;
-}
-.badge {
-    color: white;
-}
-.card-title {
-    font-family: 'Cairo', sans-serif;
-    width: fit-content;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #28a745;
-    color: white;
-}
-.dark-edition .card .card-body .card-category, .dark-edition .card .card-body .card-title {
-    color: #ffffff;
-}
-.card-img-top {
-    height: auto !important;
-}
-.card {
-    
-    color: white;
-}
-.dark-edition .card .card-body {
-    color: white;
-}
-
-
-
-/* Hover effect */
-.custom-switch:hover {
-    opacity: 0.8;
-}
-
-/* Focus effect */
-.custom-switch:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-.form-check  {
-    cursor: pointer;
-    /* padding-left: 25px; */
-    position: relative;
-    border: solid 5px #28a745;
-    border-radius: 10px;
-    padding: 10px;
-
-}
-.form-check .form-check-label {
-    cursor: pointer;
-    margin:0px 10px 0px 0px ; 
-    position: relative;
-}
+    .dark-edition .card,
+    .dark-edition .card .card-body,
+    .dark-edition .card .card-body .card-title {
+        background-color: #ffffff !important;
+        color: #212529 !important;
+    }
